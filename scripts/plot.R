@@ -65,7 +65,9 @@ plot_stn <- function(instance, iset, bObjLay) {
       mylay <- create_layout(STN, layout = 'grid')
       mylay$x <- V(STN)$f1
       mylay$y <- V(STN)$f2
-      p <- ggraph(mSTN, layout = mylay) + 
+      # MoWFLOP fix: `mSTN` was never defined anywhere in this script (bug
+      # in the original) -- the actual graph object built above is `STN`.
+      p <- ggraph(STN, layout = mylay) +
          
          geom_edge_diagonal2(aes(alpha = Count)) + 
          scale_shape_manual(name = "Node Type", values=c(MyShapes, pShape))+ 
