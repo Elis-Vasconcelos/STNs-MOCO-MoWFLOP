@@ -43,7 +43,7 @@ cd scripts
 
 # RQ1 diagnostic: tables and figures
 ../.venv/bin/python -m mowflop.diagnose_entropy --instance ns101 --config p100_i50 \
-    --control-pmed7 --control-pilot ns41:p5_i2 --figs
+    --control-pmed7 --figs
 
 # tests, including the regression against the paper's published numbers
 ../.venv/bin/python -m unittest mowflop.test_partition -v
