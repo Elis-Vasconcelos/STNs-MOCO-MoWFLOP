@@ -1,21 +1,21 @@
-"""Reading of the raw campaign logs.
+"""Leitura dos logs brutos da campanha.
 
-The campaign lives in ``raw_results/meta_heuristics_stn`` inside this
-repository; ``$MOWFLOP_RAW`` overrides it.  Directory layout produced by the
-C++ campaign::
+A campanha vive em ``raw_results/meta_heuristics_stn`` dentro deste
+repositório; ``$MOWFLOP_RAW`` sobrescreve isso.  Layout de diretórios
+produzido pela campanha em C++::
 
-    <raw_root>/<algorithm>/<instance>/<config>/<run>/<instance>_<algorithm>_stn.csv
-    <raw_root>/candidates/<instance>_candidates.csv
+    <raw_root>/<algoritmo>/<instância>/<config>/<run>/<instância>_<algoritmo>_stn.csv
+    <raw_root>/candidates/<instância>_candidates.csv
 
-``config`` is ``p<P>_i<k>``: P observer vectors, one recording every k
-generations.  Each ``*_stn.csv`` holds a single run and has the columns
+``config`` é ``p<P>_i<k>``: P vetores observadores, um registro a cada k
+gerações.  Cada ``*_stn.csv`` guarda uma única run e tem as colunas
 
     algorithm,instance,run_id,vector_id,generation,iteration,
     f_cost,f_power,weight1,weight2,occupied
 
-``occupied`` is the space separated list of global candidate indices holding a
-turbine -- one entry per mobile turbine, already sorted.  The candidate index
-is the row order of ``<instance>_candidates.csv``.
+``occupied`` é a lista, separada por espaço, dos índices globais de candidatos
+que têm uma turbina -- uma entrada por turbina móvel, já ordenada.  O índice de
+candidato é a ordem da linha em ``<instância>_candidates.csv``.
 """
 
 from __future__ import annotations
@@ -39,20 +39,32 @@ STN_COLUMNS = [
     "occupied",
 ]
 
-# The R pipeline names the algorithm folders MOEAD/NSGA2; the C++ campaign
-# writes them lowercase.
+# o pipeline em R nomeia as pastas de algoritmo MOEAD/NSGA2; a campanha em C++
+# escreve tudo em minúsculo
 ALGO_LABELS = {"moead": "MOEAD", "nsga2": "NSGA2"}
 
 
 def repo_root() -> Path:
-    """Root of the STNs-MOCO-MoWFLOP checkout."""
+    """Raiz do checkout do STNs-MOCO-MoWFLOP.
+
+    Returns:
+        Caminho absoluto da raiz do repositório.
+    """
     return Path(__file__).resolve().parents[2]
 
 
 def raw_root(root: str | os.PathLike | None = None) -> Path:
-    """Locate the campaign logs: ``raw_results/meta_heuristics_stn`` in the repo.
+    """Localiza os logs da campanha: ``raw_results/meta_heuristics_stn`` no repo.
 
-    An explicit argument or ``$MOWFLOP_RAW`` overrides it.
+    Args:
+        root: caminho explícito que sobrescreve o padrão; se ``None``, tenta
+            ``$MOWFLOP_RAW`` e depois o caminho padrão dentro do repo.
+
+    Returns:
+        Caminho absoluto da raiz dos logs da campanha.
+
+    Raises:
+        FileNotFoundError: se nenhum caminho válido for encontrado.
     """
     if root is not None:
         return Path(root).resolve()
@@ -68,10 +80,19 @@ def raw_root(root: str | os.PathLike | None = None) -> Path:
 
 
 def discover(root: str | os.PathLike | None = None) -> pd.DataFrame:
-    """Inventory of every ``*_stn.csv`` available, one row per run."""
+    """Inventário de todo ``*_stn.csv`` disponível, uma linha por run.
+
+    Args:
+        root: raiz da campanha; ver :func:`raw_root`.
+
+    Returns:
+        DataFrame com colunas ``algorithm``, ``instance``, ``config``, ``run``
+        e ``path``.
+    """
     base = raw_root(root)
     rows = []
     for path in sorted(base.glob("*/*/*/*/*_stn.csv")):
+        # desempacota algoritmo/instância/config/run a partir do layout de pastas
         algorithm, instance, config, run = path.relative_to(base).parts[:4]
         rows.append(
             {
@@ -86,7 +107,14 @@ def discover(root: str | os.PathLike | None = None) -> pd.DataFrame:
 
 
 def inventory(root: str | os.PathLike | None = None) -> pd.DataFrame:
-    """Runs available per (instance, config, algorithm), for progress reports."""
+    """Runs disponíveis por (instância, config, algoritmo), para relatórios de progresso.
+
+    Args:
+        root: raiz da campanha; ver :func:`raw_root`.
+
+    Returns:
+        DataFrame agregado com a contagem de runs distintas por combinação.
+    """
     found = discover(root)
     if found.empty:
         return found
@@ -103,7 +131,23 @@ def load_trajectories(
     algorithms: list[str] | None = None,
     root: str | os.PathLike | None = None,
 ) -> pd.DataFrame:
-    """All recordings of one (instance, config), across algorithms and runs."""
+    """Todos os registros de uma (instância, config), entre algoritmos e runs.
+
+    Args:
+        instance: nome da instância.
+        config: config no formato ``p<P>_i<k>``.
+        algorithms: se dado, mantém só esses algoritmos.
+        root: raiz da campanha; ver :func:`raw_root`.
+
+    Returns:
+        DataFrame concatenado de todas as runs selecionadas, com as colunas
+        de :data:`STN_COLUMNS`.
+
+    Raises:
+        FileNotFoundError: se não houver nenhum log para a campanha, ou para a
+            combinação (instância, config) pedida.
+        ValueError: se algum arquivo estiver com formato inesperado.
+    """
     found = discover(root)
     if found.empty:
         raise FileNotFoundError("no *_stn.csv files under the campaign root")
@@ -113,6 +157,7 @@ def load_trajectories(
     if sel.empty:
         raise FileNotFoundError(f"no logs for instance={instance} config={config}")
 
+    # lê cada CSV de run com os tipos já fixados, para concatenar sem surpresas
     frames = [
         pd.read_csv(
             path,
@@ -142,19 +187,41 @@ def load_trajectories(
 def load_candidates(
     instance: str, root: str | os.PathLike | None = None
 ) -> pd.DataFrame:
-    """Decode table mapping global candidate index to zone and coordinates."""
+    """Tabela de decodificação: índice global de candidato -> zona e coordenadas.
+
+    Args:
+        instance: nome da instância.
+        root: raiz da campanha; ver :func:`raw_root`.
+
+    Returns:
+        DataFrame com as colunas ``global_index``, ``zone``, ``zone_index``,
+        ``x`` e ``y``.
+
+    Raises:
+        ValueError: se o formato do arquivo de candidatos for inesperado, ou
+            se ``global_index`` não for a ordem das linhas.
+    """
     path = raw_root(root) / "candidates" / f"{instance}_candidates.csv"
     df = pd.read_csv(path)
     expected = ["global_index", "zone", "zone_index", "x", "y"]
     if list(df.columns) != expected:
         raise ValueError(f"unexpected candidate format in {path}: {list(df.columns)}")
+    # occupied guarda o índice global; se ele não for a ordem da linha, a decodificação quebra
     if not (df["global_index"].to_numpy() == range(len(df))).all():
         raise ValueError(f"global_index is not row order in {path}")
     return df
 
 
 def n_positions(instance: str, root: str | os.PathLike | None = None) -> int:
-    """Number of candidate positions, i.e. the length of the binary string."""
+    """Número de posições candidatas, isto é, o tamanho da string binária.
+
+    Args:
+        instance: nome da instância.
+        root: raiz da campanha; ver :func:`raw_root`.
+
+    Returns:
+        Número de candidatos (linhas do arquivo, menos o cabeçalho).
+    """
     path = raw_root(root) / "candidates" / f"{instance}_candidates.csv"
     with open(path, "r", encoding="utf-8") as handle:
         return sum(1 for _ in handle) - 1

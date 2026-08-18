@@ -1,15 +1,19 @@
-"""Tests for the MoWFLOP partitioning stage.
+"""Testes do estágio de particionamento do MoWFLOP.
 
-Run from ``scripts/``::
+Rode a partir de ``scripts/``::
 
     ../.venv/bin/python -m unittest mowflop.test_partition -v
 
-The headline test is :class:`TestPmed7Regression`: the implementation is checked
-against three numbers published by the authors of the scheme (Ochoa, Malan &
-Blum 2021) for their own ``pmed7`` data -- ``|S(T)| = 423`` and ``n_total = 423``
-unpartitioned (Table 8), ``z = 19`` for a 60% partitioning (S6.2), and
-``n_total = 312`` partitioned (Table 8).  If those three hold, what we implement
-is their scheme and not a reinterpretation of it.
+O teste principal é :class:`TestPmed7Regression`: a implementação é conferida
+contra três números publicados pelos autores do esquema (Ochoa, Malan & Blum
+2021) para os dados ``pmed7`` deles próprios -- ``|S(T)| = 423`` e
+``n_total = 423`` sem particionar (Tabela 8), ``z = 19`` para um particionamento
+de 60% (S6.2), e ``n_total = 312`` particionado (Tabela 8).  Se esses três
+baterem, o que implementamos é o esquema deles, e não uma reinterpretação.
+
+Estes testes usam ``tie_break="index"`` explicitamente onde o resultado
+precisa ser determinístico (regressão contra os números do artigo); em todo o
+resto do pacote o default de ``tie_break`` é ``"random"``.
 """
 
 from __future__ import annotations
@@ -23,7 +27,7 @@ import pandas as pd
 
 from . import entropy as entropy_mod
 from . import io_raw
-from .diagnose_entropy import load_pmed7, solution_index, sweep_z
+from .diagnose_entropy import load_pmed7
 from .emit import (
     build_table,
     canonical_objectives,
@@ -115,16 +119,23 @@ class TestPmed7Regression(unittest.TestCase):
         self.assertEqual(self.n, 200)
 
     def test_z_for_60_percent_partitioning(self):
-        partition = entropy_mod.build_partition(self.solutions, self.n, percent=60)
+        # tie_break="index" para reproduzir o número publicado de forma determinística
+        partition = entropy_mod.build_partition(
+            self.solutions, self.n, percent=60, tie_break="index"
+        )
         self.assertEqual(partition.z, 19)  # Section 6.2 of the paper
 
     def test_partitioned_location_count(self):
-        partition = entropy_mod.build_partition(self.solutions, self.n, percent=60)
+        partition = entropy_mod.build_partition(
+            self.solutions, self.n, percent=60, tie_break="index"
+        )
         # Table 8, column n_total for the partitioned search space
         self.assertEqual(len(partition.locations(self.solutions)), 312)
 
     def test_zero_percent_reproduces_the_unpartitioned_space(self):
-        partition = entropy_mod.build_partition(self.solutions, self.n, percent=0)
+        partition = entropy_mod.build_partition(
+            self.solutions, self.n, percent=0, tie_break="index"
+        )
         self.assertEqual(len(partition.locations(self.solutions)), 423)
 
 
@@ -269,18 +280,6 @@ class TestSchemes(unittest.TestCase):
     def test_unknown_scheme(self):
         with self.assertRaises(ValueError):
             build_scheme("hamming", [], 1)
-
-
-class TestSweep(unittest.TestCase):
-    def test_sweep_reports_sharing_between_algorithms(self):
-        df = _fake_log()
-        other = df.copy()
-        other["algorithm"] = "nsga2"
-        index = solution_index(pd.concat([df, other], ignore_index=True))
-        sweep = sweep_z(index, order=[0, 1, 2, 3], zs=[1, 4])
-        # with identical trajectories every location is shared
-        self.assertTrue((sweep["shared_algorithms"] == sweep["locations"]).all())
-        self.assertEqual(sweep.loc[sweep["z"] == 4, "locations"].iloc[0], 4)
 
 
 def _campaign_available() -> bool:

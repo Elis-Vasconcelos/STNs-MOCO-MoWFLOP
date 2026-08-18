@@ -26,24 +26,29 @@ curl -sS https://bootstrap.pypa.io/get-pip.py | .venv/bin/python -
 The occupancy-signature scheme and the Hamming variants slot in by implementing
 `assign()`/`project()` in `schemes.py`; nothing downstream changes.
 
+Tie-breaking for the entropy ranking defaults to `tie_break="random"` (seeded,
+so a given `seed` is still reproducible), which is what the paper does. The
+deterministic `tie_break="index"` variant exists only for the regression
+tests, which check against numbers the authors published for one specific,
+deterministic ranking.
+
 ## Usage
+
+`partition.py` has no CLI: the run parameters (`INSTANCE`, `CONFIG`, `SCHEME`,
+`PERCENT`, `TIE_BREAK`, ...) are a block of constants at the top of the file.
+Edit them by hand, then run it.
 
 ```bash
 cd scripts
 
-# partition and emit (entropy, 60% area criterion)
-../.venv/bin/python -m mowflop.partition --instance ns101 --config p100_i50 \
-    --scheme entropy --percent 60
-
-# unpartitioned baseline
-../.venv/bin/python -m mowflop.partition --instance ns101 --config p100_i50 --scheme raw
+# edit scripts/mowflop/partition.py first (INSTANCE, CONFIG, SCHEME, PERCENT, ...), then:
+../.venv/bin/python -m mowflop.partition
 
 # check the emitted files against create .R's assumptions before running R
 ../.venv/bin/python -m mowflop.validate_r_input --data-dir ../data/mowflop_x60
 
-# RQ1 diagnostic: tables and figures
-../.venv/bin/python -m mowflop.diagnose_entropy --instance ns101 --config p100_i50 \
-    --control-pmed7 --figs
+# RQ1 diagnostic: the entropy curve (paper's Fig. 5) and the z of each area criterion
+../.venv/bin/python -m mowflop.diagnose_entropy --instance ns101 --config p100_i50 --figs
 
 # tests, including the regression against the paper's published numbers
 ../.venv/bin/python -m unittest mowflop.test_partition -v

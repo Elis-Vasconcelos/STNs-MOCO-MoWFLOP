@@ -1,13 +1,13 @@
-"""Run ``scripts/create .R`` on a MoWFLOP dataset without editing the R file.
+"""Roda ``scripts/create .R`` num dataset do MoWFLOP sem editar o arquivo R.
 
-``create .R`` hard-codes its three folder constants at the top (lines 20-22),
-which the original author changes by hand per dataset.  To keep the file in the
-repository byte-identical -- so that the partitioned model and the unpartitioned
-baseline demonstrably traverse the same code -- this helper copies the script to
-a temporary file, rewrites *only* those three assignments, verifies with a diff
-that nothing else changed, and runs that copy.
+``create .R`` fixa suas três constantes de pasta no topo (linhas 20-22), que o
+autor original troca manualmente por dataset.  Para manter o arquivo no
+repositório byte a byte idêntico -- de modo que o modelo particionado e o
+baseline não particionado demonstravelmente atravessem o mesmo código --, este
+utilitário copia o script para um arquivo temporário, reescreve *só* essas três
+atribuições, verifica com um diff que nada mais mudou, e roda essa cópia.
 
-Usage::
+Uso::
 
     python -m mowflop.run_create_r --tag x60
     python -m mowflop.run_create_r --tag raw --keep-script /tmp/create_raw.R
@@ -34,6 +34,18 @@ FOLDER_LINES = {
 
 
 def rewrite(source: str, folders: dict[str, str]) -> tuple[str, list[int]]:
+    """Reescreve só as três constantes de pasta no texto-fonte de ``create .R``.
+
+    Args:
+        source: conteúdo original de ``create .R``.
+        folders: novos valores para ``infolder``, ``parfolder`` e ``outfolder``.
+
+    Returns:
+        Tupla ``(fonte reescrita, números das linhas alteradas)``.
+
+    Raises:
+        ValueError: se alguma das três constantes não for encontrada no fonte.
+    """
     lines = source.splitlines(keepends=True)
     changed = []
     for i, line in enumerate(lines):
@@ -52,6 +64,16 @@ def rewrite(source: str, folders: dict[str, str]) -> tuple[str, list[int]]:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Ponto de entrada de linha de comando.
+
+    Args:
+        argv: argumentos de linha de comando; ``None`` usa ``sys.argv``.
+
+    Returns:
+        Código de saída do ``Rscript`` chamado, ou um código próprio se algo
+        falhar antes disso (arquivo ausente, pastas ausentes, diff inesperado,
+        ``Rscript`` não encontrado).
+    """
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--tag", required=True, help="dataset tag, e.g. x60 or raw")
     parser.add_argument("--repo", default=str(repo_root()))
@@ -81,6 +103,7 @@ def main(argv: list[str] | None = None) -> int:
     source = script.read_text(encoding="utf-8")
     rewritten, changed = rewrite(source, folders)
 
+    # diff de segurança: só as linhas das três constantes podem diferir do original
     diff = [
         line
         for line in difflib.unified_diff(

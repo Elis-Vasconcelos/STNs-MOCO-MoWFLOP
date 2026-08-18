@@ -1,37 +1,37 @@
-"""Shannon-entropy search space partitioning (Ochoa, Malan & Blum 2021, S5.4).
+"""Particionamento do espaço de busca por entropia de Shannon (Ochoa, Malan & Blum 2021, S5.4).
 
-The scheme, verbatim from the paper:
+O esquema, fiel ao artigo:
 
-1. ``T`` is a set of search trajectories for the same instance, each one
-   possibly produced by a different algorithm.  ``S(T)`` is the set of *unique*
-   solutions contained in them.
-2. From ``S(T)``, estimate ``p(x_i = d)`` for every position ``i`` and compute
-   the Shannon entropy ``H(x_i) = -sum_d p log2 p``.  The domain is binary
-   here, so ``H <= 1`` bit.
-3. Rank the positions by non-increasing entropy into a list ``L``.  The paper
-   breaks ties at random (see its Example 1).
-4. Keep the first ``z`` positions, ``L_z``.  The location of a solution ``s`` is
-   its projection ``s_z`` onto ``L_z``; ``s`` and ``s'`` share a location iff
-   ``s_z == s'_z``.
-5. The objective value of a location is the best objective among the solutions
-   that fall in it: ``f(s_z) := min{f(s') : s' in S(T), s'_z = s_z}``.
-6. ``z`` follows the *area criterion*: an ``X%`` partitioning is the **largest**
-   ``z`` in ``{1..n}`` such that the area under the entropy curve from the
-   ``z``-th variable to the last one is at least ``X%`` of the total area.
-   ``X = 0%`` therefore means no partitioning at all (``z = n``).
+1. ``T`` é um conjunto de trajetórias de busca para a mesma instância, cada uma
+   possivelmente produzida por um algoritmo diferente.  ``S(T)`` é o conjunto
+   de soluções *únicas* contidas nelas.
+2. A partir de ``S(T)``, estima-se ``p(x_i = d)`` para cada posição ``i`` e
+   calcula-se a entropia de Shannon ``H(x_i) = -sum_d p log2 p``.  O domínio
+   aqui é binário, então ``H <= 1`` bit.
+3. Ordena-se as posições por entropia não crescente numa lista ``L``.  O artigo
+   desfaz empates aleatoriamente (ver seu Exemplo 1).
+4. Mantêm-se as primeiras ``z`` posições, ``L_z``.  A localização de uma
+   solução ``s`` é sua projeção ``s_z`` sobre ``L_z``; ``s`` e ``s'`` compartilham
+   localização sse ``s_z == s'_z``.
+5. O valor objetivo de uma localização é o melhor objetivo entre as soluções
+   que caem nela: ``f(s_z) := min{f(s') : s' in S(T), s'_z = s_z}``.
+6. ``z`` segue o *critério de área*: um particionamento de ``X%`` é o **maior**
+   ``z`` em ``{1..n}`` tal que a área sob a curva de entropia da ``z``-ésima
+   variável até a última seja pelo menos ``X%`` da área total.  ``X = 0%``
+   portanto significa nenhum particionamento (``z = n``).
 
-Regression target, reproduced by :func:`area_partition_z` and
-:func:`Partition.locations`: on the authors' own ``pmed7`` data (ACO + BRKGA +
-ILS pooled), ``|S(T)| = 423``, ``z(60%) = 19`` and the partitioned space has
-``312`` locations -- the three numbers reported in the paper (Table 8 and the
-text of S6.2).
+Alvo de regressão, reproduzido por :func:`area_partition_z` e
+:func:`Partition.locations`: nos dados ``pmed7`` dos próprios autores (ACO +
+BRKGA + ILS agrupados), ``|S(T)| = 423``, ``z(60%) = 19`` e o espaço
+particionado tem ``312`` localizações -- os três números publicados no artigo
+(Tabela 8 e o texto da S6.2).
 
-Solutions are handled as the *set of positions holding a 1*, which is the
-natural form of both inputs we care about: MoWFLOP logs a sorted list of
-occupied candidate indices, and the p-median data a dense binary string.  For a
-binary domain the two representations carry the same information, and two
-solutions agree on all retained positions exactly when their sets of ones
-intersected with the retained positions coincide.
+Soluções são tratadas como o *conjunto de posições com valor 1*, que é a forma
+natural das duas entradas que nos interessam: o MoWFLOP loga uma lista ordenada
+de índices de candidatos ocupados, e os dados de p-mediana uma string binária
+densa.  Para um domínio binário as duas representações carregam a mesma
+informação, e duas soluções concordam em todas as posições retidas exatamente
+quando seus conjuntos de uns, intersectados com as posições retidas, coincidem.
 """
 
 from __future__ import annotations
@@ -48,24 +48,49 @@ LOCATION_PREFIX = "E"
 
 
 def from_index_list(text: str) -> Solution:
-    """``"17 227 270"`` (MoWFLOP ``occupied``) -> set of positions."""
+    """Converte uma lista de índices (formato ``occupied`` do MoWFLOP) numa solução.
+
+    Args:
+        text: índices separados por espaço, ex. ``"17 227 270"``.
+
+    Returns:
+        Conjunto das posições ocupadas.
+    """
     return frozenset(int(token) for token in text.split())
 
 
 def from_binary_string(text: str) -> Solution:
-    """``"0101..."`` (p-median trace) -> set of positions holding a 1."""
+    """Converte uma string binária (traço de p-mediana) numa solução.
+
+    Args:
+        text: string binária, ex. ``"0101..."``.
+
+    Returns:
+        Conjunto das posições que têm valor ``1``.
+    """
     return frozenset(i for i, char in enumerate(text) if char == "1")
 
 
 def position_entropy(solutions: list[Solution], n: int) -> list[float]:
-    """Shannon entropy of every position over a set of *unique* solutions."""
+    """Entropia de Shannon de cada posição sobre um conjunto de soluções únicas.
+
+    Args:
+        solutions: soluções distintas de ``S(T)``.
+        n: número total de posições do espaço de busca.
+
+    Returns:
+        Lista de tamanho ``n`` com ``H(x_i)`` (em bits) para cada posição ``i``.
+
+    Raises:
+        ValueError: se ``solutions`` estiver vazio.
+    """
     total = len(solutions)
     if total == 0:
         raise ValueError("cannot compute entropy of an empty solution set")
     # ones[i] = quantas soluções têm 1 na posição i
     ones = Counter()
     for solution in solutions:
-        # para da ID de turbina em solution, incrementa o contador de 1s correspondente
+        # para cada posição ocupada em solution, incrementa o contador de 1s correspondente
         ones.update(solution)
     entropy = []
     for position in range(n):
@@ -84,53 +109,84 @@ def position_entropy(solutions: list[Solution], n: int) -> list[float]:
 
 
 def rank_positions(
-    entropy: list[float], tie_break: str = "index", seed: int | None = None
+    entropy: list[float], tie_break: str = "random", seed: int | None = None
 ) -> list[int]:
-    """Positions ordered by non-increasing entropy.
+    """Ordena as posições por entropia não crescente.
 
-    ``tie_break="random"`` follows the paper (ties broken at random, seeded so
-    the run is reproducible); ``tie_break="index"`` is the deterministic
-    variant, which is what the regression tests use.
+    Args:
+        entropy: entropia de cada posição, na ordem do índice original.
+        tie_break: ``"random"`` (padrão) segue o artigo -- empates são
+            desfeitos aleatoriamente, com semente para o resultado ser
+            reprodutível; ``"index"`` é a variante determinística, usada só
+            nos testes de regressão contra os números publicados.
+        seed: semente do gerador aleatório quando ``tie_break="random"``.
+
+    Returns:
+        Lista de índices de posição, da maior para a menor entropia.
+
+    Raises:
+        ValueError: se ``tie_break`` não for ``"index"`` nem ``"random"``.
     """
     if tie_break not in {"index", "random"}:
         raise ValueError(f"unknown tie_break: {tie_break!r}")
     order = list(range(len(entropy)))
     if tie_break == "random":
+        # embaralha antes: como o sort abaixo é estável, os empates saem em ordem aleatória
         random.Random(seed).shuffle(order)
         return sorted(order, key=lambda i: -entropy[i])
     return sorted(order, key=lambda i: (-entropy[i], i))
 
 
 def area_partition_z(entropy_desc: list[float], percent: float) -> int:
-    """``z`` for an ``X%`` partitioning, from the non-increasing entropy curve.
+    """Calcula ``z`` para um particionamento de ``X%``, a partir da curva de entropia.
 
-    Largest ``z`` such that the area from the ``z``-th variable to the last is
-    at least ``X%`` of the total area.  The suffix sums are non-increasing in
-    ``z``, so the feasible set is a prefix and the answer is its last element.
+    É o maior ``z`` tal que a área da ``z``-ésima variável até a última seja
+    pelo menos ``X%`` da área total.  As somas de sufixo são não crescentes em
+    ``z``, então o conjunto viável é um prefixo e a resposta é o seu último
+    elemento.
+
+    Args:
+        entropy_desc: entropia já ordenada de forma não crescente (``L`` do
+            artigo).
+        percent: critério de área ``X``, em ``[0, 100]``.
+
+    Returns:
+        O maior ``z`` que satisfaz o critério de área; ``0`` se nenhum ``z``
+        satisfizer (curva vazia).
+
+    Raises:
+        ValueError: se ``percent`` estiver fora de ``[0, 100]``.
     """
     if not 0 <= percent <= 100:
         raise ValueError(f"percent must be in [0, 100], got {percent}")
     n = len(entropy_desc)
     total = sum(entropy_desc)
     if total <= 0:
-        # Não há curva pra trabalhar
+        # não há curva pra trabalhar
         return n
     target = percent / 100.0 * total
     suffix = 0.0
     # soma acumulada de trás pra frente = área sob a curva da posição z até a última
     for z in range(n, 0, -1):
-        suffix += entropy_desc[z - 1] 
+        suffix += entropy_desc[z - 1]
         if suffix >= target:
             return z  # decrescente, então o primeiro z que satisfaz a condição é o maior
     return 0
 
 
 def location_id(projection: Solution) -> str:
-    """Short stable id for a location.
+    """Id curto e estável para uma localização.
 
-    The projection can hold hundreds of positions; writing it verbatim into the
-    trajectory files would blow them up, so the id is a 64 bit digest and the
-    full projection is kept in the side table written by :mod:`mowflop.emit`.
+    A projeção pode ter centenas de posições; escrevê-la por extenso nos
+    arquivos de trajetória infla demais os arquivos, então o id é um digest de
+    64 bits e a projeção completa fica na tabela auxiliar escrita por
+    :mod:`mowflop.emit`.
+
+    Args:
+        projection: conjunto de posições retidas (``s_z``).
+
+    Returns:
+        Id no formato ``"E<16 hex>"``.
     """
     key = ",".join(str(position) for position in sorted(projection))
     digest = blake2b(key.encode("utf-8"), digest_size=8).hexdigest()
@@ -139,16 +195,26 @@ def location_id(projection: Solution) -> str:
 
 @dataclass
 class Partition:
-    """A concrete entropy partitioning of one instance's search space."""
+    """Um particionamento por entropia concreto do espaço de busca de uma instância.
+
+    Attributes:
+        n: número total de posições do espaço de busca.
+        entropy: entropia de cada posição, na ordem do índice original.
+        order: posições ordenadas por entropia não crescente (``L`` do artigo).
+        z: número de posições retidas.
+        percent: critério de área usado para obter ``z``, se foi esse o caminho.
+        tie_break: política de desempate usada para gerar ``order``.
+        seed: semente do desempate aleatório, se ``tie_break="random"``.
+    """
 
     n: int
     entropy: list[float]
     order: list[int]
     z: int
     percent: float | None = None
-    tie_break: str = "index"
+    tie_break: str = "random"
     seed: int | None = None
-    keep: frozenset[int] = field(init=False) # posições de maior entropia que serão usadas no particionamento
+    keep: frozenset[int] = field(init=False)  # posições de maior entropia que serão usadas no particionamento
 
     def __post_init__(self) -> None:
         if not 0 <= self.z <= self.n:
@@ -156,25 +222,52 @@ class Partition:
         self.keep = frozenset(self.order[: self.z])
 
     def project(self, solution: Solution) -> Solution:
-        """``s_z``: the solution restricted to the retained positions."""
+        """Restringe uma solução às posições retidas (``s_z``).
+
+        Args:
+            solution: solução completa.
+
+        Returns:
+            A solução restrita ao conjunto ``keep``.
+        """
         return solution & self.keep
 
     def assign(self, solution: Solution) -> str:
+        """Id da localização em que a solução cai.
+
+        Args:
+            solution: solução completa.
+
+        Returns:
+            Id da localização (ver :func:`location_id`).
+        """
         return location_id(self.project(solution))
 
     def locations(self, solutions: list[Solution]) -> set[Solution]:
-        """Distinct locations reached by a set of solutions."""
+        """Localizações distintas alcançadas por um conjunto de soluções.
+
+        Args:
+            solutions: soluções a projetar.
+
+        Returns:
+            Conjunto das projeções distintas (uma por localização).
+        """
         return {self.project(solution) for solution in solutions}
 
     @property
     def entropy_desc(self) -> list[float]:
+        """Entropia na ordem de ``order`` (não crescente)."""
         return [self.entropy[i] for i in self.order]
 
     def tie_size_at_z(self) -> int:
-        """How many positions share the entropy of the ``z``-th one.
+        """Quantas posições empatam com a entropia da ``z``-ésima.
 
-        A ``z`` landing inside a large tie block means the retained set is
-        largely arbitrary -- the paper breaks those ties at random.
+        Um ``z`` que cai dentro de um bloco de empate grande significa que o
+        conjunto retido é em boa parte arbitrário -- o artigo desfaz esses
+        empates aleatoriamente.
+
+        Returns:
+            Tamanho do bloco de empate na fronteira de ``z``; ``0`` se ``z=0``.
         """
         if self.z == 0:
             return 0
@@ -182,6 +275,11 @@ class Partition:
         return sum(1 for value in self.entropy if math.isclose(value, cutoff))
 
     def describe(self) -> dict:
+        """Resumo serializável do particionamento, para relatórios e logs.
+
+        Returns:
+            Dicionário com as estatísticas do particionamento.
+        """
         values = self.entropy_desc
         return {
             "scheme": "entropy",
@@ -202,10 +300,26 @@ def build_partition(
     n: int,
     percent: float | None = None,
     z: int | None = None,
-    tie_break: str = "index",
+    tie_break: str = "random",
     seed: int | None = None,
 ) -> Partition:
-    """Entropy partitioning of ``S(T)``; give either ``percent`` or ``z``."""
+    """Constrói o particionamento por entropia de ``S(T)``.
+
+    Args:
+        solutions: soluções únicas de ``S(T)``.
+        n: número total de posições do espaço de busca.
+        percent: critério de área ``X%``; dê exatamente um de ``percent``/``z``.
+        z: número fixo de posições a reter; dê exatamente um de ``percent``/``z``.
+        tie_break: política de desempate do ranking de entropia (ver
+            :func:`rank_positions`).
+        seed: semente do desempate aleatório.
+
+    Returns:
+        O :class:`Partition` resultante.
+
+    Raises:
+        ValueError: se não for dado exatamente um de ``percent``/``z``.
+    """
     if (percent is None) == (z is None):
         raise ValueError("give exactly one of percent or z")
     entropy = position_entropy(solutions, n)

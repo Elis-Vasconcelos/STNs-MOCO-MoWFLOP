@@ -1,13 +1,14 @@
-"""Interchangeable partitioning schemes.
+"""Esquemas de particionamento intercambiáveis.
 
-A scheme is anything that maps a solution to a location id.  Keeping this the
-single point of variation is what makes the comparison fair: every scheme
-downstream produces the same file format, so the R pipeline is byte-identical
-across schemes and any metric difference comes from the partitioning alone.
+Um esquema é qualquer coisa que mapeia uma solução para o id de uma
+localização.  Manter esse o único ponto de variação é o que torna a comparação
+justa: todo esquema, mais abaixo no pipeline, produz o mesmo formato de
+arquivo, então o pipeline em R é byte a byte idêntico entre esquemas e
+qualquer diferença de métrica vem só do particionamento.
 
-Implemented here: ``entropy`` (Ochoa, Malan & Blum 2021) and ``raw`` (no
-partitioning, Ochoa et al. 2023).  The occupancy-signature scheme and the
-Hamming variants slot in by implementing the same two methods.
+Implementados aqui: ``entropy`` (Ochoa, Malan & Blum 2021) e ``raw`` (sem
+particionamento, Ochoa et al. 2023).  O esquema de assinatura de ocupação e as
+variantes de Hamming se encaixam implementando os mesmos dois métodos.
 """
 
 from __future__ import annotations
@@ -21,23 +22,44 @@ RAW_PREFIX = "R"
 
 
 class RawScheme:
-    """No partitioning: one location per distinct solution (the identity)."""
+    """Sem particionamento: uma localização por solução distinta (a identidade)."""
 
     name = "raw"
 
     def assign(self, solution: Solution) -> str:
+        """Id da localização de uma solução, sem particionamento.
+
+        Args:
+            solution: solução completa.
+
+        Returns:
+            Id no formato ``"R<16 hex>"``, um por solução distinta.
+        """
         key = ",".join(str(position) for position in sorted(solution))
         return f"{RAW_PREFIX}{blake2b(key.encode('utf-8'), digest_size=8).hexdigest()}"
 
     def project(self, solution: Solution) -> Solution:
+        """Projeção da solução; aqui é a identidade (sem particionamento).
+
+        Args:
+            solution: solução completa.
+
+        Returns:
+            A própria ``solution``, inalterada.
+        """
         return solution
 
     def describe(self) -> dict:
+        """Resumo serializável do esquema, para relatórios e logs.
+
+        Returns:
+            Dicionário com o nome do esquema.
+        """
         return {"scheme": self.name}
 
 
 class EntropyScheme:
-    """Shannon-entropy partitioning; thin adapter over :class:`Partition`."""
+    """Particionamento por entropia de Shannon; adaptador fino sobre :class:`Partition`."""
 
     name = "entropy"
 
@@ -51,9 +73,22 @@ class EntropyScheme:
         n: int,
         percent: float | None = None,
         z: int | None = None,
-        tie_break: str = "index",
+        tie_break: str = "random",
         seed: int | None = None,
     ) -> "EntropyScheme":
+        """Constrói o esquema a partir de ``S(T)``.
+
+        Args:
+            solutions: soluções únicas de ``S(T)``.
+            n: número total de posições do espaço de busca.
+            percent: critério de área ``X%``; dê exatamente um de ``percent``/``z``.
+            z: número fixo de posições a reter; dê exatamente um de ``percent``/``z``.
+            tie_break: política de desempate do ranking de entropia.
+            seed: semente do desempate aleatório.
+
+        Returns:
+            O :class:`EntropyScheme` resultante.
+        """
         return cls(
             entropy_mod.build_partition(
                 solutions, n, percent=percent, z=z, tie_break=tie_break, seed=seed
@@ -61,12 +96,33 @@ class EntropyScheme:
         )
 
     def assign(self, solution: Solution) -> str:
+        """Id da localização em que a solução cai.
+
+        Args:
+            solution: solução completa.
+
+        Returns:
+            Id da localização.
+        """
         return self.partition.assign(solution)
 
     def project(self, solution: Solution) -> Solution:
+        """Projeção da solução sobre as posições retidas.
+
+        Args:
+            solution: solução completa.
+
+        Returns:
+            A solução restrita às posições retidas.
+        """
         return self.partition.project(solution)
 
     def describe(self) -> dict:
+        """Resumo serializável do particionamento subjacente.
+
+        Returns:
+            Dicionário com as estatísticas do particionamento.
+        """
         return self.partition.describe()
 
 
@@ -76,9 +132,27 @@ def build_scheme(
     n: int,
     percent: float | None = None,
     z: int | None = None,
-    tie_break: str = "index",
+    tie_break: str = "random",
     seed: int | None = None,
 ):
+    """Constrói um esquema de particionamento pelo nome.
+
+    Args:
+        name: ``"raw"`` ou ``"entropy"``.
+        solutions: soluções únicas de ``S(T)``.
+        n: número total de posições do espaço de busca.
+        percent: critério de área ``X%`` (só para ``"entropy"``).
+        z: número fixo de posições a reter (só para ``"entropy"``).
+        tie_break: política de desempate do ranking de entropia (só para
+            ``"entropy"``).
+        seed: semente do desempate aleatório (só para ``"entropy"``).
+
+    Returns:
+        Instância de :class:`RawScheme` ou :class:`EntropyScheme`.
+
+    Raises:
+        ValueError: se ``name`` não for um esquema conhecido.
+    """
     if name == "raw":
         return RawScheme()
     if name == "entropy":

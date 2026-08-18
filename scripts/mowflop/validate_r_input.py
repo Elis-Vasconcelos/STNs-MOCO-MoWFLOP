@@ -1,21 +1,23 @@
-"""Check that an emitted dataset is what ``create .R`` expects, before running R.
+"""Confere se um dataset emitido é o que ``create .R`` espera, antes de rodar o R.
 
-The R script fails late and obscurely when its assumptions are broken (a missing
-reference front stops at ``read.table``; an edge endpoint absent from ``nodes``
-stops at ``graph_from_data_frame`` with "Some vertex names in `d` are not listed
-in `vertices`").  This replays its critical steps in pandas so the problems
-surface here instead:
+O script R falha tarde e de forma obscura quando alguma suposição sua é
+quebrada (uma frente de referência ausente para no ``read.table``; um endpoint
+de aresta ausente em ``nodes`` para no ``graph_from_data_frame`` com "Some
+vertex names in `d` are not listed in `vertices`").  Isso reproduz seus passos
+críticos em pandas para que os problemas apareçam aqui em vez de lá:
 
-* the nine column names, in order, and nine fields on every row;
-* ``nGen <- max(df$Gen) + 1`` / ``nRun <- max(df$Run)`` keep every row;
-* ``group_by(f1, f2, Solution1, Vector)`` does not split a location into
-  several nodes -- the trap that would quietly undo the partitioning;
-* every edge endpoint from ``filter(Gen < nGen)`` exists in ``nodes``;
-* the reference front sits exactly at the path the R script computes from the
-  file name, and its values match node objectives as strings at ``dec = 6``;
-* one weight pair per vector, so the script's column arithmetic holds.
+* os nove nomes de coluna, na ordem, e nove campos em toda linha;
+* ``nGen <- max(df$Gen) + 1`` / ``nRun <- max(df$Run)`` mantêm toda linha;
+* ``group_by(f1, f2, Solution1, Vector)`` não parte uma localização em vários
+  nós -- a armadilha que desfaria o particionamento silenciosamente;
+* todo endpoint de aresta de ``filter(Gen < nGen)`` existe em ``nodes``;
+* a frente de referência está exatamente no caminho que o script R calcula a
+  partir do nome do arquivo, e seus valores batem com os objetivos dos nós
+  como strings em ``dec = 6``;
+* um par de pesos por vetor, para que a aritmética de colunas do script se
+  sustente.
 
-Usage::
+Uso::
 
     python -m mowflop.validate_r_input --data-dir ../data/mowflop_x60
 """
@@ -34,7 +36,19 @@ FLOAT_COLUMNS = ("f1", "f2")
 
 
 def front_path_as_r_computes(data_file: Path, pf_root: Path) -> Path:
-    """Mirror of ``create .R`` lines 59-63."""
+    """Espelha o cálculo de caminho das linhas 59-63 de ``create .R``.
+
+    Args:
+        data_file: caminho do arquivo de trajetória (``*_post.txt``).
+        pf_root: raiz onde as frentes de referência estão.
+
+    Returns:
+        Caminho da frente de referência que ``create .R`` procuraria.
+
+    Raises:
+        ValueError: se o nome do arquivo não tiver campos suficientes
+            separados por ``_``.
+    """
     fields = data_file.name.split("_")
     if len(fields) < 8:
         raise ValueError(f"file name has too few '_' fields for create .R: {data_file.name}")
@@ -42,6 +56,16 @@ def front_path_as_r_computes(data_file: Path, pf_root: Path) -> Path:
 
 
 def check_file(data_file: Path, pf_root: Path) -> dict:
+    """Roda todas as checagens de um arquivo de trajetória emitido.
+
+    Args:
+        data_file: caminho do arquivo de trajetória (``*_post.txt``).
+        pf_root: raiz onde as frentes de referência estão.
+
+    Returns:
+        Dicionário com contagens (linhas, nós, arestas, vetores, runs...) e a
+        lista de problemas encontrados (vazia se o arquivo estiver OK).
+    """
     problems: list[str] = []
 
     with open(data_file, "r", encoding="utf-8") as handle:
@@ -61,7 +85,7 @@ def check_file(data_file: Path, pf_root: Path) -> dict:
     if int(df["Run"].min()) < 1:
         problems.append("Run is not one-based; create .R would drop run 0")
 
-    # the group_by(f1, f2, Solution1, Vector) trap
+    # a armadilha do group_by(f1, f2, Solution1, Vector)
     per_location = df.groupby("Solution1")[["f1", "f2"]].nunique()
     fragmented = int(((per_location > 1).any(axis=1)).sum())
     if fragmented:
@@ -77,13 +101,13 @@ def check_file(data_file: Path, pf_root: Path) -> dict:
     if dangling:
         problems.append(f"{len(dangling)} edge endpoints are missing from nodes")
 
-    # one weight pair per vector, or the vector-column arithmetic breaks
+    # um par de pesos por vetor, senão a aritmética de colunas do vetor quebra
     triples = df[["Vector", "Weight1", "Weight2"]].drop_duplicates()
     n_vec = df["Vector"].nunique()
     if len(triples) != n_vec:
         problems.append("a Vector appears with more than one weight pair")
 
-    # reference front, at the exact path create .R builds from the file name
+    # frente de referência, no caminho exato que create .R monta a partir do nome do arquivo
     front_file = front_path_as_r_computes(data_file, pf_root)
     pareto_nodes = -1
     if not front_file.is_file():
@@ -120,6 +144,15 @@ def check_file(data_file: Path, pf_root: Path) -> dict:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Ponto de entrada de linha de comando: valida todo arquivo de trajetória de um dataset.
+
+    Args:
+        argv: argumentos de linha de comando; ``None`` usa ``sys.argv``.
+
+    Returns:
+        ``0`` se todos os arquivos passarem, ``1`` se algum tiver problemas
+        (ou se nenhum arquivo for encontrado).
+    """
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--data-dir", required=True, help="e.g. data/mowflop_x60")
     parser.add_argument("--pf-root", help="default: <repo>/pf/mowflop")

@@ -1,31 +1,33 @@
-"""Draw the STNs with this repository's ``scripts/plot.R``, one file per algorithm.
+"""Desenha as STNs com o ``scripts/plot.R`` deste repositório, um arquivo por algoritmo.
 
-In the multi-objective model (Ochoa, Liefhooghe, Lavinas & Aranha 2023) a merged
-STN merges the graphs of the *p scalarisation vectors of one algorithm* -- which
-``create .R`` already did, in the ``Vector``/``Vectors`` attributes.  Merging
-across algorithms is the single-objective construction of the 2021 work, not
-this one.  So each algorithm gets its own picture, drawn by their ``plot_stn``.
+No modelo multiobjetivo (Ochoa, Liefooghe, Lavinas & Aranha 2023) uma STN
+mesclada mescla os grafos dos *p vetores de escalarização de um algoritmo* --
+o que ``create .R`` já fez, nos atributos ``Vector``/``Vectors``.  Mesclar
+entre algoritmos é a construção monoobjetivo do trabalho de 2021, não este.
+Então cada algoritmo ganha sua própria figura, desenhada pelo seu
+``plot_stn``.
 
-``plot.R`` cannot simply be run: its driver at the bottom assumes six files per
-algorithm and indexes them as ``c(1, 3, 5)`` / ``c(2, 4, 6)`` (the rho-mnk
-design), while we have one file per algorithm.  This script therefore reuses
-``plot_stn`` **verbatim** -- it takes the prefix of ``plot.R`` up to the end of
-that function, rewrites only the folder constants (as ``run_create_r.py`` does),
-and appends a driver that iterates over whatever files exist.  It checks that
-nothing but those constants changed before running.
+``plot.R`` não pode simplesmente ser rodado: o driver no final do arquivo
+assume seis arquivos por algoritmo e os indexa como ``c(1, 3, 5)`` /
+``c(2, 4, 6)`` (o design rho-mnk), enquanto temos um arquivo por algoritmo.
+Este script portanto reaproveita ``plot_stn`` **ao pé da letra** -- pega o
+prefixo de ``plot.R`` até o fim dessa função, reescreve só as constantes de
+pasta (como ``run_create_r.py`` faz), e adiciona um driver que itera sobre
+quaisquer arquivos que existam.  Confere que nada além dessas constantes mudou
+antes de rodar.
 
-Layouts, both from ``plot_stn``:
+Layouts, ambos de ``plot_stn``:
 
-``of``  objective space -- ``x = f1``, ``y = f2``, with the reference front drawn
-        on top.  The sensible default here: no force layout to compute, and the
-        picture is directly readable as cost against power.
-``fd``  force directed (``graphopt``).  Opt-in: it is slow and turns into a
-        hairball at tens of thousands of nodes.
+``of``  espaço objetivo -- ``x = f1``, ``y = f2``, com a frente de referência
+        desenhada por cima.  O default sensato aqui: nenhum layout de força a
+        calcular, e a figura é diretamente legível como custo contra potência.
+``fd``  força dirigida (``graphopt``).  Opcional: é lento e vira uma bola de
+        lã com dezenas de milhares de nós.
 
-Usage::
+Uso::
 
     python -m mowflop.run_plot_r --tag x60
-    python -m mowflop.run_plot_r --tag z10 --layout both --pf-size 0.8 --pf-alpha 0.6
+    python -m mowflop.run_plot_r --tag raw --layout both --pf-size 0.8 --pf-alpha 0.6
 """
 
 from __future__ import annotations
@@ -71,10 +73,22 @@ for (iset in isets) {
 
 
 def cut_prefix(source: str) -> tuple[list[str], int]:
-    """Lines of ``plot.R`` up to and including the end of ``plot_stn``."""
+    """Linhas de ``plot.R`` até o fim (inclusive) de ``plot_stn``.
+
+    Args:
+        source: conteúdo original de ``plot.R``.
+
+    Returns:
+        Tupla ``(linhas do prefixo, índice da última linha do prefixo)``.
+
+    Raises:
+        ValueError: se ``plot_stn`` não for encontrada, ou se o fim da função
+            não puder ser localizado.
+    """
     lines = source.splitlines(keepends=True)
     if not any("plot_stn <- function" in line for line in lines):
         raise ValueError("plot_stn not found in plot.R")
+    # procura o "return(p)" da função e depois o "}" de fechamento seguinte
     for i, line in enumerate(lines):
         if line.strip() == "return(p)":
             for j in range(i + 1, len(lines)):
@@ -84,6 +98,17 @@ def cut_prefix(source: str) -> tuple[list[str], int]:
 
 
 def rewrite(lines: list[str], folders: dict[str, str], numbers: dict[str, float]) -> tuple[str, list[int]]:
+    """Reescreve as constantes de pasta e, se dados, os parâmetros numéricos de estilo.
+
+    Args:
+        lines: linhas do prefixo de ``plot.R`` (ver :func:`cut_prefix`).
+        folders: novos valores para ``infolder`` e ``outfolder``.
+        numbers: novos valores para ``pSize``/``pAlpha``; ``None`` mantém o
+            valor original.
+
+    Returns:
+        Tupla ``(fonte reescrita, números das linhas alteradas)``.
+    """
     changed = []
     for i, line in enumerate(lines):
         for name, pattern in CONSTANTS.items():
@@ -98,8 +123,18 @@ def rewrite(lines: list[str], folders: dict[str, str], numbers: dict[str, float]
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Ponto de entrada de linha de comando.
+
+    Args:
+        argv: argumentos de linha de comando; ``None`` usa ``sys.argv``.
+
+    Returns:
+        Código de saída do ``Rscript`` chamado, ou um código próprio se algo
+        falhar antes disso (arquivo ausente, STNs ausentes, diff inesperado,
+        ``Rscript`` não encontrado).
+    """
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--tag", required=True, help="dataset tag, e.g. x60, raw, z10")
+    parser.add_argument("--tag", required=True, help="dataset tag, e.g. x60, raw")
     parser.add_argument("--layout", choices=["of", "fd", "both"], default="of")
     parser.add_argument("--pf-size", type=float, help="override pSize in plot.R")
     parser.add_argument("--pf-alpha", type=float, help="override pAlpha in plot.R")
@@ -132,6 +167,7 @@ def main(argv: list[str] | None = None) -> int:
         list(prefix), folders, {"pSize": args.pf_size, "pAlpha": args.pf_alpha}
     )
 
+    # diff de segurança: só as constantes reescritas podem diferir do prefixo original
     diff = [
         line
         for line in difflib.unified_diff(

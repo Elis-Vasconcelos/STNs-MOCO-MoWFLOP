@@ -1,14 +1,14 @@
-"""Pareto reference set for a MoWFLOP instance.
+"""Conjunto de referência de Pareto para uma instância do MoWFLOP.
 
-``create .R`` needs a reference front to tag nodes with ``Position="Pareto"``,
-and none exists for MoWFLOP.  We take the non-dominated set over every
-objective vector logged for the instance -- both algorithms, every run, every
-observer vector, every recording.
+O ``create .R`` precisa de uma frente de referência para marcar nós com
+``Position="Pareto"``, e não existe uma pronta para o MoWFLOP.  Tomamos o
+conjunto não dominado sobre todo vetor objetivo logado para a instância --
+os dois algoritmos, toda run, todo vetor observador, todo registro.
 
-The two objectives pull in opposite directions: ``f_cost`` is minimised and
-``f_power`` maximised.  It is computed once per instance and reused for every
-scheme and every ``z``, which is what makes the metrics comparable across
-regimes.
+Os dois objetivos puxam em direções opostas: ``f_cost`` é minimizado e
+``f_power`` maximizado.  É calculado uma vez por instância e reaproveitado em
+todo esquema e todo ``z``, o que é o que torna as métricas comparáveis entre
+regimes diferentes.
 """
 
 from __future__ import annotations
@@ -17,15 +17,26 @@ from pathlib import Path
 
 import pandas as pd
 
-DEC = 6  # decimal places; must match `dec` in "create .R"
+DEC = 6  # casas decimais; deve bater com `dec` em "create .R"
 FLOAT_FMT = f"%.{DEC}f"
 
 
 def pareto_front(
     df: pd.DataFrame, cost: str = "f_cost", power: str = "f_power"
 ) -> pd.DataFrame:
-    """Non-dominated points, minimising ``cost`` and maximising ``power``."""
+    """Pontos não dominados, minimizando ``cost`` e maximizando ``power``.
+
+    Args:
+        df: DataFrame com as colunas ``cost`` e ``power``.
+        cost: nome da coluna a minimizar.
+        power: nome da coluna a maximizar.
+
+    Returns:
+        DataFrame só com os pontos não dominados, colunas ``[cost, power]``.
+    """
     points = df[[cost, power]].drop_duplicates()
+    # ordena por custo crescente (e poder decrescente para desempatar);
+    # varrendo nessa ordem, um ponto é não dominado sse supera o melhor poder visto até aqui
     points = points.sort_values([cost, power], ascending=[True, False], ignore_index=True)
     keep = []
     best_power = float("-inf")
@@ -37,7 +48,17 @@ def pareto_front(
 
 
 def front_keys(front: pd.DataFrame, cost: str = "f_cost", power: str = "f_power") -> set[str]:
-    """String keys of the front, matching how ``create .R`` compares values."""
+    """Chaves em string da frente, do mesmo jeito que o ``create .R`` compara valores.
+
+    Args:
+        front: frente de referência (ver :func:`pareto_front`).
+        cost: nome da coluna de custo.
+        power: nome da coluna de potência.
+
+    Returns:
+        Conjunto de chaves ``"<custo>_<potência>"``, formatadas com
+        :data:`FLOAT_FMT`.
+    """
     return {
         f"{FLOAT_FMT % c}_{FLOAT_FMT % p}"
         for c, p in front[[cost, power]].itertuples(index=False)
@@ -45,7 +66,15 @@ def front_keys(front: pd.DataFrame, cost: str = "f_cost", power: str = "f_power"
 
 
 def write_front(path: str | Path, front: pd.DataFrame) -> Path:
-    """Write in the layout of the repo's ``pf/*_ref.txt``: TSV, no header."""
+    """Escreve no layout dos ``pf/*_ref.txt`` do repositório: TSV, sem cabeçalho.
+
+    Args:
+        path: caminho de saída.
+        front: frente de referência a escrever.
+
+    Returns:
+        O caminho escrito, como :class:`Path`.
+    """
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     front.to_csv(path, sep="\t", header=False, index=False, float_format=FLOAT_FMT)
