@@ -18,8 +18,8 @@ library(ggpubr)
 
 isets<- c("MOEAD/","NSGA2/") # sets of instances to process
 
-infolder <- "stns/n16_m2/"
-outfolder <- "plots/n16_m2/"
+infolder <- "stns/mowflop_x80/"
+outfolder <- "plots/mowflop_x80/"
 
 MyShapes <-  c(15)          # Shape for start nodes
 
@@ -44,7 +44,10 @@ plot_stn <- function(instance, iset, bObjLay) {
    load(fname, verbose = F)
    t <- strsplit(instance, "_")[[1]]
   # tit <- paste0(t[1]," r=",t[3], " m=",t[4], " n=",t[5], " k=",t[6])
-   tit <- paste0(t[1]," r = ",t[3])
+   # MoWFLOP fix: the original title (algorithm + instance only) can't tell
+   # apart two configs of the same instance in the same panel -- add the
+   # config (t[6], e.g. "p100i50") so every subplot has a unique label.
+   tit <- paste0(t[1], " ", t[3], " ", t[6])
    print(tit)
    if (length(which(V(STN)$Position =="End")) > 0 ) {   # If there are End Positions
       MyShapes <- c(MyShapes, 17)
@@ -112,13 +115,18 @@ arrange_plot_of<- function(o, fname) {
                     common.legend = T, legend="right",
                     nrow=2, ncol=3)
    f <-paste0(outfolder, fname,"_of.png")
-   ggsave(arr, filename = f,  device = png(), width = 12, height = 8, dpi = 150)
+   # MoWFLOP fix: `png()` (called) opens a stray graphics device as a side
+   # effect (it's what left Rplots.pdf behind); `png` (the function itself,
+   # as arrange_plot_fd already does) is what ggsave actually wants here.
+   ggsave(arr, filename = f,  device = png, width = 12, height = 8, dpi = 150)
 }
 
 # ---- Get all files in given input folders -----------------------------
 # keep one list for each algorithm
 da1 <- list.files(paste0(infolder,isets[1]))  # filenames in folder
 da2 <- list.files(paste0(infolder,isets[2]))  # filenames in folder
+da1 <- head(da1, 6)
+da2 <- head(da2, 6)
 
 # Force directed layout (fd) -------------------------------------------------------
 # One list of plots for each algorithm a1, a2, a3
@@ -133,18 +141,22 @@ a2_fd <- lapply(da2, plot_stn, iset = isets[2], bObjLay = F)
 a1_of <- lapply(da1, plot_stn, iset = isets[1], bObjLay = T)
 a2_of <- lapply(da2, plot_stn, iset = isets[2], bObjLay = T)
 
-# Arrangement contrasting algorithms 
-# Force directed layout
-#K = 1: c(1, 3, 5) rmnk
-arrange_plot_fd(o = c(1, 3, 5), fname = "k1") 
-#K = 4: c(2, 4, 6)
-arrange_plot_fd(o = c(2, 4, 6), fname = "k4") 
+# Arrangement contrasting algorithms
+#
+# MoWFLOP fix: the original picked two fixed, interleaved index sets
+# (o = c(1,3,5) / c(2,4,6)) to contrast the rmnk benchmark's k=1 vs k=4
+# configs. Here da1/da2 are sorted alphabetically by instance, and each
+# instance contributes exactly 3 consecutive files (its 3 configs), so the
+# meaningful grouping is one panel per instance -- 3 configs (columns) x 2
+# algorithms (rows) -- instead of an arbitrary interleave.
+n <- length(da1)
+stopifnot(n == length(da2), n %% 3 == 0)
 
-
-# Force directed layout
-#K = 1: c(1, 3, 5) rmnk
-arrange_plot_of(o = c(1, 3, 5), fname = "k1") 
-#K = 4: c(2, 4, 6)
-arrange_plot_of(o = c(2, 4, 6), fname = "k4") 
+for (k in seq(1, n, by = 3)) {
+   o <- k:(k + 2)
+   inst <- strsplit(da1[k], "_")[[1]][3]  # e.g. "ns101"
+   arrange_plot_fd(o = o, fname = inst)
+   arrange_plot_of(o = o, fname = inst)
+}
 
 

@@ -17,9 +17,9 @@ nGen <-  20  # number of algorithm iterations/generations
 nRun <-  10   # Number of runs to consider
 dec <-  6   # Number of decimal digits for fitness (Pareto set) 
 
-infolder <- "data/n16_m2/"      # Base folder with data 
-parfolder <- "pf/n16/"          # Folder with Pareto front objective values
-outfolder <- "stns/n16_m2/"  # Base folder to save STNs
+infolder <- "data/mowflop_x80/"      # Base folder with data 
+parfolder <- "pf/mowflop/"          # Folder with Pareto front objective values
+outfolder <- "stns/mowflop_x80/"  # Base folder to save STNs
 
 isets<- c("MOEAD/","NSGA2/") # folders with sets data to process
 

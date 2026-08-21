@@ -26,10 +26,10 @@ from .schemes import build_scheme
 
 INSTANCE: str | None = "ns101"  # instância a processar (ignorado se ALL=True)
 CONFIG: str | None = "p100_i50"  # config a processar (ignorado se ALL=True)
-ALL = False  # se True, processa toda (instância, config) que tenha log disponível
+ALL = True  # se True, processa toda (instância, config) que tenha log disponível
 BOTH_ALGORITHMS = False  # com ALL=True, mantém só os pares com MOEA/D e NSGA-II
 SCHEME = "entropy"  # "entropy" ou "raw"
-PERCENT = 60.0  # critério de área em %, em [0, 100]; 0 significa não particionar
+PERCENT = 80.0  # critério de área em %, em [0, 100]; 0 significa não particionar
 TIE_BREAK = "random"  # "random" (o do artigo) ou "index" (determinístico, só para testes)
 SEED = 0  # semente do desempate aleatório
 
