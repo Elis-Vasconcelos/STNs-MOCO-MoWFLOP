@@ -1,0 +1,4 @@
+"","r","k","nodes","pareto","count_pareto","p_pareto","p_count_pareto","edges","p_edges","mean_in","mean_out","max_in","max_out","mean_pareto_in","max_pareto_in","pareto_num_path","pareto_mean_path"
+"1",NA,NA,22009,2,49,0.0052,5e-04,42623,1.9366,1.9366,1.9366,15,18,2e-04,3,2,30.5
+"2",NA,NA,3671,0,0,0,0,5230,1.4247,1.4247,1.4247,10,7,0,0,0,NA
+"3",NA,NA,14500,0,0,0,0,25337,1.7474,1.7474,1.7474,10,11,0,0,0,NA

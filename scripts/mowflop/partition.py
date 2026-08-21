@@ -14,9 +14,12 @@ from __future__ import annotations
 import json
 import sys
 
+import pandas as pd
+
 from . import entropy as entropy_mod
 from . import io_raw
 from .emit import emit
+from .external_pf import external_points
 from .reference_front import pareto_front
 from .schemes import build_scheme
 
@@ -24,29 +27,33 @@ from .schemes import build_scheme
 # Parâmetros de execução — edite antes de rodar o script.
 # ---------------------------------------------------------------------------
 
-INSTANCE: str | None = "ns101"  # instância a processar (ignorado se ALL=True)
-CONFIG: str | None = "p100_i50"  # config a processar (ignorado se ALL=True)
-ALL = True  # se True, processa toda (instância, config) que tenha log disponível
+INSTANCE: str | None = "ns178"
+CONFIG: str | None = "p100_i50"
+ALL = False  # se True, processa toda (instância, config) que tenha log disponível
 BOTH_ALGORITHMS = False  # com ALL=True, mantém só os pares com MOEA/D e NSGA-II
-SCHEME = "entropy"  # "entropy" ou "raw"
-PERCENT = 80.0  # critério de área em %, em [0, 100]; 0 significa não particionar
+SCHEME = "grid"
+PERCENT = 60.0  # critério de área em %, em [0, 100]; 0 significa não particionar (só "entropy")
+KAPPA = 2.0
 TIE_BREAK = "random"  # "random" (o do artigo) ou "index" (determinístico, só para testes)
 SEED = 0  # semente do desempate aleatório
 
 
-def default_tag(scheme: str, percent: float) -> str:
+def default_tag(scheme: str, percent: float, kappa: float | None = None) -> str:
     """Tag automática do particionamento, usada no nome dos arquivos de saída.
 
     Args:
-        scheme: ``"entropy"`` ou ``"raw"``.
+        scheme: ``"entropy"``, ``"raw"`` ou ``"grid"``.
         percent: critério de área usado para obter ``z``; ignorado se
-            ``scheme == "raw"``.
+            ``scheme != "entropy"``.
+        kappa: parâmetro do modelo de grade; obrigatório se ``scheme == "grid"``.
 
     Returns:
-        ``"raw"`` ou ``"x<percent>"``.
+        ``"raw"``, ``"x<percent>"`` ou ``"g<kappa>"``.
     """
     if scheme == "raw":
         return "raw"
+    if scheme == "grid":
+        return f"g{kappa}"
     return f"x{int(percent)}"
 
 
@@ -80,12 +87,18 @@ def run_one(instance: str, config: str) -> dict:
         SCHEME,
         solutions,
         n,
-        percent=None if SCHEME == "raw" else PERCENT,
+        percent=None if SCHEME != "entropy" else PERCENT,
         tie_break=TIE_BREAK,
         seed=SEED,
+        instance=instance,
+        kappa=KAPPA,
     )
-    tag = default_tag(SCHEME, PERCENT)
-    front = pareto_front(df)
+    tag = default_tag(SCHEME, PERCENT, KAPPA)
+    # frente de referência: nossa campanha + o histórico do grupo (CEC,
+    # verificado como a mesma instância -- ver o docstring de external_pf.py),
+    # não só o que os nossos próprios MOEA/D e NSGA-II acharam
+    combined = pd.concat([df[["f_cost", "f_power"]], external_points(instance)], ignore_index=True)
+    front = pareto_front(combined)
     summary = emit(
         df,
         scheme,
