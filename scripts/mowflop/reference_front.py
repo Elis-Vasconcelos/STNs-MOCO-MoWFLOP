@@ -1,9 +1,14 @@
 """Conjunto de referência de Pareto para uma instância do MoWFLOP.
 
 O ``create .R`` precisa de uma frente de referência para marcar nós com
-``Position="Pareto"``, e não existe uma pronta para o MoWFLOP.  Tomamos o
-conjunto não dominado sobre todo vetor objetivo logado para a instância --
-os dois algoritmos, toda run, todo vetor observador, todo registro.
+``Position="Pareto"``, e não existe uma pronta para o MoWFLOP.
+:func:`pareto_front` só calcula o não-dominado sobre o que recebe -- é
+``partition.py`` quem decide o que entra: nossa própria campanha (os dois
+algoritmos, toda run, todo vetor observador, todo registro) *e* o histórico
+do grupo (CEC 2026, ``external_pf.external_points`` -- ver o docstring desse
+módulo para por que só essa fonte externa entra e não BRACIS), para que a
+frente seja a melhor conhecida, não só a melhor que os nossos próprios
+MOEA/D e NSGA-II acharam.
 
 Os dois objetivos puxam em direções opostas: ``f_cost`` é minimizado e
 ``f_power`` maximizado.  É calculado uma vez por instância e reaproveitado em
