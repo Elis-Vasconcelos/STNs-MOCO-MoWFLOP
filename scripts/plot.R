@@ -123,8 +123,23 @@ arrange_plot_of<- function(o, fname) {
 
 # ---- Get all files in given input folders -----------------------------
 # keep one list for each algorithm
+
+# MoWFLOP fix: list.files() sorts alphabetically, which groups each
+# instance's 3 configs together but NOT in increasing P order (e.g.
+# "p100i50" sorts before "p10i50" as strings). Re-sort each instance's
+# configs by their numeric P value, keeping instance grouping intact,
+# so downstream panels are always p10 -> p50 -> p100.
+order_by_P <- function(files) {
+   inst <- sapply(strsplit(files, "_"), `[`, 3)
+   P <- as.numeric(sub(".*_p([0-9]+)i.*", "\\1", files))
+   inst_order <- match(inst, unique(inst))  # preserve first-seen instance order
+   files[order(inst_order, P)]
+}
+
 da1 <- list.files(paste0(infolder,isets[1]))  # filenames in folder
 da2 <- list.files(paste0(infolder,isets[2]))  # filenames in folder
+da1 <- order_by_P(da1)
+da2 <- order_by_P(da2)
 da1 <- head(da1, 6)
 da2 <- head(da2, 6)
 
@@ -145,10 +160,12 @@ a2_of <- lapply(da2, plot_stn, iset = isets[2], bObjLay = T)
 #
 # MoWFLOP fix: the original picked two fixed, interleaved index sets
 # (o = c(1,3,5) / c(2,4,6)) to contrast the rmnk benchmark's k=1 vs k=4
-# configs. Here da1/da2 are sorted alphabetically by instance, and each
-# instance contributes exactly 3 consecutive files (its 3 configs), so the
-# meaningful grouping is one panel per instance -- 3 configs (columns) x 2
-# algorithms (rows) -- instead of an arbitrary interleave.
+# configs. Here da1/da2 are grouped by instance and, within each instance,
+# ordered by increasing P (order_by_P above), and each instance contributes
+# exactly 3 consecutive files (its 3 configs: p10, p50, p100), so the
+# meaningful grouping is one panel per instance -- 3 configs (columns, P
+# increasing left to right) x 2 algorithms (rows) -- instead of an
+# arbitrary interleave.
 n <- length(da1)
 stopifnot(n == length(da2), n %% 3 == 0)
 
