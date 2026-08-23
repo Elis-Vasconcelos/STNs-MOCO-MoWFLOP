@@ -117,10 +117,9 @@ deterministic ranking.
 
 Prerequisites (once): `$MOWFLOP_RAW` pointing at
 `STN_MoWFLOP/raw_results/meta_heuristics_stn` (see `io_raw.raw_root`), and
-`external_pf/wflopcec26/algorithms_raw_results` + `.../instances` checked out
-as a sibling of this repo inside `TCC/` (see "Reference front" below) --
-needed by every step from `partition.py` onward, since the reference front is
-computed there now.
+`raw_results/wflopcec26_results/` populated with the group's MOEA/D and
+NSGA-II runs (see "Reference front" below) -- needed by every step from
+`partition.py` onward, since the reference front is computed there now.
 
 1. **`partition.py`** -- no CLI, a block of constants at the top of the file
    (`INSTANCE`, `CONFIG`, `SCHEME`, `PERCENT` [entropy], `KAPPA` [grid], ...).
@@ -134,7 +133,8 @@ computed there now.
 
    Writes `data/mowflop_<tag>/{MOEAD,NSGA2}/`, `pf/mowflop/`,
    `locations/mowflop_<tag>/`, and computes the reference front (this
-   campaign's own points *and* `external_pf.external_points` -- see below).
+   campaign's own points *and* `reference_front.external_points` -- see
+   below).
 
 2. **`run_create_r.py`** -- runs Ochoa's unmodified `create .R` for a tag
    (both algorithms in one call):
@@ -194,39 +194,30 @@ Other utility scripts, run standalone as needed:
 ../.venv/bin/python -m unittest mowflop.test_partition mowflop.test_grid mowflop.test_run_compare_r -v
 ```
 
-## Reference front: our campaign + the group's best-known (CEC)
+## Reference front: our campaign + the group's best-known (wflopcec26)
 
 `partition.py` no longer computes the reference front from only this
 campaign's own logged points -- `reference_front.pareto_front` is generic
 (non-dominated over whatever it's given), and `partition.py` now feeds it
-this campaign's points *unioned with* `external_pf.external_points(instance)`
+this campaign's points *unioned with* `reference_front.external_points(instance)`
 before filtering, so `Position="Pareto"` reflects the best the group has
 found, not just what our own MOEA/D and NSGA-II happened to reach. Concretely
-for `ns101`: our own campaign's front alone has 414 points; merged with CEC's,
-385 of the 387 final points come from CEC, whose runs reached power values
-(~559) far below anything our own campaign logged (~1.85e5) -- our
-own-only front was a real underestimate, not a defensible simplification.
+for `ns101`: our own campaign's front alone has 414 points; merged with the
+group's, 385 of the 387 final points come from the group's runs, which
+reached power values (~559) far below anything our own campaign logged
+(~1.85e5) -- our own-only front was a real underestimate, not a defensible
+simplification.
 
 Only one external source is used, deliberately:
 
-* **CEC 2026** (`mowflopcec/wflopcec26`) -- **verified**, not assumed: its
+* **wflopcec26** -- **verified**, not assumed: its
   `instances/sites/<N>/{geometry.txt,turbines_per_zone.txt}` are byte-identical
   (module `\r\n`) to our own `STN_MoWFLOP/instances/site/ns<N>/`, checked for
   all 10 instances we have data for. Its numeric `<N>` is exactly our `ns<N>`.
-  Also has a third algorithm, `COMOLSD`, which we never ran ourselves but
-  which counts toward "best the group has found." Needed on disk as a sparse
-  checkout (its full history is ~3GB even sparse; skip cloning the rest of
-  the repo):
-
-  ```bash
-  cd /home/elis/Projects/TCC   # sibling of this repo, not inside it
-  mkdir -p external_pf && cd external_pf
-  git clone --filter=blob:none --sparse https://github.com/mowflopcec/wflopcec26.git
-  cd wflopcec26
-  git sparse-checkout set algorithms_raw_results instances
-  ```
-
-  Override the default path with `$MOWFLOP_CEC_RAW` if cloned elsewhere.
+  MOEA/D and NSGA-II runs are vendored at `raw_results/wflopcec26_results/`
+  (gitignored -- copy them in from the `wflopcec26` repo if missing, with
+  instance folders renamed to our `ns<N>`). `COMOLSD`, a third algorithm the
+  group also ran, isn't vendored there yet.
 
 * **BRACIS** (Silva & Fernandes, already on disk at `STN_MoWFLOP/raw_results/
   meta_heuristics/`, no clone needed) is **deliberately excluded**: its

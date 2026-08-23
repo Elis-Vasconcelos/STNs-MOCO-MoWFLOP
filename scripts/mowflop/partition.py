@@ -20,8 +20,7 @@ import pandas as pd
 from . import entropy as entropy_mod
 from . import io_raw
 from .emit import emit
-from .external_pf import external_points
-from .reference_front import pareto_front
+from .reference_front import external_points, pareto_front
 from .schemes import build_scheme
 
 # ---------------------------------------------------------------------------
@@ -97,9 +96,9 @@ def run_one(instance: str, config: str) -> dict:
         kappa=KAPPA,
     )
     tag = default_tag(SCHEME, PERCENT, KAPPA)
-    # frente de referência: nossa campanha + o histórico do grupo (CEC,
-    # verificado como a mesma instância -- ver o docstring de external_pf.py),
-    # não só o que os nossos próprios MOEA/D e NSGA-II acharam
+    # frente de referência: nossa campanha + o histórico do grupo
+    # (reference_front.external_points), não só o que os nossos próprios
+    # MOEA/D e NSGA-II acharam
     combined = pd.concat([df[["f_cost", "f_power"]], external_points(instance)], ignore_index=True)
     front = pareto_front(combined)
     summary = emit(
