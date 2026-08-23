@@ -12,6 +12,7 @@ Rode a partir de ``scripts/`` (ou com ``PYTHONPATH=scripts``) para que
 from __future__ import annotations
 
 import json
+import os
 import sys
 
 import pandas as pd
@@ -24,18 +25,20 @@ from .reference_front import pareto_front
 from .schemes import build_scheme
 
 # ---------------------------------------------------------------------------
-# Parâmetros de execução — edite antes de rodar o script.
+# Parâmetros de execução — edite antes de rodar o script, ou sobrescreva via
+# variável de ambiente (mesmo padrão de $MOWFLOP_RAW em io_raw.py), útil para
+# rodar vários valores num script não interativo sem editar o arquivo.
 # ---------------------------------------------------------------------------
 
-INSTANCE: str | None = "ns178"
-CONFIG: str | None = "p100_i50"
-ALL = False  # se True, processa toda (instância, config) que tenha log disponível
-BOTH_ALGORITHMS = False  # com ALL=True, mantém só os pares com MOEA/D e NSGA-II
-SCHEME = "grid"
-PERCENT = 60.0  # critério de área em %, em [0, 100]; 0 significa não particionar (só "entropy")
-KAPPA = 2.0
-TIE_BREAK = "random"  # "random" (o do artigo) ou "index" (determinístico, só para testes)
-SEED = 0  # semente do desempate aleatório
+INSTANCE: str | None = os.environ.get("MOWFLOP_INSTANCE", "ns178")
+CONFIG: str | None = os.environ.get("MOWFLOP_CONFIG", "p100_i50")
+ALL = os.environ.get("MOWFLOP_ALL", "0") == "1"  # se True, processa toda (instância, config) que tenha log disponível
+BOTH_ALGORITHMS = os.environ.get("MOWFLOP_BOTH_ALGORITHMS", "0") == "1"  # com ALL=True, mantém só os pares com MOEA/D e NSGA-II
+SCHEME = os.environ.get("MOWFLOP_SCHEME", "grid")
+PERCENT = float(os.environ.get("MOWFLOP_PERCENT", "60.0"))  # critério de área em %, em [0, 100]; 0 significa não particionar (só "entropy")
+KAPPA = float(os.environ.get("MOWFLOP_KAPPA", "2.0"))
+TIE_BREAK = os.environ.get("MOWFLOP_TIE_BREAK", "random")  # "random" (o do artigo) ou "index" (determinístico, só para testes)
+SEED = int(os.environ.get("MOWFLOP_SEED", "0"))  # semente do desempate aleatório
 
 
 def default_tag(scheme: str, percent: float, kappa: float | None = None) -> str:
