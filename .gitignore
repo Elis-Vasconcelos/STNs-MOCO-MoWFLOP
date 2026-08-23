@@ -12,6 +12,10 @@ stns/mowflop_*/
 plots/mowflop_*/
 reports/
 
+# saída de scripts/run_entropy_campaign.sh
+logs/
+status/
+
 __pycache__/
 *.pyc
 Rplots.pdf
