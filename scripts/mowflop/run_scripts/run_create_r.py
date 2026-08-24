@@ -9,8 +9,8 @@ atribuições, verifica com um diff que nada mais mudou, e roda essa cópia.
 
 Uso::
 
-    python -m mowflop.run_create_r --tag x60
-    python -m mowflop.run_create_r --tag raw --keep-script /tmp/create_raw.R
+    python -m mowflop.run_scripts.run_create_r --tag x60
+    python -m mowflop.run_scripts.run_create_r --tag raw --keep-script /tmp/create_raw.R
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from .io_raw import repo_root
+from ..io_raw import repo_root
 
 FOLDER_LINES = {
     "infolder": re.compile(r'^infolder\s*<-\s*".*?"'),

@@ -42,7 +42,7 @@ def load_pmed7(folder: str | Path) -> tuple[list[entropy_mod.Solution], int]:
 
     Não é mais usada pela CLI deste script -- a comparação com esse controle
     foi removida daqui --, mas segue neste módulo porque
-    :mod:`mowflop.test_partition` a importa para a regressão contra os
+    :mod:`mowflop.test.test_partition` a importa para a regressão contra os
     números publicados no artigo.
 
     Args:

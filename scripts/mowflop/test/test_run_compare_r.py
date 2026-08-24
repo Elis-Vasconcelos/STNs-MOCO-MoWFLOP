@@ -1,4 +1,4 @@
-"""Teste de :func:`mowflop.run_compare_r.discover_tags`.
+"""Teste de :func:`mowflop.run_scripts.run_compare_r.discover_tags`.
 
 Regressão para um bug real: ``any(d.glob(...) for algo in ...)`` é sempre
 ``True`` (a expressão geradora produz objetos ``glob``, não seus resultados),
@@ -10,7 +10,7 @@ Count.
 
 Rode a partir de ``scripts/``::
 
-    ../.venv/bin/python -m unittest mowflop.test_run_compare_r -v
+    ../.venv/bin/python -m unittest mowflop.test.test_run_compare_r -v
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from .run_compare_r import discover_tags
+from ..run_scripts.run_compare_r import discover_tags
 
 
 class TestDiscoverTags(unittest.TestCase):

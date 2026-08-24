@@ -2,7 +2,7 @@
 
 Rode a partir de ``scripts/``::
 
-    ../.venv/bin/python -m unittest mowflop.test_grid -v
+    ../.venv/bin/python -m unittest mowflop.test.test_grid -v
 
 Os testes puros (sem dependência de dados da campanha) cobrem: a fórmula da
 área do polígono (shoelace) contra formas de área conhecida; a regra
@@ -18,10 +18,10 @@ from __future__ import annotations
 import math
 import unittest
 
-from . import geometry
-from . import grid as grid_mod
-from . import io_raw
-from .schemes import GridScheme, build_scheme
+from .. import geometry
+from .. import grid as grid_mod
+from .. import io_raw
+from ..schemes import GridScheme, build_scheme
 
 
 class TestPolygonArea(unittest.TestCase):
@@ -198,7 +198,7 @@ class TestGridAgainstCampaign(unittest.TestCase):
         """Higher kappa -> bigger cells -> at least as much aggregation."""
         df = io_raw.load_trajectories("ns101", "p10_i50")
         texts = df["occupied"].unique()[:500]
-        from . import entropy as entropy_mod
+        from .. import entropy as entropy_mod
         solutions = [entropy_mod.from_index_list(t) for t in texts]
 
         counts = {}

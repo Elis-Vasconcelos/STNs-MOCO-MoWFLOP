@@ -2,7 +2,7 @@
 
 Rode a partir de ``scripts/``::
 
-    ../.venv/bin/python -m unittest mowflop.test_partition -v
+    ../.venv/bin/python -m unittest mowflop.test.test_partition -v
 
 O teste principal é :class:`TestPmed7Regression`: a implementação é conferida
 contra três números publicados pelos autores do esquema (Ochoa, Malan & Blum
@@ -25,10 +25,10 @@ from pathlib import Path
 
 import pandas as pd
 
-from . import entropy as entropy_mod
-from . import io_raw
-from .diagnose_entropy import load_pmed7
-from .emit import (
+from .. import entropy as entropy_mod
+from .. import io_raw
+from ..diagnose_entropy import load_pmed7
+from ..emit import (
     build_table,
     canonical_objectives,
     check_vectors,
@@ -37,8 +37,8 @@ from .emit import (
     front_name,
     assign_locations,
 )
-from .reference_front import front_keys, pareto_front
-from .schemes import RawScheme, build_scheme
+from ..reference_front import front_keys, pareto_front
+from ..schemes import RawScheme, build_scheme
 
 PMED7 = io_raw.repo_root().parent / "STNs" / "pmed7"
 

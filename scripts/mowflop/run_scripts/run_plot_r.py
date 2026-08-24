@@ -12,9 +12,9 @@ assume seis arquivos por algoritmo e os indexa como ``c(1, 3, 5)`` /
 ``c(2, 4, 6)`` (o design rho-mnk), enquanto temos um arquivo por algoritmo.
 Este script portanto reaproveita ``plot_stn`` **ao pé da letra** -- pega o
 prefixo de ``plot.R`` até o fim dessa função, reescreve só as constantes de
-pasta (como ``run_create_r.py`` faz), e adiciona um driver que itera sobre
-quaisquer arquivos que existam.  Confere que nada além dessas constantes mudou
-antes de rodar.
+pasta (como ``run_scripts/run_create_r.py`` faz), e adiciona um driver que
+itera sobre quaisquer arquivos que existam.  Confere que nada além dessas
+constantes mudou antes de rodar.
 
 Layouts, ambos de ``plot_stn``:
 
@@ -26,8 +26,8 @@ Layouts, ambos de ``plot_stn``:
 
 Uso::
 
-    python -m mowflop.run_plot_r --tag x60
-    python -m mowflop.run_plot_r --tag raw --layout both --pf-size 0.8 --pf-alpha 0.6
+    python -m mowflop.run_scripts.run_plot_r --tag x60
+    python -m mowflop.run_scripts.run_plot_r --tag raw --layout both --pf-size 0.8 --pf-alpha 0.6
 """
 
 from __future__ import annotations
@@ -40,7 +40,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from .io_raw import repo_root
+from ..io_raw import repo_root
 
 CONSTANTS = {
     "infolder": re.compile(r'^infolder\s*<-\s*".*?"'),
@@ -52,7 +52,7 @@ NUMERIC_CONSTANTS = {
 }
 
 DRIVER = r"""
-# ---- driver added by mowflop.run_plot_r ------------------------------------
+# ---- driver added by mowflop.run_scripts.run_plot_r ------------------------
 # One picture per algorithm: the STN of an algorithm already merges its p
 # scalarisation vectors (see the Vectors attribute built by "create .R").
 for (iset in isets) {

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Roda o pipeline partition.py -> run_create_r.py -> run_plot_r.py para o
-# esquema entropy, um PERCENT de cada vez, no supercomputador. Adapta o
+# Roda o pipeline partition.py -> run_scripts/run_create_r.py ->
+# run_scripts/run_plot_r.py para o esquema entropy, um PERCENT de cada vez,
+# no supercomputador. Adapta o
 # idioma de STN_MoWFLOP/source_code/meta_heuristics/scripts/batch.sh: um
 # `nohup ... &> log &` por unidade de trabalho, sem scheduler, sem limite de
 # concorrência. Diferença daquele script: lá cada unidade (instância) é
@@ -50,7 +51,7 @@ for percent in $percents; do
 
     if [[ ! -f "$status_dir/.done_create" ]]; then
       echo "[create] tag=$tag $(date -Is)"
-      ../.venv/bin/python -m mowflop.run_create_r --tag "$tag"
+      ../.venv/bin/python -m mowflop.run_scripts.run_create_r --tag "$tag"
       touch "$status_dir/.done_create"
     else
       echo "[skip] create já feito para $tag"
@@ -58,7 +59,7 @@ for percent in $percents; do
 
     if [[ ! -f "$status_dir/.done_plot" ]]; then
       echo "[plot] tag=$tag layout=$layout $(date -Is)"
-      ../.venv/bin/python -m mowflop.run_plot_r --tag "$tag" --layout "$layout"
+      ../.venv/bin/python -m mowflop.run_scripts.run_plot_r --tag "$tag" --layout "$layout"
       touch "$status_dir/.done_plot"
     else
       echo "[skip] plot já feito para $tag"

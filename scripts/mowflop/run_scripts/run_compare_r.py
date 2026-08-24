@@ -25,8 +25,8 @@ o driver final por um que:
 
 Uso::
 
-    python -m mowflop.run_compare_r --tags x60,g0.5,g1.0,g2.0 --instance ns101 --layout of
-    python -m mowflop.run_compare_r --tags g0.5,g1.0,g2.0 --instance ns178 --layout both
+    python -m mowflop.run_scripts.run_compare_r --tags x60,g0.5,g1.0,g2.0 --instance ns101 --layout of
+    python -m mowflop.run_scripts.run_compare_r --tags g0.5,g1.0,g2.0 --instance ns178 --layout both
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from .io_raw import repo_root
+from ..io_raw import repo_root
 from .run_plot_r import cut_prefix, rewrite
 
 P_ORDER = [10, 50, 100]
@@ -69,7 +69,7 @@ def discover_tags(repo: Path, instance: str) -> list[str]:
     return found
 
 DRIVER_TEMPLATE = r"""
-# ---- driver added by mowflop.run_compare_r ---------------------------------
+# ---- driver added by mowflop.run_scripts.run_compare_r ---------------------
 tags <- c({tags})
 instance <- "{instance}"
 layouts <- c({layouts})

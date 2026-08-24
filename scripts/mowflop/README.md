@@ -136,33 +136,33 @@ NSGA-II runs (see "Reference front" below) -- needed by every step from
    campaign's own points *and* `reference_front.external_points` -- see
    below).
 
-2. **`run_create_r.py`** -- runs Ochoa's unmodified `create .R` for a tag
+2. **`run_scripts/run_create_r.py`** -- runs Ochoa's unmodified `create .R` for a tag
    (both algorithms in one call):
 
    ```bash
-   ../.venv/bin/python -m mowflop.run_create_r --tag g1.0
+   ../.venv/bin/python -m mowflop.run_scripts.run_create_r --tag g1.0
    ```
 
    Writes `stns/mowflop_<tag>/{MOEAD,NSGA2}/*.RData`.
 
-3. **`run_metrics_r.py`** -- runs Ochoa's unmodified `metrics.R`, one call per algorithm:
+3. **`run_scripts/run_metrics_r.py`** -- runs Ochoa's unmodified `metrics.R`, one call per algorithm:
 
    ```bash
-   ../.venv/bin/python -m mowflop.run_metrics_r --tag g1.0 --algo MOEAD
-   ../.venv/bin/python -m mowflop.run_metrics_r --tag g1.0 --algo NSGA2
+   ../.venv/bin/python -m mowflop.run_scripts.run_metrics_r --tag g1.0 --algo MOEAD
+   ../.venv/bin/python -m mowflop.run_scripts.run_metrics_r --tag g1.0 --algo NSGA2
    ```
 
    Writes `metrics/mowflop_<tag>_<algo>_metrics.csv`.
 
-4. **`run_plot_r.py`** -- one PNG per `(algo, P)`, both layouts:
+4. **`run_scripts/run_plot_r.py`** -- one PNG per `(algo, P)`, both layouts:
 
    ```bash
-   ../.venv/bin/python -m mowflop.run_plot_r --tag g1.0 --layout both
+   ../.venv/bin/python -m mowflop.run_scripts.run_plot_r --tag g1.0 --layout both
    ```
 
    Writes `plots/mowflop_<tag>/<ALGO>_..._<of|fd>.png`.
 
-5. **`run_compare_r.py`** -- the 2x3 (algo x P) comparison tile per tag, with
+5. **`run_scripts/run_compare_r.py`** -- the 2x3 (algo x P) comparison tile per tag, with
    a Count scale shared across every tag/κ available for that instance (see
    "Reading the output" below). `--tags` defaults to auto-discovering every
    tag with data for `--instance` -- almost always what you want, since a
@@ -170,7 +170,7 @@ NSGA-II runs (see "Reference front" below) -- needed by every step from
    everything being compared:
 
    ```bash
-   ../.venv/bin/python -m mowflop.run_compare_r --instance ns101 --layout both
+   ../.venv/bin/python -m mowflop.run_scripts.run_compare_r --instance ns101 --layout both
    ```
 
    Writes `plots/mowflop_<tag>/compare_<instance>_<of|fd>.png`, one per tag.
@@ -191,7 +191,7 @@ Other utility scripts, run standalone as needed:
 ../.venv/bin/python -m mowflop.diagnose_entropy --instance ns101 --config p100_i50 --figs
 
 # tests, including the regression against the paper's published numbers
-../.venv/bin/python -m unittest mowflop.test_partition mowflop.test_grid mowflop.test_run_compare_r -v
+../.venv/bin/python -m unittest mowflop.test.test_partition mowflop.test.test_grid mowflop.test.test_run_compare_r -v
 ```
 
 ## Reference front: our campaign + the group's best-known (wflopcec26)
@@ -232,7 +232,7 @@ Only one external source is used, deliberately:
 
 ## Why the implementation can be trusted
 
-`mowflop.test_partition.TestPmed7Regression` runs the scheme over the authors'
+`mowflop.test.test_partition.TestPmed7Regression` runs the scheme over the authors'
 own `pmed7` traces (`../STNs/pmed7`) and checks three numbers they published:
 `|S(T)| = 423` and 423 nodes unpartitioned (Table 8), `z = 19` for a 60%
 partitioning (§6.2), and 312 nodes partitioned (Table 8). All three reproduce

@@ -1,9 +1,10 @@
 """Roda ``scripts/metrics.R`` num dataset do MoWFLOP sem editar o arquivo R.
 
-Mesmo padrão de ``run_create_r.py``/``run_plot_r.py``: copia o script pra um
-arquivo temporário, reescreve só as constantes ``iset``/``algo``/``outfolder``
-(``infolder`` é derivado dessas duas primeiras no próprio ``metrics.R``),
-confere com um diff que nada mais mudou, roda a cópia.
+Mesmo padrão de ``run_scripts/run_create_r.py``/``run_scripts/run_plot_r.py``:
+copia o script pra um arquivo temporário, reescreve só as constantes
+``iset``/``algo``/``outfolder`` (``infolder`` é derivado dessas duas
+primeiras no próprio ``metrics.R``), confere com um diff que nada mais
+mudou, roda a cópia.
 
 ``metrics.R`` tenta ler ``t[3]``/``t[6]`` do nome do arquivo como ``r``
 (correlação objetivo, do benchmark rho-mnk) e ``k`` (interação de variáveis) --
@@ -14,8 +15,8 @@ corretas e não dependem desse parsing.
 
 Uso::
 
-    python -m mowflop.run_metrics_r --tag g1.0 --algo MOEAD
-    python -m mowflop.run_metrics_r --tag x60 --algo NSGA2
+    python -m mowflop.run_scripts.run_metrics_r --tag g1.0 --algo MOEAD
+    python -m mowflop.run_scripts.run_metrics_r --tag x60 --algo NSGA2
 """
 
 from __future__ import annotations
@@ -28,7 +29,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from .io_raw import repo_root
+from ..io_raw import repo_root
 
 CONST_LINES = {
     "iset": re.compile(r'^iset\s*<-\s*".*?"'),
