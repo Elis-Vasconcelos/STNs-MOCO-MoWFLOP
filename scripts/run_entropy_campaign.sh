@@ -1,20 +1,24 @@
 #!/usr/bin/env bash
 # Roda o pipeline partition.py -> run_scripts/run_create_r.py ->
-# run_scripts/run_plot_r.py para o esquema entropy, um PERCENT de cada vez,
-# no supercomputador. Adapta o
+# run_scripts/run_plot_r.py -> run_scripts/run_stn_metrics_r.py (MOEAD e
+# NSGA2) -> run_scripts/run_shared_alg_r.py para o esquema entropy, um
+# PERCENT de cada vez, no supercomputador. Adapta o
 # idioma de STN_MoWFLOP/source_code/meta_heuristics/scripts/batch.sh: um
 # `nohup ... &> log &` por unidade de trabalho, sem scheduler, sem limite de
 # concorrência. Diferença daquele script: lá cada unidade (instância) é
-# independente; aqui as 3 etapas de um mesmo PERCENT formam uma cadeia
-# (create.R precisa da saída do partition.py, plot.R precisa da saída do
-# create.R), então cada PERCENT roda suas 3 etapas em sequência dentro do seu
-# próprio processo -- só os PERCENTs entre si é que rodam em paralelo.
+# independente; aqui as etapas de um mesmo PERCENT formam uma cadeia (cada
+# uma precisa da saída da anterior), então cada PERCENT roda suas etapas em
+# sequência dentro do seu próprio processo -- só os PERCENTs entre si é que
+# rodam em paralelo.
 #
-# Idempotente por etapa: partition.py/create.R/plot.R não têm skip interno
-# por instância (diferente de run_one.sh), então a granularidade de retomada
-# é a etapa inteira -- um marcador em status/x<percent>/.done_<stage> é
+# Idempotente por etapa: nenhum desses scripts tem skip interno por
+# instância (diferente de run_one.sh), então a granularidade de retomada é
+# a etapa inteira -- um marcador em status/x<percent>/.done_<stage> é
 # criado só depois que a etapa termina com sucesso. Relançar o script pula o
-# que já terminou.
+# que já terminou. Se o código de uma etapa anterior (ex.: partition.py ou
+# create .R) mudou desde a última campanha, apagar só o .done_plot/.done_metrics
+# não basta -- vale a receita "refazer um PERCENT inteiro do zero" do
+# COMO_RODAR_CAMPANHA_ENTROPIA.md (S4).
 #
 # Uso (a partir de scripts/): ./run_entropy_campaign.sh [percents] [layout]
 # Ex.: ./run_entropy_campaign.sh                # 60 70 80, layout both
@@ -63,6 +67,16 @@ for percent in $percents; do
       touch "$status_dir/.done_plot"
     else
       echo "[skip] plot já feito para $tag"
+    fi
+
+    if [[ ! -f "$status_dir/.done_metrics" ]]; then
+      echo "[metrics] tag=$tag $(date -Is)"
+      ../.venv/bin/python -m mowflop.run_scripts.run_stn_metrics_r --tag "$tag" --algo MOEAD
+      ../.venv/bin/python -m mowflop.run_scripts.run_stn_metrics_r --tag "$tag" --algo NSGA2
+      ../.venv/bin/python -m mowflop.run_scripts.run_shared_alg_r --tag "$tag"
+      touch "$status_dir/.done_metrics"
+    else
+      echo "[skip] metrics já feito para $tag"
     fi
 
     echo "[done] tag=$tag $(date -Is)"

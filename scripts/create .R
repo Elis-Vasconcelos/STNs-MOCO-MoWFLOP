@@ -247,8 +247,13 @@ create_stn = function(instance, iset) {
    
    aux <- substr(instance,1,nchar(instance)-4)
    fname <- paste0(outfolder, iset, aux, ".RData")
-   print(fname) 
-   save(pf, weiv, nodes, edges, STN, file = fname)  
+   print(fname)
+   # MoWFLOP patch: nRun (computed above from max(df$Run), per-file for the
+   # same reason as nGen) used to be discarded here. par_strength (paper's
+   # STN metrics table, normalized by #execucoes x p) needs the actual
+   # execution count without re-reading the raw logs and without assuming
+   # every file has exactly the planned 10 runs, so persist it.
+   save(pf, weiv, nodes, edges, STN, nRun, file = fname)
    return (nrow(nodes))  # Return  number of nodes, just to check it
 }
 
