@@ -29,18 +29,19 @@ from .schemes import build_scheme
 # rodar vários valores num script não interativo sem editar o arquivo.
 # ---------------------------------------------------------------------------
 
-INSTANCE: str | None = os.environ.get("MOWFLOP_INSTANCE", "ns178")
+INSTANCE: str | None = os.environ.get("MOWFLOP_INSTANCE", "ns101")
 CONFIG: str | None = os.environ.get("MOWFLOP_CONFIG", "p100_i50")
-ALL = os.environ.get("MOWFLOP_ALL", "0") == "1"  # se True, processa toda (instância, config) que tenha log disponível
+ALL = os.environ.get("MOWFLOP_ALL", "1") == "1"  # se True, processa toda (instância, config) que tenha log disponível
 BOTH_ALGORITHMS = os.environ.get("MOWFLOP_BOTH_ALGORITHMS", "0") == "1"  # com ALL=True, mantém só os pares com MOEA/D e NSGA-II
-SCHEME = os.environ.get("MOWFLOP_SCHEME", "grid")
-PERCENT = float(os.environ.get("MOWFLOP_PERCENT", "60.0"))  # critério de área em %, em [0, 100]; 0 significa não particionar (só "entropy")
+SCHEME = os.environ.get("MOWFLOP_SCHEME", "entropy")
+PERCENT = float(os.environ.get("MOWFLOP_PERCENT", "80.0"))  # critério de área em %, em [0, 100]; 0 significa não particionar (só "entropy")
 KAPPA = float(os.environ.get("MOWFLOP_KAPPA", "2.0"))
 TIE_BREAK = os.environ.get("MOWFLOP_TIE_BREAK", "random")  # "random" (o do artigo) ou "index" (determinístico, só para testes)
 SEED = int(os.environ.get("MOWFLOP_SEED", "0"))  # semente do desempate aleatório
+EXTERNAL_FRONT = os.environ.get("MOWFLOP_EXTERNAL_FRONT", "1") == "1"  # inclui o histórico do wflopcec26 na frente de referência
 
 
-def default_tag(scheme: str, percent: float, kappa: float | None = None) -> str:
+def default_tag(scheme: str, percent: float, kappa: float | None = None, external_front: bool = True) -> str:
     """Tag automática do particionamento, usada no nome dos arquivos de saída.
 
     Args:
@@ -48,15 +49,21 @@ def default_tag(scheme: str, percent: float, kappa: float | None = None) -> str:
         percent: critério de área usado para obter ``z``; ignorado se
             ``scheme != "entropy"``.
         kappa: parâmetro do modelo de grade; obrigatório se ``scheme == "grid"``.
+        external_front: se ``False``, sufixa ``noext`` -- roda numa tag
+            separada, para não sobrescrever a saída com o histórico do
+            wflopcec26 incluído.
 
     Returns:
-        ``"raw"``, ``"x<percent>"`` ou ``"g<kappa>"``.
+        ``"raw"``, ``"x<percent>"`` ou ``"g<kappa>"``, com ``noext`` sufixado
+        se ``external_front`` for ``False``.
     """
     if scheme == "raw":
-        return "raw"
-    if scheme == "grid":
-        return f"g{kappa}"
-    return f"x{int(percent)}"
+        base = "raw"
+    elif scheme == "grid":
+        base = f"g{kappa}"
+    else:
+        base = f"x{int(percent)}"
+    return base if external_front else f"{base}noext"
 
 
 def unique_solutions(df) -> list[entropy_mod.Solution]:
@@ -95,11 +102,12 @@ def run_one(instance: str, config: str) -> dict:
         instance=instance,
         kappa=KAPPA,
     )
-    tag = default_tag(SCHEME, PERCENT, KAPPA)
+    tag = default_tag(SCHEME, PERCENT, KAPPA, EXTERNAL_FRONT)
     # frente de referência: nossa campanha + o histórico do grupo
     # (reference_front.external_points), não só o que os nossos próprios
-    # MOEA/D e NSGA-II acharam
-    combined = pd.concat([df[["f_cost", "f_power"]], external_points(instance)], ignore_index=True)
+    # MOEA/D e NSGA-II acharam -- a menos que EXTERNAL_FRONT esteja desligado
+    external = external_points(instance) if EXTERNAL_FRONT else pd.DataFrame(columns=["f_cost", "f_power"])
+    combined = pd.concat([df[["f_cost", "f_power"]], external], ignore_index=True)
     front = pareto_front(combined)
     summary = emit(
         df,

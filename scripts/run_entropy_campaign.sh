@@ -20,10 +20,16 @@
 # não basta -- vale a receita "refazer um PERCENT inteiro do zero" do
 # COMO_RODAR_CAMPANHA_ENTROPIA.md (S4).
 #
-# Uso (a partir de scripts/): ./run_entropy_campaign.sh [percents] [layout]
-# Ex.: ./run_entropy_campaign.sh                # 60 70 80, layout both
-#      ./run_entropy_campaign.sh 60 of          # só x60, só o layout rápido
-#      ./run_entropy_campaign.sh "60 70 80" fd  # só o layout força-dirigido
+# Uso (a partir de scripts/): ./run_entropy_campaign.sh [percents] [layout] [external_front]
+# Ex.: ./run_entropy_campaign.sh                  # 60 70 80, layout both, com wflopcec26
+#      ./run_entropy_campaign.sh 60 of            # só x60, só o layout rápido
+#      ./run_entropy_campaign.sh "60 70 80" fd    # só o layout força-dirigido
+#      ./run_entropy_campaign.sh 80 of 0          # x80noext, sem o histórico do wflopcec26
+#
+# external_front (default 1): repassado como MOWFLOP_EXTERNAL_FRONT pro
+# partition.py (ver reference_front.external_points); 0 sufixa a tag com
+# "noext" (x80 -> x80noext), então cai em pastas/status/log próprios --
+# nunca sobrescreve a campanha "com" wflopcec26.
 
 set -euo pipefail
 
@@ -32,21 +38,26 @@ cd "$script_dir"   # scripts/
 
 percents="${1:-60 70 80}"
 layout="${2:-both}"   # of | fd | both
+external_front="${3:-1}"   # 1 (default, com wflopcec26) | 0 (sem)
 
 mkdir -p ../logs ../status
 
 for percent in $percents; do
   tag="x${percent}"
+  if [[ "$external_front" != "1" ]]; then
+    tag="${tag}noext"
+  fi
   log="../logs/entropy_${tag}.log"
   status_dir="../status/${tag}"
   mkdir -p "$status_dir"
   nohup bash -c '
     set -euo pipefail
-    percent="$1"; tag="$2"; layout="$3"; status_dir="$4"
+    percent="$1"; tag="$2"; layout="$3"; status_dir="$4"; external_front="$5"
 
     if [[ ! -f "$status_dir/.done_partition" ]]; then
-      echo "[partition] scheme=entropy percent=$percent $(date -Is)"
+      echo "[partition] scheme=entropy percent=$percent external_front=$external_front $(date -Is)"
       MOWFLOP_SCHEME=entropy MOWFLOP_PERCENT="$percent" MOWFLOP_ALL=1 \
+        MOWFLOP_EXTERNAL_FRONT="$external_front" \
         ../.venv/bin/python -m mowflop.partition
       touch "$status_dir/.done_partition"
     else
@@ -80,6 +91,6 @@ for percent in $percents; do
     fi
 
     echo "[done] tag=$tag $(date -Is)"
-  ' _ "$percent" "$tag" "$layout" "$status_dir" &> "$log" &
+  ' _ "$percent" "$tag" "$layout" "$status_dir" "$external_front" &> "$log" &
   echo "[batch] percent=$percent tag=$tag pid=$! log=$log"
 done
