@@ -1,0 +1,3 @@
+500 synthetic layout instances were generated using a Python script developed with the NumPy and Shapely libraries. The script was created by João Gabriel Lofiego ([@JGLofiego](https://github.com/JGLofiego) on GitHub) and Gustavo Jorge ([@gustavojorge](https://github.com/gustavojorge) on GitHub) and is based on the instances described in the paper _"Variable Neighborhood Search for Large Offshore Wind Farm Layout Optimization"_ by Davide Cazzaro and David Pisinger.
+
+The wind files are the same as those used in the previous instances described in the paper and can be found in the `/wind` folder.
