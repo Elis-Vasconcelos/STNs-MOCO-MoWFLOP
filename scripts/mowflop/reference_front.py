@@ -19,6 +19,17 @@ regimes diferentes.
 só o que os nossos próprios algoritmos acharam). Cada run despeja um arquivo
 por checkpoint de geração (``..._<algo>_<ger>.txt``); só o checkpoint de
 maior geração por run é lido.
+
+:func:`own_archive_points` lê o equivalente da nossa própria campanha
+(``raw_results/meta_heuristics_stn/<algo>/<instância>/<config>/<run>/``). É o
+conjunto aproximativo (``pareto``, um ``BoundedParetoSet`` acumulado desde a
+primeira avaliação -- ``pareto->addSol`` em todo filho gerado por
+crossover/mutação, ver ``STN_MoWFLOP/source_code/meta_heuristics/src/
+global_modules/genetic_operators/``), não a população corrente amostrada em
+``<instância>_<algo>_stn.csv`` (essa é uma foto parcial da busca a cada
+``STN_LOGGER_INTERVAL`` gerações, via ``select_representatives`` em
+``stn_logger.cpp`` -- usada por ``emit.py`` pra montar a trajetória/STN, mas
+não deve alimentar a frente de referência).
 """
 
 from __future__ import annotations
@@ -28,7 +39,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from .io_raw import repo_root
+from .io_raw import raw_root, repo_root
 
 DEC = 6  # casas decimais; deve bater com `dec` em "create .R"
 FLOAT_FMT = f"%.{DEC}f"
@@ -83,6 +94,48 @@ def external_points(instance: str) -> pd.DataFrame:
             if final is None:
                 continue
             # lê um checkpoint (`f_cost f_power` por linha, sem cabeçalho) como pares
+            with final.open(encoding="utf-8") as fh:
+                for line in fh:
+                    parts = line.split()
+                    if len(parts) >= 2:
+                        points.append((float(parts[0]), float(parts[1])))
+    return pd.DataFrame(points, columns=["f_cost", "f_power"])
+
+
+def own_archive_points(
+    instance: str, config: str, root: str | None = None
+) -> pd.DataFrame:
+    """Todo ponto (``f_cost``, ``f_power``) do conjunto aproximativo da própria campanha.
+
+    Espelha :func:`external_points`, mas para ``raw_results/meta_heuristics_stn``
+    (um nível a mais de pasta que o wflopcec26, porque aqui existe ``config``
+    -- p10/p50/p100 são execuções independentes, não a mesma busca com
+    amostragem diferente). União do checkpoint final de toda run, de MOEA/D e
+    NSGA-II -- ainda não filtrado pelo não-dominado; passe o resultado,
+    concatenado com :func:`external_points`, para :func:`pareto_front`.
+
+    Args:
+        instance: nome da instância (``"ns101"``, ...).
+        config: config no formato ``p<P>_i<k>``.
+        root: raiz explícita da campanha; se ``None``, usa
+            :func:`mowflop.io_raw.raw_root` (respeita ``$MOWFLOP_RAW``).
+
+    Returns:
+        DataFrame com colunas ``f_cost``, ``f_power``; vazio (sem erro) se a
+        instância, o config, o algoritmo ou a raiz não existirem.
+    """
+    base = raw_root(root)
+    points = []
+    for algo_dir_name in ALGO_DIRS.values():
+        inst_dir = base / algo_dir_name / instance / config
+        if not inst_dir.is_dir():
+            continue
+        for run_dir in inst_dir.iterdir():
+            if not run_dir.is_dir():
+                continue
+            final = _final_checkpoint(run_dir, algo_dir_name)
+            if final is None:
+                continue
             with final.open(encoding="utf-8") as fh:
                 for line in fh:
                     parts = line.split()

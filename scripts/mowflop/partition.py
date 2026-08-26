@@ -20,7 +20,7 @@ import pandas as pd
 from . import entropy as entropy_mod
 from . import io_raw
 from .emit import emit
-from .reference_front import external_points, pareto_front
+from .reference_front import external_points, own_archive_points, pareto_front
 from .schemes import build_scheme
 
 # ---------------------------------------------------------------------------
@@ -103,11 +103,15 @@ def run_one(instance: str, config: str) -> dict:
         kappa=KAPPA,
     )
     tag = default_tag(SCHEME, PERCENT, KAPPA, EXTERNAL_FRONT)
-    # frente de referência: nossa campanha + o histórico do grupo
-    # (reference_front.external_points), não só o que os nossos próprios
-    # MOEA/D e NSGA-II acharam -- a menos que EXTERNAL_FRONT esteja desligado
+    # frente de referência: o conjunto aproximativo da nossa própria campanha
+    # (reference_front.own_archive_points -- o arquivo `pareto` acumulado
+    # durante toda a busca, não a população amostrada em `df`/`_stn.csv`)
+    # unido ao histórico do grupo (reference_front.external_points), não só
+    # o que os nossos próprios MOEA/D e NSGA-II acharam -- a menos que
+    # EXTERNAL_FRONT esteja desligado
+    own = own_archive_points(instance, config)
     external = external_points(instance) if EXTERNAL_FRONT else pd.DataFrame(columns=["f_cost", "f_power"])
-    combined = pd.concat([df[["f_cost", "f_power"]], external], ignore_index=True)
+    combined = pd.concat([own, external], ignore_index=True)
     front = pareto_front(combined)
     summary = emit(
         df,

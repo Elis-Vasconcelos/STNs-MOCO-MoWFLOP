@@ -179,7 +179,10 @@ def main(argv: list[str] | None = None) -> int:
     print(f"        exceto as constantes nas linhas {changed}:")
     for line in diff:
         print(f"  {line}")
-    if len(diff) != 2 * len(changed):
+    # diff vazio é ok: acontece quando o valor reescrito já era igual ao
+    # anterior (ex.: plot.R já apontava pra essa mesma tag) -- só um diff de
+    # tamanho *diferente* de 0 ou 2*len(changed) indica que outra coisa mudou
+    if len(diff) not in (0, 2 * len(changed)):
         print("refusing to run: something other than the constants changed", file=sys.stderr)
         return 1
 
