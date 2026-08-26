@@ -14,7 +14,7 @@ library(ggplot2)
 library(ggraph)
 library(RColorBrewer)
 library(reshape2)
-library(ggpubr)
+# library(ggpubr)  # commented out locally: unused in this file, dependency chain incompatible with R 4.1.2
 
 isets<- c("MOEAD/","NSGA2/") # sets of instances to process
 
