@@ -1,0 +1,53 @@
+{
+    "Fixed turbines": true,
+    "Points": 7098,
+    "Seed": 3057207662,
+    "Zones": {
+        "1": {
+            "Area km2": 113.1309475159073,
+            "Holes": 2,
+            "N 10MW turbines": [
+                45,
+                67,
+                90
+            ],
+            "N 15MW turbines": [
+                30,
+                45,
+                60
+            ],
+            "Points": 4724,
+            "Power densities MW/km2": [
+                4,
+                6,
+                8
+            ],
+            "Type": "available"
+        },
+        "2": {
+            "Area km2": 57.38300300116444,
+            "Holes": 2,
+            "N 10MW turbines": [
+                22,
+                34,
+                45
+            ],
+            "N 15MW turbines": [
+                15,
+                22,
+                30
+            ],
+            "Points": 2366,
+            "Power densities MW/km2": [
+                4,
+                6,
+                8
+            ],
+            "Type": "available"
+        },
+        "3": {
+            "Points": 8,
+            "Type": "fixed"
+        }
+    }
+}

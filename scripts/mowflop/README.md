@@ -4,9 +4,11 @@ This package sits **upstream** of the R pipeline. It reads the raw campaign logs
 maps every logged solution to a *location* of a partitioned search space, and
 writes files in exactly the format `scripts/create .R` already reads.
 
-No `*.R` file is modified. The partitioned model and the unpartitioned baseline
-therefore traverse byte-identical R code, and any difference in the metrics is
-attributable to the partitioning alone.
+`create .R` and `metrics.R` are never modified: the partitioned model and the
+unpartitioned baseline traverse byte-identical code there, so any difference
+in the metrics is attributable to the partitioning alone. `plot.R` is the one
+exception -- Arthur patched its title/arrangement logic directly (see "Reading
+the output" below) since it only affects rendering, not the numbers.
 
 ## Setup
 
@@ -261,20 +263,19 @@ variable to the last** is at least `X%` of the total.
 parameter choice; everything under it is comparable to everything else under
 it, but not directly to a different tag without accounting for what changed.
 
-**Plot titles say `"ALGO r = instance"`** (e.g. `"MOEAD r = ns101"`), the same
-string for every P and every κ. This is *not* a bug, and it will keep
-happening no matter which of our scripts renders it, because `run_plot_r.py`
-(Arthur's own wrapper, not something this session added) deliberately
-reuses `plot_stn` **unmodified**: `plot.R:47`
-(`tit <- paste0(t[1]," r = ",t[3])`) is untouched Ochoa upstream code, where
-`t[3]` was her rmnk benchmark's correlation parameter ρ ("rho" -- see the
-commented-out fuller title on `plot.R:46`: `r=,m=,n=,k=`). Our filenames just
-happen to put the instance name in that same `t[3]` slot, so the leftover
-`"r ="` label gets reused for something it was never about. Fixing it would
-mean editing `plot.R` itself, which breaks the byte-identical-upstream
-guarantee this whole package is built to preserve -- not worth it for a
-title string. P and κ aren't in the title at all either; rely on the
-filename / which `plots/mowflop_<tag>/` folder a PNG came from.
+**Plot titles show `"ALGO instance config"`** (e.g. `"MOEAD ns101 p100i50"`),
+distinct per P/config. `plot.R` is no longer byte-identical to Ochoa's
+upstream here: commit `80600fa` ("Altera caminho dos scripts e e legendas
+dos gráficos", 2026-08-21) rewrote `plot_stn`'s title line (`plot.R:50`,
+`tit <- paste0(t[1], " ", t[3], " ", t[6])`) because the original
+(`t[1]," r = ",t[3]`, using `t[3]` for her rmnk benchmark's ρ) couldn't tell
+apart two configs of the same instance in one panel. Since `run_plot_r.py`
+and `run_compare_r.py` both cut their prefix from *whatever `plot.R`
+currently is* (not a pinned original), they inherit this title automatically
+-- no wrapper changes needed. κ still isn't in the title; keep relying on
+the filename / which `plots/mowflop_<tag>/` folder a PNG came from for that.
+The byte-identical-upstream guarantee described elsewhere in this doc now
+applies to `create .R`/`metrics.R` only, not `plot.R`.
 
 **`of` vs `fd`** (`plot.R`'s two layouts, both untouched upstream code):
 `of` = *objective-space* -- node x/y are the real `f1`/`f2` values, so the
