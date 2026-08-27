@@ -14,7 +14,7 @@ todo esquema e todo ``z``, o que é o que torna as métricas comparáveis entre
 regimes diferentes.
 
 :func:`external_points` lê os resultados de MOEA/D e NSGA-II do grupo
-(``wflopcec26``), vendorizados em ``raw_results/wflopcec26_results/<algo>/
+(``wflopcec26``), vendorizados em ``external_pf/wflopcec26/results/<algo>/
 <instância>/`` (pastas de instância já renomeadas para o nosso ``ns<N>``, não
 só o que os nossos próprios algoritmos acharam). Cada run despeja um arquivo
 por checkpoint de geração (``..._<algo>_<ger>.txt``); só o checkpoint de
@@ -45,7 +45,7 @@ DEC = 6  # casas decimais; deve bater com `dec` em "create .R"
 FLOAT_FMT = f"%.{DEC}f"
 
 ALGO_DIRS = {"MOEAD": "moead", "NSGA2": "nsga2"}
-WFLOPCEC26_ROOT = repo_root() / "raw_results" / "wflopcec26_results"
+WFLOPCEC26_ROOT = repo_root() / "external_pf" / "wflopcec26" / "results"
 
 
 def _final_checkpoint(run_dir: Path, algo_lower: str) -> Path | None:
@@ -71,7 +71,7 @@ def external_points(instance: str) -> pd.DataFrame:
     """Todo ponto (``f_cost``, ``f_power``) do histórico do grupo (wflopcec26) para uma instância.
 
     União do checkpoint final de toda run, de MOEA/D e NSGA-II, lidos de
-    ``raw_results/wflopcec26_results/<algo>/<instance>/`` -- ainda não
+    ``external_pf/wflopcec26/results/<algo>/<instance>/`` -- ainda não
     filtrado pelo não-dominado; passe o resultado, concatenado com os pontos
     da nossa própria campanha, para :func:`pareto_front`.
 

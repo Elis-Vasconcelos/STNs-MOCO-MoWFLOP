@@ -8,7 +8,7 @@ angle=30/wind=10 fixo original.
 Lê direto das fontes canônicas (sem cópia local de dado):
 - "Nosso": STN_MoWFLOP (repo irmão, assume layout padrão do workspace
   TCC/) em raw_results/meta_heuristics_stn_windcorrected/.
-- "CEC": raw_results/wflopcec26_results/ deste próprio repo (vendorizado
+- "CEC": external_pf/wflopcec26/results/ deste próprio repo (vendorizado
   por completo, ver commit "Fronteira de refrência inclui resultados do
   wflopcec26").
 """
@@ -18,7 +18,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 NOSSO_ROOT = REPO_ROOT.parent / "STN_MoWFLOP" / "raw_results" / "meta_heuristics_stn_windcorrected"
-CEC_ROOT = REPO_ROOT / "raw_results" / "wflopcec26_results"
+CEC_ROOT = REPO_ROOT / "external_pf" / "wflopcec26" / "results"
 HERE = Path(__file__).parent
 
 # run_id usado na prova original (angle/wind = run 1 do CEC); a campanha
