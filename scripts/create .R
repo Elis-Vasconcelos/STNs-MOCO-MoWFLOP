@@ -261,7 +261,16 @@ create_stn = function(instance, iset) {
 
 for (s in isets) {
    fname <-  paste0(infolder, s)
+   if (!dir.exists(fname)) {
+      # MoWFLOP patch: an algorithm's folder can legitimately not exist yet
+      # (e.g. NSGA-II still running for a new sparse instance while MOEA/D
+      # already finished) -- skip it instead of crashing on list.files().
+      next
+   }
    data_files <- list.files(fname)  # filenames in folder
+   if (length(data_files) == 0) {
+      next
+   }
    # Create STNs for all files in the folder
    nnodes <- lapply(data_files, create_stn, iset = s)
    # Plot number of nodes as check
