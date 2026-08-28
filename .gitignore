@@ -20,3 +20,6 @@ status/
 __pycache__/
 *.pyc
 Rplots.pdf
+
+# local reorg of pre/post-wind-fix STN outputs, mirrors the Drive backup archive
+_local_output_archive/
