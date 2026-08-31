@@ -16,9 +16,9 @@ from __future__ import annotations
 
 from hashlib import blake2b
 
-from . import entropy as entropy_mod
-from . import grid as grid_mod
-from .entropy import Solution
+from .shannon_entropy import entropy as entropy_mod
+from .grid import grid as grid_mod
+from .shannon_entropy.entropy import Solution
 
 RAW_PREFIX = "R"
 
@@ -156,7 +156,7 @@ class GridScheme:
         return self.partition.assign(solution)
 
     def project(self, solution: Solution):
-        """Assinatura de ocupação esparsa da solução (ver :mod:`mowflop.grid`)."""
+        """Assinatura de ocupação esparsa da solução (ver :mod:`mowflop.schemes.grid.grid`)."""
         return self.partition.project(solution)
 
     def describe(self) -> dict:

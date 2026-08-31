@@ -18,7 +18,7 @@ Escreve em ``reports/rq1_entropy/``:
 
 Uso::
 
-    python -m mowflop.diagnose_entropy --instance ns101 --config p100_i50 --figs
+    python -m mowflop.schemes.shannon_entropy.diagnose_entropy --instance ns101 --config p100_i50 --figs
 """
 
 from __future__ import annotations
@@ -32,7 +32,7 @@ from pathlib import Path
 import pandas as pd
 
 from . import entropy as entropy_mod
-from . import io_raw
+from ... import io_raw
 
 AREA_PERCENTS = (50, 60, 70, 80, 90)
 

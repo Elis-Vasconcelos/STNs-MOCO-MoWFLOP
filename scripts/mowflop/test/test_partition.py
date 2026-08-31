@@ -25,9 +25,9 @@ from pathlib import Path
 
 import pandas as pd
 
-from .. import entropy as entropy_mod
+from ..schemes.shannon_entropy import entropy as entropy_mod
 from .. import io_raw
-from ..diagnose_entropy import load_pmed7
+from ..schemes.shannon_entropy.diagnose_entropy import load_pmed7
 from ..emit import (
     build_table,
     canonical_objectives,
@@ -38,7 +38,7 @@ from ..emit import (
     assign_locations,
 )
 from ..reference_front import front_keys, pareto_front
-from ..schemes import RawScheme, build_scheme
+from ..schemes.schemes import RawScheme, build_scheme
 
 PMED7 = io_raw.repo_root().parent / "STNs" / "pmed7"
 

@@ -117,11 +117,12 @@ deterministic ranking.
 
 ## Usage: the full pipeline, one command per stage
 
-Prerequisites (once): `$MOWFLOP_RAW` pointing at
-`STN_MoWFLOP/raw_results/meta_heuristics_stn` (see `io_raw.raw_root`), and
-`raw_results/wflopcec26_results/` populated with the group's MOEA/D and
-NSGA-II runs (see "Reference front" below) -- needed by every step from
-`partition.py` onward, since the reference front is computed there now.
+Prerequisites: both data sources are now vendored in-repo, so nothing extra
+is needed. The campaign logs live at `raw_results/meta_heuristics_stn_windcorrected/`
+(the default in `io_raw.raw_root`; `$MOWFLOP_RAW` still overrides it), and the
+group's MOEA/D and NSGA-II runs at `raw_results/wflopcec26/` (see "Reference
+front" below) -- needed by every step from `partition.py` onward, since the
+reference front is computed there now.
 
 1. **`partition.py`** -- no CLI, a block of constants at the top of the file
    (`INSTANCE`, `CONFIG`, `SCHEME`, `PERCENT` [entropy], `KAPPA` [grid], ...).
@@ -216,10 +217,9 @@ Only one external source is used, deliberately:
   `instances/sites/<N>/{geometry.txt,turbines_per_zone.txt}` are byte-identical
   (module `\r\n`) to our own `STN_MoWFLOP/instances/site/ns<N>/`, checked for
   all 10 instances we have data for. Its numeric `<N>` is exactly our `ns<N>`.
-  MOEA/D and NSGA-II runs are vendored at `raw_results/wflopcec26_results/`
-  (gitignored -- copy them in from the `wflopcec26` repo if missing, with
-  instance folders renamed to our `ns<N>`). `COMOLSD`, a third algorithm the
-  group also ran, isn't vendored there yet.
+  MOEA/D and NSGA-II runs are vendored at `raw_results/wflopcec26/`
+  (committed to this repo, with instance folders renamed to our `ns<N>`).
+  `COMOLSD`, a third algorithm the group also ran, isn't vendored there yet.
 
 * **BRACIS** (Silva & Fernandes, already on disk at `STN_MoWFLOP/raw_results/
   meta_heuristics/`, no clone needed) is **deliberately excluded**: its

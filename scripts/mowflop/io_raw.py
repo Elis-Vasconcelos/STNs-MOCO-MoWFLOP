@@ -1,7 +1,7 @@
 """Leitura dos logs brutos da campanha.
 
-A campanha vive em ``raw_results/meta_heuristics_stn`` dentro deste
-repositório; ``$MOWFLOP_RAW`` sobrescreve isso.  Layout de diretórios
+A campanha vive em ``raw_results/meta_heuristics_stn_windcorrected`` dentro
+deste repositório; ``$MOWFLOP_RAW`` sobrescreve isso.  Layout de diretórios
 produzido pela campanha em C++::
 
     <raw_root>/<algoritmo>/<instância>/<config>/<run>/<instância>_<algoritmo>_stn.csv
@@ -54,7 +54,7 @@ def repo_root() -> Path:
 
 
 def raw_root(root: str | os.PathLike | None = None) -> Path:
-    """Localiza os logs da campanha: ``raw_results/meta_heuristics_stn`` no repo.
+    """Localiza os logs da campanha: ``raw_results/meta_heuristics_stn_windcorrected`` no repo.
 
     Args:
         root: caminho explícito que sobrescreve o padrão; se ``None``, tenta
@@ -71,7 +71,7 @@ def raw_root(root: str | os.PathLike | None = None) -> Path:
     env = os.environ.get("MOWFLOP_RAW")
     if env:
         return Path(env).resolve()
-    path = repo_root() / "raw_results" / "meta_heuristics_stn"
+    path = repo_root() / "raw_results" / "meta_heuristics_stn_windcorrected"
     if not path.is_dir():
         raise FileNotFoundError(
             f"campaign logs not found at {path}; set MOWFLOP_RAW or pass root explicitly"

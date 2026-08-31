@@ -37,7 +37,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from . import entropy as entropy_mod
+from .schemes.shannon_entropy import entropy as entropy_mod
 from .io_raw import ALGO_LABELS
 from .reference_front import DEC, FLOAT_FMT, front_keys, pareto_front, write_front
 

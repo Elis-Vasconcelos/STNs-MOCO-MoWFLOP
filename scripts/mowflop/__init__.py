@@ -21,7 +21,6 @@ Esquemas implementados aqui:
 
 __all__ = [
     "io_raw",
-    "entropy",
     "schemes",
     "reference_front",
     "emit",

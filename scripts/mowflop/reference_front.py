@@ -21,7 +21,7 @@ por checkpoint de geração (``..._<algo>_<ger>.txt``); só o checkpoint de
 maior geração por run é lido.
 
 :func:`own_archive_points` lê o equivalente da nossa própria campanha
-(``raw_results/meta_heuristics_stn/<algo>/<instância>/<config>/<run>/``). É o
+(``raw_results/meta_heuristics_stn_windcorrected/<algo>/<instância>/<config>/<run>/``). É o
 conjunto aproximativo (``pareto``, um ``BoundedParetoSet`` acumulado desde a
 primeira avaliação -- ``pareto->addSol`` em todo filho gerado por
 crossover/mutação, ver ``STN_MoWFLOP/source_code/meta_heuristics/src/
@@ -107,7 +107,7 @@ def own_archive_points(
 ) -> pd.DataFrame:
     """Todo ponto (``f_cost``, ``f_power``) do conjunto aproximativo da própria campanha.
 
-    Espelha :func:`external_points`, mas para ``raw_results/meta_heuristics_stn``
+    Espelha :func:`external_points`, mas para ``raw_results/meta_heuristics_stn_windcorrected``
     (um nível a mais de pasta que o wflopcec26, porque aqui existe ``config``
     -- p10/p50/p100 são execuções independentes, não a mesma busca com
     amostragem diferente). União do checkpoint final de toda run, de MOEA/D e

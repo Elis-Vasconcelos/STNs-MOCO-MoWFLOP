@@ -22,9 +22,9 @@ import os
 from dataclasses import dataclass, field
 from hashlib import blake2b
 
-from .entropy import Solution
-from .geometry import SiteGeometry, cell_side, load_site_geometry
-from .io_raw import load_candidates
+from ..shannon_entropy.entropy import Solution
+from ...geometry import SiteGeometry, cell_side, load_site_geometry
+from ...io_raw import load_candidates
 
 LOCATION_PREFIX = "G"
 

@@ -17,11 +17,11 @@ import sys
 
 import pandas as pd
 
-from . import entropy as entropy_mod
+from .schemes.shannon_entropy import entropy as entropy_mod
 from . import io_raw
 from .emit import emit
 from .reference_front import external_points, own_archive_points, pareto_front
-from .schemes import build_scheme
+from .schemes.schemes import build_scheme
 
 # ---------------------------------------------------------------------------
 # Parâmetros de execução — edite antes de rodar o script, ou sobrescreva via
