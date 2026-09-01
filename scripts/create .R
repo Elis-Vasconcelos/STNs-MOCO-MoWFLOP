@@ -17,9 +17,9 @@ nGen <-  20  # number of algorithm iterations/generations
 nRun <-  10   # Number of runs to consider
 dec <-  6   # Number of decimal digits for fitness (Pareto set) 
 
-infolder <- "data/n16_m2/"      # Base folder with data 
-parfolder <- "pf/n16/"          # Folder with Pareto front objective values
-outfolder <- "stns/n16_m2/"  # Base folder to save STNs
+infolder <- "data/mowflop_x80/"      # Base folder with data 
+parfolder <- "pf/mowflop/"          # Folder with Pareto front objective values
+outfolder <- "stns/mowflop_x80/"  # Base folder to save STNs
 
 isets<- c("MOEAD/","NSGA2/") # folders with sets data to process
 
@@ -80,8 +80,21 @@ create_stn = function(instance, iset) {
    # Read trajectory data
    print("Trajectory: ")
    print(fname)
-   df <- read.table(fname, stringsAsFactors = F, header = T, 
+   df <- read.table(fname, stringsAsFactors = F, header = T,
                     colClasses=df_col_types)
+
+   # MoWFLOP patch: nGen/nRun are overridden here, per file, instead of
+   # using the global constants at the top of the script. STN_MoWFLOP
+   # samples every STN_LOGGER_INTERVAL generations instead of logging
+   # every one, and different runs in the same file can reach different
+   # final generations within the same evaluation budget -- a fixed nGen
+   # can end up smaller than some run's actual final generation, which
+   # leaves an edge's target node out of `nodes` and breaks
+   # graph_from_data_frame() further down ("Some vertex names in `d` are
+   # not listed in `vertices`").
+   nGen <- max(df$Gen) + 1
+   nRun <- max(df$Run)
+
    # Data structure to keep name of vectors - Depends on the number of Objectives!
    if (m == 2) {
       wei <- select(df, Vector:Weight2)
@@ -110,8 +123,17 @@ create_stn = function(instance, iset) {
    start <- df %>%
       filter (df$Gen == 0)
    
+   # MoWFLOP patch: the original "end" compared against a single nGen for
+   # the whole file -- in MOEA/D, crossover/mutation are probabilistic per
+   # generation (see moead.cpp), so different runs sharing the same
+   # evaluation budget end at different final generations. A global nGen
+   # only captured the run that went furthest, missing the final node of
+   # every shorter run (the n_end metric would come out incomplete/wrong).
+   # Instead, take each run's own last logged generation individually.
    end <- df %>%
-      filter (df$Gen == (nGen - 1))  # last generation as it starts coutning with 0
+      group_by(Run) %>%
+      filter(Gen == max(Gen)) %>%
+      ungroup()
    #  Aggregate rows and count the number of solutions for each vector.
    
    if (m == 2) {
@@ -148,20 +170,30 @@ create_stn = function(instance, iset) {
    nodes <- rename(nodes, Solution = Solution1)
    
    # Create column for Pareto both in the nodes df and the Pareto df
-   if (m == 2) {   # two objectives 
-      pf_str <- paste(as.integer(round(pf$f1, dec)*10^dec),
-                      as.integer(round(pf$f2, dec)*10^dec), sep = "_")
-      nobj_str <- paste(as.integer(round(nodes$f1, dec)*10^dec),
-                      as.integer(round(nodes$f2, dec)*10^dec), sep = "_")
+   #
+   # MoWFLOP patch: the original did as.integer(round(x,dec)*10^dec) --
+   # correct for her benchmark's small normalized objective values
+   # (~0.4-0.7), but MoWFLOP uses raw-scale f_cost/f_power (~1e7), and
+   # *10^dec overflows R's 32-bit integer range (~2.1e9), silently turning
+   # into NA for everyone -- and since NA_NA == NA_NA, EVERY node was
+   # getting tagged Position="Pareto". Replaced with sprintf at `dec` fixed
+   # decimal places: same comparison semantics (round, then compare as a
+   # string), without the integer overflow.
+   dec_fmt <- paste0("%.", dec, "f")
+   if (m == 2) {   # two objectives
+      pf_str <- paste(sprintf(dec_fmt, pf$f1),
+                      sprintf(dec_fmt, pf$f2), sep = "_")
+      nobj_str <- paste(sprintf(dec_fmt, nodes$f1),
+                      sprintf(dec_fmt, nodes$f2), sep = "_")
    } else {  # 3 Objectives:  one numeric to col types
-      pf_str <- paste(as.integer(round(pf$f1, dec)*10^dec),
-                      as.integer(round(pf$f2, dec)*10^dec),
-                      as.integer(round(pf$f3, dec)*10^dec), sep = "_")
-      nobj_str <- paste(as.integer(round(nodes$f1, dec)*10^dec),
-                        as.integer(round(nodes$f2, dec)*10^dec),
-                        as.integer(round(nodes$f3, dec)*10^dec), sep = "_")
-   }   
-   nodes$Obj <- nobj_str 
+      pf_str <- paste(sprintf(dec_fmt, pf$f1),
+                      sprintf(dec_fmt, pf$f2),
+                      sprintf(dec_fmt, pf$f3), sep = "_")
+      nobj_str <- paste(sprintf(dec_fmt, nodes$f1),
+                        sprintf(dec_fmt, nodes$f2),
+                        sprintf(dec_fmt, nodes$f3), sep = "_")
+   }
+   nodes$Obj <- nobj_str
    
    # Assign Position of nodes -- There are 4 possible values
    # Begin, End, Medium, Pareto - Default is Medium
@@ -215,8 +247,13 @@ create_stn = function(instance, iset) {
    
    aux <- substr(instance,1,nchar(instance)-4)
    fname <- paste0(outfolder, iset, aux, ".RData")
-   print(fname) 
-   save(pf, weiv, nodes, edges, STN, file = fname)  
+   print(fname)
+   # MoWFLOP patch: nRun (computed above from max(df$Run), per-file for the
+   # same reason as nGen) used to be discarded here. par_strength (paper's
+   # STN metrics table, normalized by #execucoes x p) needs the actual
+   # execution count without re-reading the raw logs and without assuming
+   # every file has exactly the planned 10 runs, so persist it.
+   save(pf, weiv, nodes, edges, STN, nRun, file = fname)
    return (nrow(nodes))  # Return  number of nodes, just to check it
 }
 
@@ -224,7 +261,16 @@ create_stn = function(instance, iset) {
 
 for (s in isets) {
    fname <-  paste0(infolder, s)
+   if (!dir.exists(fname)) {
+      # MoWFLOP patch: an algorithm's folder can legitimately not exist yet
+      # (e.g. NSGA-II still running for a new sparse instance while MOEA/D
+      # already finished) -- skip it instead of crashing on list.files().
+      next
+   }
    data_files <- list.files(fname)  # filenames in folder
+   if (length(data_files) == 0) {
+      next
+   }
    # Create STNs for all files in the folder
    nnodes <- lapply(data_files, create_stn, iset = s)
    # Plot number of nodes as check
