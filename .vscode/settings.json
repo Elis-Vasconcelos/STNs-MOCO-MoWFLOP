@@ -1,0 +1,37 @@
+{
+  "// note": "Editor performance only. Large data / generated trees are hidden from the file-watcher and search so VS Code / git stay responsive. Does not affect git tracking or the R / Python pipeline.",
+
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/raw_results/**": true,
+    "**/external_pf/**": true,
+    "**/stns/**": true,
+    "**/plots/**": true,
+    "**/data/**": true,
+    "**/pf/**": true,
+    "**/locations/**": true,
+    "**/reports/**": true,
+    "**/logs/**": true,
+    "**/status/**": true,
+    "**/_local_output_archive/**": true,
+    "**/.venv/**": true
+  },
+
+  "search.exclude": {
+    "**/raw_results": true,
+    "**/external_pf": true,
+    "**/stns": true,
+    "**/plots": true,
+    "**/data": true,
+    "**/pf": true,
+    "**/locations": true,
+    "**/reports": true,
+    "**/logs": true,
+    "**/status": true,
+    "**/_local_output_archive": true,
+    "**/.venv": true
+  },
+
+  "git.ignoreLimitWarning": true
+}
