@@ -71,7 +71,7 @@ parent).
 |---|---|---|
 | This work | `../../supercomputer_backup/raw_results/meta_heuristics_stn_windcorrected/<algo>/ns<ID>/<pool>/<run 0..9>/ns<ID>_<algo>_1000000.txt` | 10 runs/instance |
 | CEC 2025 | `../../STNs-MOCO-MoWFLOP/raw_results/wflopcec26/<algo>/ns<ID>/<run 1..20>/<ID>_<algo>_1000000.txt` | 20 runs/instance |
-| Wind map | `../../STN_MoWFLOP/tmp_demo/wind_corrected/cec_wind_map.csv` | `instance,algo,run_id,angle,wind` |
+| Wind map | `../../STN_MoWFLOP/source_code/meta_heuristics/wind_corrected/cec_wind_map.csv` | `instance,algo,run_id,angle,wind` |
 
 - `pareto_check.py` reads **this work's** side from `supercomputer_backup/`,
   not the live `STN_MoWFLOP/raw_results/` tree, so results do not depend on

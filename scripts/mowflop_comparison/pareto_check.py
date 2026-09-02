@@ -38,7 +38,7 @@ TCC_ROOT = REPO_ROOT.parent                              # TCC/
 OUR_ROOT = TCC_ROOT / "supercomputer_backup" / "raw_results" / "meta_heuristics_stn_windcorrected"
 CEC_ROOT = REPO_ROOT / "raw_results" / "wflopcec26"
 OUT_DIR = REPO_ROOT / "plots" / "pareto_check"
-WIND_MAP = TCC_ROOT / "STN_MoWFLOP" / "tmp_demo" / "wind_corrected" / "cec_wind_map.csv"
+WIND_MAP = TCC_ROOT / "STN_MoWFLOP" / "source_code" / "meta_heuristics" / "wind_corrected" / "cec_wind_map.csv"
 
 # Cazzaro & Pisinger "New Sites" instances. Bare integers here; the STN_MoWFLOP
 # tree and the vendored CEC tree prefix them "ns" at the directory level (see
