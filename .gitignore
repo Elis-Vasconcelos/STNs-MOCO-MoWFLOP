@@ -13,6 +13,10 @@ stns/mowflop_*/
 plots/mowflop_*/
 reports/
 
+# scratch output of scripts/mowflop_comparison/pareto_check.py
+# (curated copies are committed under sharing/pareto_front_vs_cec/)
+plots/pareto_check/
+
 # saída de scripts/run_entropy_campaign.sh
 logs/
 status/
