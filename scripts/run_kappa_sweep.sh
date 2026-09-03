@@ -2,16 +2,17 @@
 # Kappa sweep (0.5 / 1.0 / 2.0) x instances (ns101, ns178) x configs (p10/p50/p100_i50)
 # for STNs-MOCO-MoWFLOP's grid-partitioning pipeline.
 #
-# Run this ON THE SUPERCOMPUTER, from inside STNs-MOCO-MoWFLOP/scripts/.
-# Edit STN_MOWFLOP_PATH below if STN_MoWFLOP doesn't live at ~/STN_MoWFLOP there.
+# Run from inside STNs-MOCO-MoWFLOP/scripts/. Reads the wind-corrected
+# campaign logs from this repo's own raw_results/meta_heuristics_stn_windcorrected/
+# (the pipeline default). Override with MOWFLOP_RAW=<path> if the logs live
+# elsewhere.
 
 set -euo pipefail
 
-STN_MOWFLOP_PATH="${STN_MOWFLOP_PATH:-$HOME/STN_MoWFLOP}"
-export MOWFLOP_RAW="$STN_MOWFLOP_PATH/raw_results/meta_heuristics_stn"
+export MOWFLOP_RAW="${MOWFLOP_RAW:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/raw_results/meta_heuristics_stn_windcorrected}"
 
 if [ ! -d "$MOWFLOP_RAW" ]; then
-  echo "MOWFLOP_RAW not found at $MOWFLOP_RAW -- set STN_MOWFLOP_PATH correctly and rerun" >&2
+  echo "MOWFLOP_RAW not found at $MOWFLOP_RAW -- set MOWFLOP_RAW to the campaign-log root and rerun" >&2
   exit 1
 fi
 
