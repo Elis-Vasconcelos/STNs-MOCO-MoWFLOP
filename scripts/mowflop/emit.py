@@ -66,7 +66,7 @@ def config_tag(config: str) -> str:
     return config.replace("_", "")
 
 
-def output_name(algo_label: str, instance: str, tag: str, cfg_tag: str) -> str:
+def output_name(algo_label: str, instance: str, tag: str, cfg_tag: str, run_label: str = "0") -> str:
     """Nome do arquivo de trajetória de um algoritmo, no formato que ``create .R`` espera.
 
     Args:
@@ -74,6 +74,7 @@ def output_name(algo_label: str, instance: str, tag: str, cfg_tag: str) -> str:
         instance: nome da instância.
         tag: tag do particionamento (``x60``, ``raw``...).
         cfg_tag: config sem underscore (ver :func:`config_tag`).
+        run_label: sétimo campo do nome (ver :func:`front_name`).
 
     Returns:
         Nome do arquivo ``*_post.txt``.
@@ -81,24 +82,30 @@ def output_name(algo_label: str, instance: str, tag: str, cfg_tag: str) -> str:
     Raises:
         ValueError: se algum campo contiver underscore.
     """
-    for field in (algo_label, instance, tag, cfg_tag):
+    for field in (algo_label, instance, tag, cfg_tag, run_label):
         if "_" in field:
             raise ValueError(f"file name field cannot contain '_': {field!r}")
-    return f"{algo_label}_mowflop_{instance}_2_{tag}_{cfg_tag}_0_post.txt"
+    return f"{algo_label}_mowflop_{instance}_2_{tag}_{cfg_tag}_{run_label}_post.txt"
 
 
-def front_name(instance: str, tag: str, cfg_tag: str) -> str:
+def front_name(instance: str, tag: str, cfg_tag: str, run_label: str = "0") -> str:
     """Nome do arquivo da frente de referência, no formato que ``create .R`` espera.
 
     Args:
         instance: nome da instância.
         tag: tag do particionamento.
         cfg_tag: config sem underscore (ver :func:`config_tag`).
+        run_label: sétimo campo do nome.  Constante ``"0"`` nos dados originais
+            rho-mnk e em toda emissão agregada; ``"r<NN>"`` quando um dataset
+            cobre uma única run (ver :mod:`mowflop.wind`).  ``create .R`` monta
+            o nome da frente com os campos 2 a 7 do nome da trajetória, então
+            usar esse campo livre é o que dá a cada run a sua própria frente
+            **sem alterar uma linha do R**.
 
     Returns:
         Nome do arquivo ``*_ref.txt``.
     """
-    return f"mowflop_{instance}_2_{tag}_{cfg_tag}_0_ref.txt"
+    return f"mowflop_{instance}_2_{tag}_{cfg_tag}_{run_label}_ref.txt"
 
 
 def assign_locations(df: pd.DataFrame, scheme) -> tuple[pd.DataFrame, dict, dict]:
@@ -273,6 +280,7 @@ def emit(
     tag: str,
     out_root: str | Path,
     front: pd.DataFrame | None = None,
+    run_label: str = "0",
 ) -> dict:
     """Emissão completa de uma (instância, config): arquivos de dados, frente, tabela auxiliar.
 
@@ -285,6 +293,8 @@ def emit(
         out_root: raiz onde ``data/``, ``pf/`` e ``locations/`` são escritos.
         front: frente de referência já calculada; se ``None``, é calculada
             aqui a partir de ``df``.
+        run_label: sétimo campo do nome de arquivo (ver :func:`front_name`); use
+            ``"r<NN>"`` quando ``df`` cobrir uma única run.
 
     Returns:
         Resumo da emissão: arquivos escritos, tamanho da frente, contagens de
@@ -306,14 +316,16 @@ def emit(
         table = build_table(group, objectives)
         check_vectors(table)
         path = write_table(
-            data_dir / label / output_name(label, instance, tag, cfg), table
+            data_dir / label / output_name(label, instance, tag, cfg, run_label), table
         )
         written.append({"algorithm": label, "path": str(path), "rows": len(table)})
 
     front_path = write_front(
-        out_root / "pf" / "mowflop" / front_name(instance, tag, cfg), front
+        out_root / "pf" / "mowflop" / front_name(instance, tag, cfg, run_label), front
     )
-    loc_path = out_root / "locations" / f"mowflop_{tag}" / f"{instance}_{cfg}_locations.csv"
+    loc_path = (
+        out_root / "locations" / f"mowflop_{tag}" / f"{instance}_{cfg}_{run_label}_locations.csv"
+    )
     loc_path.parent.mkdir(parents=True, exist_ok=True)
     locations_table(located, projections, ids, objectives).to_csv(
         loc_path, index=False, float_format=FLOAT_FMT
@@ -323,6 +335,7 @@ def emit(
         "instance": instance,
         "config": config,
         "tag": tag,
+        "run_label": run_label,
         "files": written,
         "front": str(front_path),
         "front_size": len(front),

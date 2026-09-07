@@ -48,6 +48,11 @@ plot_stn <- function(instance, iset, bObjLay) {
    # apart two configs of the same instance in the same panel -- add the
    # config (t[6], e.g. "p100i50") so every subplot has a unique label.
    tit <- paste0(t[1], " ", t[3], " ", t[6])
+   # MoWFLOP fix: each run executes under its own wind scenario, so some tags
+   # emit one dataset per run (see scripts/mowflop/wind.py). Those carry the
+   # run in the seventh name field ("r03") where the aggregated tags keep the
+   # rho-mnk constant "0" -- show it, or per-run panels are indistinguishable.
+   if (t[7] != "0") tit <- paste0(tit, " ", t[7])
    print(tit)
    if (length(which(V(STN)$Position =="End")) > 0 ) {   # If there are End Positions
       MyShapes <- c(MyShapes, 17)

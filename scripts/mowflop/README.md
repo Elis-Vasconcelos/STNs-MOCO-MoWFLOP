@@ -84,7 +84,7 @@ Não editam o script original.
 ## Decisões já tomadas (não re-derivar)
 
 - **Frente de referência = nossa campanha ∪ `wflopcec26`.** `Position="Pareto"`
-  reflete o melhor que o grupo achou, não só o nosso MOEA/D e NSGA-II.
+  reflete o melhor que o wflopcec26 achou, não só o nosso MOEA/D e NSGA-II.
   (`MOWFLOP_EXTERNAL_FRONT=0` desliga isso e sufixa a tag com `noext`.)
 - **κ global = 0.5 (fino) / 1.0 (adequado) / 2.0 (grosseiro)**, escolhidos
   *antes* de rodar, pelo teto de degenerescência no menor `τ` (`ns48`). Não
@@ -92,7 +92,7 @@ Não editam o script original.
 - **Desempate da entropia = `random`** (com semente, reprodutível). O `index`
   determinístico existe só para os testes de regressão.
 - **Dados vendorizados no repo:** `raw_results/meta_heuristics_stn_windcorrected/`
-  (logs da campanha) e `raw_results/wflopcec26/` (runs do grupo). Só o
+  (logs da campanha) e `raw_results/wflopcec26/` (runs do cec). Só o
   `geometry.py` ainda depende do `STN_MoWFLOP` irmão.
 
 ## Rodar o pipeline
