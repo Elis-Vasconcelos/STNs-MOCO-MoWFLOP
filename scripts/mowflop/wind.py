@@ -152,91 +152,172 @@ def _max_power(run_dir: Path, algo_lower: str) -> float:
 class ScenarioData(NamedTuple):
     """Frente de referência e régua de normalização de um cenário de vento.
 
-    ``lower``/``upper`` são os extremos de ``f_power`` no *conjunto todo* do
-    cenário, não só na frente -- é o que o ``bound.exe`` do professor calcula
-    e grava no ``boundddd.out``, e o que o ``normalize.cc`` consome.  Como a
-    trajetória logada na STN é uma amostra da população (e não do arquivo
-    ``pareto``), ela pode conter pontos piores que qualquer um do arquivo:
-    esses caem *abaixo* de 1,0 depois de normalizados.  Isso é esperado e
+    ``lower_power``/``upper_power`` são os extremos de ``f_power``, e
+    ``lower_cost``/``upper_cost`` os de ``f_cost``, no *conjunto todo* do
+    cenário, não só na frente -- é o que o ``bound.exe`` do professor calcula e
+    grava no ``boundddd.out``, e o que o ``normalize.cc`` consome (lá só para
+    ``f_power``; ``f_cost`` não depende do vento, mas normalizá-lo pela mesma
+    régua por cenário é inofensivo e deixa os dois eixos na mesma escala).
+    Como a trajetória logada na STN é uma amostra da população (e não do
+    arquivo ``pareto``), ela pode conter pontos piores que qualquer um do
+    arquivo -- e aí sai de ``[1, 2]`` depois de normalizada: uma potência
+    abaixo do ``lower_power`` cai *abaixo* de 1,0, um custo acima do
+    ``upper_cost`` sobe *acima* de 2,0 (é o caso das gerações iniciais, cujo
+    custo é pior que o de qualquer ponto do arquivo).  Isso é esperado e
     inofensivo -- a transformação é afim, então nada muda de ordem.
+
+    A régua e a frente são propriedade do *cenário*, não da config nem da run:
+    toda ``(config, run)`` que mapeia para o mesmo ``(vento, ângulo)`` recebe o
+    mesmo objeto (ver :func:`_scenario_data`).
     """
 
     scenario: Scenario
     front: pd.DataFrame
-    lower: float
-    upper: float
+    lower_power: float
+    upper_power: float
+    lower_cost: float
+    upper_cost: float
 
-    def normalize(self, values: pd.Series) -> pd.Series:
-        """Aplica a régua deste cenário, a mesma fórmula do ``normalize.cc:308``.
+    @staticmethod
+    def _normalize(values: pd.Series, lower: float, upper: float) -> pd.Series:
+        """Régua afim comum a ``f_cost``/``f_power``, a fórmula do ``normalize.cc:308``.
+
+        Args:
+            values: coluna na escala bruta.
+            lower: menor valor da coluna no cenário.
+            upper: maior valor da coluna no cenário.
+
+        Returns:
+            ``1 + (v − lower) / (upper − lower)``, ou 1,0 em toda a coluna se o
+            cenário for degenerado (valor constante).
+        """
+        if upper == lower:
+            return pd.Series(1.0, index=values.index)
+        return 1.0 + (values - lower) / (upper - lower)
+
+    def normalize_power(self, values: pd.Series) -> pd.Series:
+        """Aplica a régua de ``f_power`` deste cenário.
 
         Args:
             values: coluna de ``f_power`` na escala bruta.
 
         Returns:
-            ``1 + (v − lower) / (upper − lower)``, ou 1,0 em toda a coluna se o
-            cenário for degenerado (potência constante).
+            ``f_power`` normalizada (ver :meth:`_normalize`).
         """
-        if self.upper == self.lower:
-            return pd.Series(1.0, index=values.index)
-        return 1.0 + (values - self.lower) / (self.upper - self.lower)
+        return self._normalize(values, self.lower_power, self.upper_power)
 
-    def normalize_f_power(self, frame: pd.DataFrame) -> pd.DataFrame:
-        """Cópia de ``frame`` com ``f_power`` na régua deste cenário.
+    def normalize_cost(self, values: pd.Series) -> pd.Series:
+        """Aplica a régua de ``f_cost`` deste cenário.
+
+        Args:
+            values: coluna de ``f_cost`` na escala bruta.
+
+        Returns:
+            ``f_cost`` normalizado (ver :meth:`_normalize`).
+        """
+        return self._normalize(values, self.lower_cost, self.upper_cost)
+
+    def normalize_objectives(self, frame: pd.DataFrame) -> pd.DataFrame:
+        """Cópia de ``frame`` com ``f_cost`` e ``f_power`` na régua deste cenário.
 
         Vale tanto para a frente do cenário quanto para a trajetória de uma run
         dele: a régua é a mesma, e aplicá-la aos dois é o que os põe no mesmo
         eixo.
 
         Args:
-            frame: tabela com uma coluna ``f_power`` na escala bruta.
+            frame: tabela com colunas ``f_cost`` e ``f_power`` na escala bruta.
 
         Returns:
-            Cópia de ``frame`` com ``f_power`` normalizada.
+            Cópia de ``frame`` com os dois objetivos normalizados.
         """
-        return frame.assign(f_power=self.normalize(frame["f_power"]))
+        return frame.assign(
+            f_cost=self.normalize_cost(frame["f_cost"]),
+            f_power=self.normalize_power(frame["f_power"]),
+        )
 
 
-def scenario_fronts(
-    instance: str, config: str, external: bool = True
-) -> dict[int, ScenarioData]:
-    """Frente de referência e régua de cada run nossa, por cenário de vento.
+@lru_cache(maxsize=None)
+def _scenario_data(instance: str, external: bool = True) -> dict[Scenario, ScenarioData]:
+    """Régua e frente de cada cenário de vento da instância, uma por ``(vento, ângulo)``.
 
-    Para cada run nossa, une o arquivo ``pareto`` dela ao de *toda* run do
-    cec que rodou o mesmo ``(vento, ângulo)`` -- inclusive as runs 11-20, que
-    não têm contraparte nossa -- e tira o não dominado.  A frente continua
-    sendo "a melhor conhecida", mas agora do mesmo problema: unir runs de
-    ventos diferentes é o que hoje produz uma frente inatingível por
-    construção (ver ``reports/frente_referencia_vento.md``).
+    A régua (min/max de cada objetivo) e a frente de um cenário são propriedade
+    do *problema* -- o par ``(vento, ângulo)`` -- não da config, da run ou da
+    campanha que o amostrou.  O conjunto de pontos de um cenário une, sem
+    distinguir config nem run:
+
+    - todo ponto do arquivo aproximativo da nossa campanha cuja run mapeia para
+      aquele ``(vento, ângulo)``, varrendo as três configs e os dois algoritmos
+      (:func:`mowflop.reference_front.own_archive_points` com ``config=None``);
+    - todo ponto do wflopcec26 cuja run rodou aquele mesmo ``(vento, ângulo)``,
+      inclusive as runs 11-20 sem contraparte nossa (:func:`cec_runs_of`).
+
+    ``min``/``max`` de cada objetivo saem desse conjunto uma vez; a frente é o
+    não dominado dele.  Unir runs de ventos diferentes é o que hoje produz uma
+    frente inatingível por construção (ver
+    ``reports/frente_referencia_vento.md``).
 
     Args:
         instance: nome da instância.
-        config: config no formato ``p<P>_i<k>``.
-        external: se ``False``, usa só a nossa campanha (mesmo sentido de
+        external: se ``False``, ignora o wflopcec26 (mesmo sentido de
             ``MOWFLOP_EXTERNAL_FRONT`` em :mod:`mowflop.partition`).
 
     Returns:
-        Mapa ``run da nossa campanha -> ScenarioData``, só com as runs que a
-        nossa campanha de fato rodou nessa config.
+        Mapa ``(vento, ângulo) -> ScenarioData``, um por cenário que a nossa
+        campanha rodou.  Não mutar o resultado -- é memoizado.
     """
-    ours = own_archive_points(instance, config)
+    ours = own_archive_points(instance, config=None)
     theirs = (
         external_points(instance)
         if external
         else pd.DataFrame(columns=["f_cost", "f_power", "run"])
     )
-    by_scenario = scenarios(instance)
+    our_scenario = scenarios(instance)
 
-    out: dict[int, ScenarioData] = {}
-    for run, group in ours.groupby("run", sort=True):
-        scenario = by_scenario.get(int(run))
-        if scenario is None:
-            raise ValueError(f"no wind scenario known for {instance} run {run}")
-        matching = theirs[theirs["run"].isin(cec_runs_of(instance, scenario))]
-        points = pd.concat([group, matching], ignore_index=True)
-        out[int(run)] = ScenarioData(
+    out: dict[Scenario, ScenarioData] = {}
+    for scenario in sorted(set(our_scenario.values())):
+        our_runs = [run for run, s in our_scenario.items() if s == scenario]
+        points = pd.concat(
+            [
+                ours[ours["run"].isin(our_runs)],
+                theirs[theirs["run"].isin(cec_runs_of(instance, scenario))],
+            ],
+            ignore_index=True,
+        )
+        if points.empty:
+            raise ValueError(f"no points for {instance} scenario {scenario}")
+        out[scenario] = ScenarioData(
             scenario=scenario,
             front=pareto_front(points),
-            lower=float(points["f_power"].min()),
-            upper=float(points["f_power"].max()),
+            lower_power=float(points["f_power"].min()),
+            upper_power=float(points["f_power"].max()),
+            lower_cost=float(points["f_cost"].min()),
+            upper_cost=float(points["f_cost"].max()),
         )
+    return out
+
+
+def scenario_fronts(instance: str, external: bool = True) -> dict[int, ScenarioData]:
+    """Régua e frente por cenário de vento, indexadas pela run da nossa campanha.
+
+    Fina camada sobre :func:`_scenario_data`: cada run nossa aponta para a
+    ``ScenarioData`` do seu cenário, então runs que compartilham
+    ``(vento, ângulo)`` apontam para o *mesmo* objeto (mesma régua, mesma
+    frente).
+
+    Args:
+        instance: nome da instância.
+        external: se ``False``, usa só a nossa campanha (mesmo sentido de
+            ``MOWFLOP_EXTERNAL_FRONT`` em :mod:`mowflop.partition`).
+
+    Returns:
+        Mapa ``run da nossa campanha -> ScenarioData``, uma entrada por run
+        para a qual há cenário conhecido.
+    """
+    by_scenario = _scenario_data(instance, external)
+    out: dict[int, ScenarioData] = {}
+    for run, scenario in scenarios(instance).items():
+        data = by_scenario.get(scenario)
+        if data is None:
+            raise ValueError(f"no wind scenario data for {instance} run {run}")
+        out[run] = data
     return out

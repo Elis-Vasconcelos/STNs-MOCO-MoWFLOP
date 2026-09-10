@@ -106,7 +106,7 @@ def external_points(instance: str) -> pd.DataFrame:
 
 
 def own_archive_points(
-    instance: str, config: str, root: str | None = None
+    instance: str, config: str | None = None, root: str | None = None
 ) -> pd.DataFrame:
     """Todo ponto (``f_cost``, ``f_power``) do conjunto aproximativo da própria campanha.
 
@@ -119,33 +119,44 @@ def own_archive_points(
 
     Args:
         instance: nome da instância (``"ns101"``, ...).
-        config: config no formato ``p<P>_i<k>``.
+        config: config no formato ``p<P>_i<k>``; ``None`` varre todas as
+            configs da instância (a régua de um cenário de vento não é
+            propriedade da config -- ver :mod:`mowflop.wind`).
         root: raiz explícita da campanha; se ``None``, usa
             :func:`mowflop.io_raw.raw_root` (respeita ``$MOWFLOP_RAW``).
 
     Returns:
         DataFrame com colunas ``f_cost``, ``f_power``, ``run``; vazio (sem erro)
         se a instância, o config, o algoritmo ou a raiz não existirem.  Ver a
-        nota sobre ``run`` em :func:`external_points`.
+        nota sobre ``run`` em :func:`external_points`.  Com ``config=None`` a
+        mesma run aparece uma vez por config em que foi executada.
     """
     base = raw_root(root)
     points = []
     for algo_dir_name in ALGO_DIRS.values():
-        inst_dir = base / algo_dir_name / instance / config
+        inst_dir = base / algo_dir_name / instance
         if not inst_dir.is_dir():
             continue
-        for run_dir in inst_dir.iterdir():
-            if not run_dir.is_dir() or not run_dir.name.isdigit():
+        config_dirs = (
+            [inst_dir / config]
+            if config is not None
+            else sorted(d for d in inst_dir.iterdir() if d.is_dir())
+        )
+        for config_dir in config_dirs:
+            if not config_dir.is_dir():
                 continue
-            final = _final_checkpoint(run_dir, algo_dir_name)
-            if final is None:
-                continue
-            run = int(run_dir.name)
-            with final.open(encoding="utf-8") as fh:
-                for line in fh:
-                    parts = line.split()
-                    if len(parts) >= 2:
-                        points.append((float(parts[0]), float(parts[1]), run))
+            for run_dir in config_dir.iterdir():
+                if not run_dir.is_dir() or not run_dir.name.isdigit():
+                    continue
+                final = _final_checkpoint(run_dir, algo_dir_name)
+                if final is None:
+                    continue
+                run = int(run_dir.name)
+                with final.open(encoding="utf-8") as fh:
+                    for line in fh:
+                        parts = line.split()
+                        if len(parts) >= 2:
+                            points.append((float(parts[0]), float(parts[1]), run))
     return pd.DataFrame(points, columns=["f_cost", "f_power", "run"])
 
 

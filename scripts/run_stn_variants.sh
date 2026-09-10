@@ -14,8 +14,8 @@
 #              runs numa frente só, ou seja, une CENÁRIOS DE VENTO DIFERENTES.
 #              É o comportamento que reports/frente_referencia_vento.md
 #              documenta como quebrado -- mantido para comparação.
-#   agg-norm   agregada, f_power na régua do cenário de cada run.  As faixas
-#              horizontais colapsam umas sobre as outras.       (caso 1)
+#   agg-norm   agregada, f_cost e f_power na régua do cenário de cada run.  As
+#              faixas horizontais colapsam umas sobre as outras.  (caso 1)
 #   run-raw    uma STN por cenário, escala bruta.               (caso 3)
 #   run-norm   uma STN por cenário, normalizada.  Mesmo grafo da run-raw (a
 #              normalização é afim dentro de uma run), mas todas no eixo

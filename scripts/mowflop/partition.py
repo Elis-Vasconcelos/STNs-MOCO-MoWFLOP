@@ -41,7 +41,7 @@ TIE_BREAK = os.environ.get("MOWFLOP_TIE_BREAK", "random")  # "random" (o do arti
 SEED = int(os.environ.get("MOWFLOP_SEED", "0"))  # semente do desempate aleatório
 EXTERNAL_FRONT = os.environ.get("MOWFLOP_EXTERNAL_FRONT", "1") == "1"  # inclui o histórico do wflopcec26 na frente de referência
 PER_RUN = os.environ.get("MOWFLOP_PER_RUN", "0") == "1"  # um dataset por run (por cenário de vento) em vez de um agregado
-NORMALIZE = os.environ.get("MOWFLOP_NORMALIZE", "1") == "1"  # escala f_power pela régua do cenário de cada run; ligado por padrão, porque sem isso a frente une ventos diferentes (ver mowflop/wind.py)
+NORMALIZE = os.environ.get("MOWFLOP_NORMALIZE", "1") == "1"  # escala f_cost e f_power pela régua do cenário de cada run; ligado por padrão, porque sem isso a frente une ventos diferentes (ver mowflop/wind.py)
 
 
 def default_tag(
@@ -67,7 +67,7 @@ def default_tag(
             separada, para não sobrescrever a saída com o histórico do
             wflopcec26 incluído.
         per_run: se ``True``, sufixa ``run`` -- um dataset por cenário de vento.
-        normalize: se ``True``, sufixa ``norm`` -- ``f_power`` na régua do cenário.
+        normalize: se ``True``, sufixa ``norm`` -- ``f_cost`` e ``f_power`` na régua do cenário.
 
     Returns:
         ``"raw"``, ``"x<percent>"`` ou ``"g<kappa>"``, com os sufixos
@@ -125,9 +125,9 @@ def datasets_to_emit(df, instance: str, config: str) -> list[tuple[str, "pd.Data
     ``False``    ``False``  o agregado histórico: uma frente só, do não dominado
                             da união de *todas* as runs.  Une cenários de vento
                             diferentes.
-    ``False``    ``True``   um dataset agregando as runs, com ``f_power`` na
-                            régua do cenário de cada uma: as faixas horizontais
-                            colapsam umas sobre as outras.
+    ``False``    ``True``   um dataset agregando as runs, com ``f_cost`` e
+                            ``f_power`` na régua do cenário de cada uma: as
+                            faixas horizontais colapsam umas sobre as outras.
     ``True``     ``False``  um dataset por cenário, na escala bruta.
     ``True``     ``True``   um dataset por cenário, normalizado -- o mesmo grafo
                             do caso anterior (a normalização é afim e crescente
@@ -156,14 +156,14 @@ def datasets_to_emit(df, instance: str, config: str) -> list[tuple[str, "pd.Data
         return [("0", df, pareto_front(pd.concat([own, external], ignore_index=True)))]
 
     pieces = []
-    for run, data in sorted(scenario_fronts(instance, config, EXTERNAL_FRONT).items()):
+    for run, data in sorted(scenario_fronts(instance, EXTERNAL_FRONT).items()):
         traj = df[df["run_id"] == run]
         if traj.empty:  # a run tem arquivo `pareto` mas não foi logada nesta config
             continue
         front = data.front
         if NORMALIZE:
-            traj = data.normalize_f_power(traj)
-            front = data.normalize_f_power(front)
+            traj = data.normalize_objectives(traj)
+            front = data.normalize_objectives(front)
         pieces.append((run, traj, front))
 
     if PER_RUN:
