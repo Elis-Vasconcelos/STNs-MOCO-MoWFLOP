@@ -21,6 +21,9 @@ Layouts, ambos de ``plot_stn``:
 ``of``  espaço objetivo -- ``x = f1``, ``y = f2``, com a frente de referência
         desenhada por cima.  O default sensato aqui: nenhum layout de força a
         calcular, e a figura é diretamente legível como custo contra potência.
+        Todos os ``of`` de uma mesma instância saem nos mesmos eixos (janela
+        comum a nós + frente, via ``coord_cartesian``), para poderem ser
+        comparados lado a lado.
 ``fd``  força dirigida (``graphopt``).  Opcional: é lento e vira uma bola de
         lã com dezenas de milhares de nós.
 
@@ -55,12 +58,40 @@ DRIVER = r"""
 # ---- driver added by mowflop.run_scripts.run_plot_r ------------------------
 # One picture per algorithm: the STN of an algorithm already merges its p
 # scalarisation vectors (see the Vectors attribute built by "create .R").
+
+finite_range <- function(x) { x <- x[is.finite(x)]; if (length(x)) range(x) else NULL }
+
+# Shared objective-space window per instance, so every "of" panel of the same
+# instance (its 2 algorithms x 3 configs) is drawn on identical axes and can be
+# compared side by side. Spans nodes AND the reference front, across every file
+# of the instance; coord_cartesian only clips the view, so no point is dropped.
+of_limits <- new.env()
+if ("of" %in% LAYOUTS) {
+   for (iset in isets) {
+      for (f in list.files(paste0(infolder, iset))) {
+         e <- new.env()
+         load(paste0(infolder, iset, f), envir = e)
+         inst <- strsplit(f, "_")[[1]][3]
+         xr <- finite_range(c(e$nodes$f1, e$pf$f1))
+         yr <- finite_range(c(e$nodes$f2, e$pf$f2))
+         prev <- of_limits[[inst]]
+         of_limits[[inst]] <- if (is.null(prev)) list(x = xr, y = yr) else
+            list(x = range(c(prev$x, xr)), y = range(c(prev$y, yr)))
+      }
+   }
+}
+
 for (iset in isets) {
    files <- list.files(paste0(infolder, iset))
    if (length(files) == 0) next
    for (f in files) {
       for (mode in LAYOUTS) {
          p <- plot_stn(f, iset, bObjLay = (mode == "of"))
+         if (mode == "of") {
+            lim <- of_limits[[strsplit(f, "_")[[1]][3]]]
+            if (!is.null(lim))
+               p <- p + coord_cartesian(xlim = lim$x, ylim = lim$y)
+         }
          stem <- substr(f, 1, nchar(f) - 6)   # drop ".RData"
          out <- paste0(outfolder, stem, "_", mode, ".png")
          ggsave(p, filename = out, device = "png",
