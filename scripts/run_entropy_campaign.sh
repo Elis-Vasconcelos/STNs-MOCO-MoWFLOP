@@ -43,10 +43,14 @@ external_front="${3:-1}"   # 1 (default, com wflopcec26) | 0 (sem)
 mkdir -p ../logs ../status
 
 for percent in $percents; do
-  tag="x${percent}"
-  if [[ "$external_front" != "1" ]]; then
-    tag="${tag}noext"
-  fi
+  # a tag vem do próprio partition.py (mowflop.partition.current_tag), nunca
+  # remontada aqui: ela depende de constantes que este script não conhece --
+  # MOWFLOP_NORMALIZE, por exemplo, é ligado por padrão e sufixa "norm" --, e
+  # remontá-la fazia as etapas do R procurarem uma pasta que não existia
+  tag=$(MOWFLOP_SCHEME=entropy MOWFLOP_PERCENT="$percent" \
+        MOWFLOP_EXTERNAL_FRONT="$external_front" \
+        ../.venv/bin/python -c \
+        "from mowflop.partition import current_tag; print(current_tag())")
   log="../logs/entropy_${tag}.log"
   status_dir="../status/${tag}"
   mkdir -p "$status_dir"

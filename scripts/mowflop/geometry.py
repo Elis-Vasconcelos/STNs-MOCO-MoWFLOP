@@ -1,9 +1,10 @@
 """Geometria da instância para a fórmula de calibração de kappa (STN_MoWFLOP.pdf, S7).
 
-Lê arquivos de instância do repositório STN_MoWFLOP (irmão deste, não versão
-deste repo): ``geometry.txt`` (polígono do contorno do parque) e
-``turbines_per_zone.txt`` (tau).  ``$MOWFLOP_INSTANCES`` sobrescreve a raiz;
-senão usa ``../STN_MoWFLOP/instances/site`` relativo à raiz deste repo.
+Lê, por instância, ``geometry.txt`` (polígono do contorno do parque) e
+``turbines_per_zone.txt`` (tau).  Raiz procurada nesta ordem:
+``$MOWFLOP_INSTANCES``; senão ``instances/site`` vendorizado neste repo
+(só os arquivos das instâncias da campanha, ~3 KB); senão o repositório
+irmão ``../STN_MoWFLOP/instances/site``.
 
 sigma (o piso de ell na eq. 6, ``ell >= sigma``) é o espaçamento mínimo entre
 turbinas -- a restrição d_ij <= sigma do BRACIS 2025 e do Silva & Fernandes.
@@ -39,11 +40,12 @@ from .io_raw import load_candidates, repo_root
 
 
 def instances_root(root: str | os.PathLike | None = None) -> Path:
-    """Raiz de ``instances/site`` no STN_MoWFLOP.
+    """Raiz de ``instances/site`` (geometria por instância).
 
     Args:
         root: caminho explícito que sobrescreve o padrão; se ``None``, tenta
-            ``$MOWFLOP_INSTANCES`` e depois ``../STN_MoWFLOP/instances/site``.
+            ``$MOWFLOP_INSTANCES``, depois ``instances/site`` vendorizado
+            neste repo, depois ``../STN_MoWFLOP/instances/site``.
 
     Returns:
         Caminho absoluto da raiz das instâncias.
@@ -56,6 +58,9 @@ def instances_root(root: str | os.PathLike | None = None) -> Path:
     env = os.environ.get("MOWFLOP_INSTANCES")
     if env:
         return Path(env).resolve()
+    vendored = (repo_root() / "instances" / "site").resolve()
+    if vendored.is_dir():
+        return vendored
     path = (repo_root() / ".." / "STN_MoWFLOP" / "instances" / "site").resolve()
     if not path.is_dir():
         raise FileNotFoundError(
