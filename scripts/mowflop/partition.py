@@ -20,9 +20,10 @@ import pandas as pd
 from .schemes.shannon_entropy import entropy as entropy_mod
 from . import io_raw
 from .emit import emit
+from .geometry import instances_root
 from .reference_front import external_points, own_archive_points, pareto_front
 from .schemes.schemes import build_scheme
-from .wind import scenario_fronts
+from .wind import scenario_fronts, wind_mismatches
 
 # ---------------------------------------------------------------------------
 # Parâmetros de execução — edite antes de rodar o script, ou sobrescreva via
@@ -102,6 +103,15 @@ def current_tag() -> str:
     return default_tag(SCHEME, PERCENT, KAPPA, EXTERNAL_FRONT, PER_RUN, NORMALIZE)
 
 
+def warn(message: str) -> None:
+    """Aviso de dado pulado, no stderr (vai para o ``logs/stn_<tag>.log`` na campanha).
+
+    Args:
+        message: texto do aviso.
+    """
+    print(f"[aviso] {message}", file=sys.stderr, flush=True)
+
+
 def unique_solutions(df) -> list[entropy_mod.Solution]:
     """``S(T)``: as soluções *únicas* de toda trajetória, como o artigo pede.
 
@@ -155,11 +165,46 @@ def datasets_to_emit(df, instance: str, config: str) -> list[tuple[str, "pd.Data
         external = external_points(instance) if EXTERNAL_FRONT else pd.DataFrame(columns=["f_cost", "f_power"])
         return [("0", df, pareto_front(pd.concat([own, external], ignore_index=True)))]
 
+    fronts = scenario_fronts(instance, EXTERNAL_FRONT)
+    logged = df[["algorithm", "run_id"]].drop_duplicates()
+    unmapped = sorted(
+        (str(algo), int(run))
+        for algo, run in logged.itertuples(index=False)
+        if (str(algo), int(run)) not in fronts
+    )
+    if unmapped:
+        raise ValueError(
+            f"no wind scenario in raw_results/wind_corrected for {instance}: {unmapped}"
+        )
+
+    # MOEA/D e NSGA-II da mesma run com ventos diferentes: não há uma régua nem
+    # uma frente para a run, então ela não é gerada
+    mismatched = wind_mismatches(instance)
+    if mismatched and not PER_RUN:
+        warn(
+            f"{instance}/{config}: dataset agregado normalizado não gerado -- "
+            f"MOEA/D e NSGA-II rodaram ventos diferentes nas runs {mismatched}"
+        )
+        return []
+
     pieces = []
-    for run, data in sorted(scenario_fronts(instance, EXTERNAL_FRONT).items()):
+    for run in sorted({run for _, run in fronts}):
         traj = df[df["run_id"] == run]
         if traj.empty:  # a run tem arquivo `pareto` mas não foi logada nesta config
             continue
+        if run in mismatched:
+            winds = ", ".join(
+                f"{algo}={fronts[(algo, r)].scenario}"
+                for algo, r in sorted(fronts)
+                if r == run
+            )
+            warn(
+                f"{instance}/{config} run {run} não gerada -- ventos diferentes "
+                f"entre algoritmos (vento, ângulo): {winds}"
+            )
+            continue
+        # sem mismatch, toda chave (algoritmo, run) aponta para o mesmo cenário
+        data = fronts[(str(traj["algorithm"].iloc[0]), run)]
         front = data.front
         if NORMALIZE:
             traj = data.normalize_objectives(traj)
@@ -189,8 +234,14 @@ def run_one(instance: str, config: str) -> list[dict]:
     Returns:
         Um resumo de emissão (ver :func:`mowflop.emit.emit`) por dataset, com os
         campos ``algorithms`` e ``unique_solutions`` adicionados.  Uma lista de
-        um elemento, exceto quando ``PER_RUN`` (aí, uma por cenário).
+        um elemento, exceto quando ``PER_RUN`` (aí, uma por cenário).  Vazia
+        se nada foi gerado (ver os avisos em :func:`warn`).
     """
+    if SCHEME == "grid":
+        site = instances_root() / instance
+        if not (site / "geometry.txt").is_file():
+            warn(f"{instance}/{config}: sem geometria em {site}; esquema grid pulado")
+            return []
     df = io_raw.load_trajectories(instance, config)
     n = io_raw.n_positions(instance)
     solutions = unique_solutions(df)

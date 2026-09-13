@@ -126,10 +126,13 @@ def own_archive_points(
             :func:`mowflop.io_raw.raw_root` (respeita ``$MOWFLOP_RAW``).
 
     Returns:
-        DataFrame com colunas ``f_cost``, ``f_power``, ``run``; vazio (sem erro)
-        se a instância, o config, o algoritmo ou a raiz não existirem.  Ver a
-        nota sobre ``run`` em :func:`external_points`.  Com ``config=None`` a
-        mesma run aparece uma vez por config em que foi executada.
+        DataFrame com colunas ``f_cost``, ``f_power``, ``run``, ``algorithm``;
+        vazio (sem erro) se a instância, o config, o algoritmo ou a raiz não
+        existirem.  Ver a nota sobre ``run`` em :func:`external_points`;
+        ``algorithm`` (em minúsculo) é necessário porque, nas instâncias
+        esparsas, o cenário de vento é de ``(algoritmo, run)``, não só da run.
+        Com ``config=None`` a mesma run aparece uma vez por config em que foi
+        executada.
     """
     base = raw_root(root)
     points = []
@@ -156,8 +159,10 @@ def own_archive_points(
                     for line in fh:
                         parts = line.split()
                         if len(parts) >= 2:
-                            points.append((float(parts[0]), float(parts[1]), run))
-    return pd.DataFrame(points, columns=["f_cost", "f_power", "run"])
+                            points.append(
+                                (float(parts[0]), float(parts[1]), run, algo_dir_name)
+                            )
+    return pd.DataFrame(points, columns=["f_cost", "f_power", "run", "algorithm"])
 
 
 def pareto_front(

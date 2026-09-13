@@ -21,6 +21,7 @@ métricas vem só do particionamento.
 | `partition.py` | orquestra tudo: lê os logs, aplica um esquema, calcula a frente de referência e chama o `emit`. É o ponto de entrada (`python -m mowflop.partition`). | parâmetros de execução: constantes no topo do arquivo ou env vars `MOWFLOP_*` |
 | `io_raw.py` | leitura dos logs brutos (`raw_results/meta_heuristics_stn_windcorrected/`): `raw_root`, `discover`, `inventory`, `load_trajectories`, `load_candidates`. | mudou o layout/nome das pastas de `raw_results/`, ou precisa de um novo recorte dos logs |
 | `reference_front.py` | monta a frente de Pareto de referência: pontos da nossa campanha **∪** `external_points()` do `raw_results/wflopcec26/`. `pareto_front()` é genérico (não dominado sobre o que receber). | ajuste na frente de referência ou nova fonte externa |
+| `wind.py` | cenário de vento `(vento, ângulo)` de cada `(algoritmo, run)`, lido de `raw_results/wind_corrected/*.csv`; régua e frente por cenário (variantes `norm`/`run`). O `log.txt` do wflopcec26 só serve para achar as runs do cec de cada cenário. `wind_mismatches()` lista as runs em que os dois algoritmos rodaram ventos diferentes. | novo mapa de vento, ou mudou o que define um cenário |
 | `emit.py` | escreve os arquivos no formato que o `create .R` lê (ordem das 9 colunas + convenção do nome do arquivo). Contém `canonical_objectives`. | com muito cuidado — ver *Invariantes* abaixo |
 | `geometry.py` | geometria da instância (área `A`, nº de turbinas `τ`, piso `σ`) para o esquema `grid`. Lê do repo irmão `STN_MoWFLOP/instances/site/<inst>/` (`$MOWFLOP_INSTANCES` sobrescreve). | mudou a fonte da geometria das instâncias |
 | `validate_r_input.py` | confere um dataset já emitido antes de rodar o R, reproduzindo em pandas os passos onde o `create .R` falha tarde e feio. | rodar como checagem; raramente precisa editar |
@@ -94,6 +95,13 @@ Não editam o script original.
 - **Dados vendorizados no repo:** `raw_results/meta_heuristics_stn_windcorrected/`
   (logs da campanha) e `raw_results/wflopcec26/` (runs do cec). Só o
   `geometry.py` ainda depende do `STN_MoWFLOP` irmão.
+- **Instâncias esparsas (`<id>_<esparsidade>`, ex. `506_e-02`)** passam pelo
+  mesmo pipeline. No nome de arquivo viram `506e-02` (`emit.instance_label`),
+  porque o R separa campos por `_`. Não têm contraparte no wflopcec26, então a
+  frente é só da nossa campanha. Uma run cujo vento difere entre MOEA/D e
+  NSGA-II não é gerada nas variantes `run`; nas `norm` agregadas, a instância
+  inteira é pulada. O grid pula instâncias sem `instances/site/<inst>/`. Tudo
+  o que é pulado sai como `[aviso]` no stderr.
 
 ## Rodar o pipeline
 
