@@ -87,7 +87,7 @@ for scheme in $schemes; do
       export MOWFLOP_SCHEME="$scheme" MOWFLOP_PERCENT="$percent" MOWFLOP_KAPPA="$kappa"
       export MOWFLOP_PER_RUN="$per_run" MOWFLOP_NORMALIZE="$normalize"
       # partition.py com ALL=0 processa um par (instância, config) por chamada,
-      # então restringir a uma instância é um laço sobre as 3 configs
+      # então restringir a uma instância é um laço sobre as configs que ela tem
       if [[ -n "$instance" ]]; then
         export MOWFLOP_ALL=0 MOWFLOP_INSTANCE="$instance"
       else
@@ -97,7 +97,13 @@ for scheme in $schemes; do
       if [[ ! -f "$status_dir/.done_partition" ]]; then
         echo "[partition] scheme=$scheme tag=$tag per_run=$per_run normalize=$normalize $(date -Is)"
         if [[ -n "$instance" ]]; then
-          for cfg in p10_i50 p50_i50 p100_i50; do
+          # só as configs com log (as esparsas só rodaram p100_i50)
+          configs=$(../.venv/bin/python -c "import sys; from mowflop import io_raw; inv = io_raw.inventory(); print(*sorted(inv[inv.instance == sys.argv[1]].config.unique()))" "$instance")
+          if [[ -z "$configs" ]]; then
+            echo "sem logs para a instância $instance" >&2
+            exit 1
+          fi
+          for cfg in $configs; do
             MOWFLOP_CONFIG="$cfg" ../.venv/bin/python -m mowflop.partition
           done
         else
@@ -106,6 +112,15 @@ for scheme in $schemes; do
         touch "$status_dir/.done_partition"
       else
         echo "[skip] partition já feito para $tag"
+      fi
+
+      # partition pode não emitir nada de propósito (ex.: só instâncias esparsas
+      # com vento diferente entre algoritmos, ou grid sem geometria -- ver os
+      # [aviso] acima); aí não há o que o R ler, e a cadeia termina limpa
+      if [[ -z "$(find ../data/mowflop_"$tag" -type f -print -quit 2>/dev/null)" ]]; then
+        echo "[skip] partition não emitiu nada para $tag; etapas do R puladas"
+        echo "[done] tag=$tag $(date -Is)"
+        exit 0
       fi
 
       if [[ ! -f "$status_dir/.done_create" ]]; then
@@ -132,6 +147,17 @@ for scheme in $schemes; do
         touch "$status_dir/.done_metrics"
       else
         echo "[skip] metrics já feito para $tag"
+      fi
+
+      # step_len, R e D: refaz a partição em Python (o R não tem a assinatura
+      # nem os objetivos crus de cada nó); --instance cobre todas as configs
+      # da instância num CSV só
+      if [[ ! -f "$status_dir/.done_partition_metrics" ]]; then
+        echo "[partition_metrics] tag=$tag $(date -Is)"
+        ../.venv/bin/python -m mowflop.partition_metrics ${instance:+--instance "$instance"}
+        touch "$status_dir/.done_partition_metrics"
+      else
+        echo "[skip] partition_metrics já feito para $tag"
       fi
 
       echo "[done] tag=$tag $(date -Is)"

@@ -22,7 +22,7 @@ recebe, portanto, um único objetivo representativo, escolhido entre as
 soluções que de fato a visitaram -- a leitura multiobjetivo do
 ``f(s_z) := min{f(s')}`` do artigo: pertencer à frente de referência primeiro,
 depois ordem lexicográfica ``(f_cost, -f_power)``.  Isso também faz a marcação
-``Position="Pareto"`` do R coincidir com a métrica da S8.
+``Position="Pareto"`` do R coincidir com a métrica ``pareto``.
 
 *Self-loop no último registro.*  ``Solution2`` é a próxima localização da mesma
 trajetória ``(Run, Vector)``; o último registro aponta para si mesmo.  Essa é a
@@ -64,6 +64,22 @@ def config_tag(config: str) -> str:
         A mesma config, sem underscores.
     """
     return config.replace("_", "")
+
+
+def instance_label(instance: str) -> str:
+    """``506_e-02`` -> ``506e-02``: o nome da instância também vira campo do nome de arquivo.
+
+    As instâncias esparsas se chamam ``<id>_<esparsidade>``; as ``ns<id>`` passam
+    sem mudança.  Só o nome de arquivo usa o rótulo -- logs, candidatos e
+    geometria continuam lidos pelo nome real.
+
+    Args:
+        instance: nome da instância.
+
+    Returns:
+        O mesmo nome, sem underscores.
+    """
+    return instance.replace("_", "")
 
 
 def output_name(algo_label: str, instance: str, tag: str, cfg_tag: str, run_label: str = "0") -> str:
@@ -302,6 +318,7 @@ def emit(
     """
     out_root = Path(out_root)
     cfg = config_tag(config)
+    inst = instance_label(instance)
     if front is None:
         front = pareto_front(df)
 
@@ -316,15 +333,15 @@ def emit(
         table = build_table(group, objectives)
         check_vectors(table)
         path = write_table(
-            data_dir / label / output_name(label, instance, tag, cfg, run_label), table
+            data_dir / label / output_name(label, inst, tag, cfg, run_label), table
         )
         written.append({"algorithm": label, "path": str(path), "rows": len(table)})
 
     front_path = write_front(
-        out_root / "pf" / "mowflop" / front_name(instance, tag, cfg, run_label), front
+        out_root / "pf" / "mowflop" / front_name(inst, tag, cfg, run_label), front
     )
     loc_path = (
-        out_root / "locations" / f"mowflop_{tag}" / f"{instance}_{cfg}_{run_label}_locations.csv"
+        out_root / "locations" / f"mowflop_{tag}" / f"{inst}_{cfg}_{run_label}_locations.csv"
     )
     loc_path.parent.mkdir(parents=True, exist_ok=True)
     locations_table(located, projections, ids, objectives).to_csv(

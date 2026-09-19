@@ -12,7 +12,7 @@ Why run-matched and not pooled: wind is drawn per run and power scales
 wind distributions, not algorithm behaviour. Matched runs share the wind,
 so the achievable frontier is the same and any gap is a real difference.
 
-Objective convention (STN_MoWFLOP/README.md, CLAUDE.md): construction cost
+Objective convention: construction cost
 is minimised, power output is maximised, both reported as positive numbers.
 Both objective values are columns of each run's final-population dump
 `<inst>_<algo>_1000000.txt` (col 1 = cost, col 2 = power).

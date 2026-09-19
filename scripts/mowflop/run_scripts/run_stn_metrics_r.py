@@ -7,9 +7,8 @@ diff que nada mais mudou, roda a cópia.
 
 Ao contrário de ``metrics.R`` (o script original de Ochoa et al., para o
 benchmark rho-mnk), ``metrics_stn_mowflop.R`` já parseia o nome de arquivo
-do MoWFLOP e calcula a tabela de métricas de
-``references/STN_MoWFLOP (4).md`` S8 (exceto ``shared_alg``, que precisa
-de dois arquivos por linha -- ver ``run_shared_alg_r.py``).
+do MoWFLOP e calcula a tabela de métricas de STN (exceto ``shared_alg``, que
+precisa de dois arquivos por linha -- ver ``run_shared_alg_r.py``).
 
 Uso::
 
@@ -27,7 +26,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from ..io_raw import repo_root
+from ..io_raw import out_root, repo_root
 
 CONST_LINES = {
     "iset": re.compile(r'^iset\s*<-\s*".*?"'),
@@ -79,22 +78,28 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--tag", required=True, help="dataset tag, e.g. x60, g1.0")
     parser.add_argument("--algo", required=True, choices=["MOEAD", "NSGA2"])
     parser.add_argument("--repo", default=str(repo_root()))
+    parser.add_argument(
+        "--out",
+        default=str(out_root()),
+        help="raiz de data/, pf/, stns/, plots/, metrics/ (default: $MOWFLOP_OUT, senão o repo)",
+    )
     parser.add_argument("--rscript", default="Rscript")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
     repo = Path(args.repo)
+    out = Path(args.out)  # o .R sai de repo/scripts/, mas roda com cwd em out
     script = repo / "scripts" / "metrics_stn_mowflop.R"
     if not script.is_file():
         print(f"not found: {script}", file=sys.stderr)
         return 1
 
     iset = f"mowflop_{args.tag}"
-    infolder = repo / "stns" / iset / args.algo
+    infolder = out / "stns" / iset / args.algo
     if not infolder.is_dir():
         print(f"missing STNs: {infolder}", file=sys.stderr)
         return 1
-    (repo / "metrics").mkdir(parents=True, exist_ok=True)
+    (out / "metrics").mkdir(parents=True, exist_ok=True)
 
     values = {"iset": iset, "algo": args.algo}
     source = script.read_text(encoding="utf-8")
@@ -126,7 +131,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     try:
-        completed = subprocess.run([args.rscript, str(temporary)], cwd=str(repo), check=False)
+        completed = subprocess.run([args.rscript, str(temporary)], cwd=str(out), check=False)
     except FileNotFoundError:
         print(f"{args.rscript} not found", file=sys.stderr)
         return 127

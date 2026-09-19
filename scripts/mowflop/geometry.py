@@ -1,25 +1,22 @@
-"""Geometria da instância para a fórmula de calibração de kappa (STN_MoWFLOP.pdf, S7).
+"""Geometria da instância para a fórmula de calibração de kappa.
 
 Lê, por instância, ``geometry.txt`` (polígono do contorno do parque) e
-``turbines_per_zone.txt`` (tau).  Raiz procurada nesta ordem:
-``$MOWFLOP_INSTANCES``; senão ``instances/site`` vendorizado neste repo
-(só os arquivos das instâncias da campanha, ~3 KB); senão o repositório
-irmão ``../STN_MoWFLOP/instances/site``.
+``turbines_per_zone.txt`` (tau), de ``instances/site`` vendorizado neste repo
+(só os arquivos das instâncias da campanha, ~3 KB).  ``$MOWFLOP_INSTANCES``
+sobrescreve a raiz, para apontar outra fonte sem editar o código.
 
-sigma (o piso de ell na eq. 6, ``ell >= sigma``) é o espaçamento mínimo entre
+sigma (o piso de ell, ``ell >= sigma``) é o espaçamento mínimo entre
 turbinas -- a restrição d_ij <= sigma do BRACIS 2025 e do Silva & Fernandes.
 Nenhum dos dois papers publica um valor numérico, só a definem
-simbolicamente; e o código C++ da campanha (source_code/meta_heuristics) não
-tem *nenhuma* checagem de distância mínima em tempo de execução --
-`calculate_interference` só usa o diâmetro do rotor (240m, hardcoded em
-generate_rSolution.cpp) pro modelo de esteira de Jensen, nunca pra rejeitar
-um par de posições candidatas por estarem perto demais.
+simbolicamente; e o código C++ da campanha não tem *nenhuma* checagem de
+distância mínima em tempo de execução -- `calculate_interference` só usa o
+diâmetro do rotor (240m, hardcoded) pro modelo de esteira de Jensen, nunca
+pra rejeitar um par de posições candidatas por estarem perto demais.
 
 Medimos também o espaçamento real da grade de candidatos (nearest-neighbor
 euclidiano, não só diferença de eixo): ~159.6m pra ns101, *menor* que o
 diâmetro do rotor (240m). Ou seja, a grade **não** é pré-espaçada para
-respeitar essa distância "de graça" -- ao contrário do que
-`landscape-mo/CLAUDE.md` supõe --, e dois candidatos adjacentes podem gerar
+respeitar essa distância "de graça", e dois candidatos adjacentes podem gerar
 rotores fisicamente sobrepostos sem que nada no código impeça isso. Usamos
 ``ROTOR_DIAMETER`` (240m) como sigma por ser a única distância fisicamente
 significativa presente no código, não o espaçamento da grade (exposto à
@@ -44,8 +41,8 @@ def instances_root(root: str | os.PathLike | None = None) -> Path:
 
     Args:
         root: caminho explícito que sobrescreve o padrão; se ``None``, tenta
-            ``$MOWFLOP_INSTANCES``, depois ``instances/site`` vendorizado
-            neste repo, depois ``../STN_MoWFLOP/instances/site``.
+            ``$MOWFLOP_INSTANCES`` e depois ``instances/site`` vendorizado
+            neste repo.
 
     Returns:
         Caminho absoluto da raiz das instâncias.
@@ -59,15 +56,12 @@ def instances_root(root: str | os.PathLike | None = None) -> Path:
     if env:
         return Path(env).resolve()
     vendored = (repo_root() / "instances" / "site").resolve()
-    if vendored.is_dir():
-        return vendored
-    path = (repo_root() / ".." / "STN_MoWFLOP" / "instances" / "site").resolve()
-    if not path.is_dir():
+    if not vendored.is_dir():
         raise FileNotFoundError(
-            f"instance geometry not found at {path}; "
+            f"instance geometry not found at {vendored}; "
             "set MOWFLOP_INSTANCES or pass root explicitly"
         )
-    return path
+    return vendored
 
 
 def _polygon_points(path: Path) -> list[tuple[float, float]]:
@@ -104,7 +98,7 @@ def polygon_area(points: list[tuple[float, float]]) -> float:
 
 @dataclass
 class SiteGeometry:
-    """Geometria de uma instância, para a fórmula de calibração (eq. 6)."""
+    """Geometria de uma instância, para a fórmula de calibração de ell."""
 
     A: float  # área útil do parque (m^2), shoelace sobre geometry.txt
     W: float  # largura da caixa delimitadora (m)
@@ -112,7 +106,7 @@ class SiteGeometry:
     xmin: float
     ymin: float
     tau: int  # número de turbinas móveis (soma de turbines_per_zone.txt)
-    sigma: float  # piso de ell (eq. 6) -- ver ROTOR_DIAMETER
+    sigma: float  # piso de ell -- ver ROTOR_DIAMETER
     candidate_spacing: float  # diagnóstico: espaçamento real da grade de candidatos
 
 
@@ -188,7 +182,7 @@ def load_site_geometry(
     instances_root_: str | os.PathLike | None = None,
     candidates_root: str | os.PathLike | None = None,
 ) -> SiteGeometry:
-    """Geometria completa de uma instância, pronta para a eq. 6.
+    """Geometria completa de uma instância, pronta para :func:`cell_side`.
 
     Args:
         instance: nome da instância.
@@ -218,7 +212,7 @@ def load_site_geometry(
 
 
 def cell_side(kappa: float, geometry: SiteGeometry) -> float:
-    """``ell = kappa * sqrt(A/tau)``, sujeito a ``ell >= sigma`` (eq. 6).
+    """``ell = kappa * sqrt(A/tau)``, sujeito a ``ell >= sigma``.
 
     Args:
         kappa: parâmetro único do modelo (quantos espaçamentos médios cabem

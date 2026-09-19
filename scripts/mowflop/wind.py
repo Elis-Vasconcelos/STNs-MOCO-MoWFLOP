@@ -7,12 +7,17 @@ de 1.537,4 (4 m/s) a 2.722.764,0 (19 m/s).  Unir pontos de runs diferentes num
 mesmo conjunto não dominado é, portanto, unir *problemas* diferentes.
 
 O vento não é logado pela nossa campanha (``infoRun.txt`` só tem geração e
-tamanho de grade).  Ele vem do ``log.txt`` das runs do wflopcec26, em
-``raw_results/wflopcec26/<algo>/<instância>/<run>/``, e a nossa run ``r``
-corresponde à run ``r+1`` de lá.  Essa convenção é uma *premissa*, não um
-contrato: ``reports/frente_referencia_vento/check_mapping.py`` a verifica
-comparando a potência máxima das duas, e deve ser rodado antes de confiar em
-qualquer coisa deste módulo.
+tamanho de grade).  O sorteio de cada run está nos mapas de
+``raw_results/wind_corrected/*.csv`` (colunas ``instance,algo,run_id,angle,
+wind``): ``cec_wind_map.csv`` para as ``ns*`` (instância sem o prefixo) e os
+``sparse_wind_map*.csv`` para as esparsas (``506_e-02``, ...).  O cenário é de
+``(algoritmo, run)``: nas ns* os dois algoritmos da mesma run rodaram o mesmo
+vento, mas nas esparsas o sorteio foi independente por algoritmo
+(:func:`wind_mismatches`).
+
+O ``log.txt`` do wflopcec26 (``raw_results/wflopcec26/<algo>/<instância>/
+<run>/``) ainda é lido, mas só para saber o cenário das runs *do cec*, cujos
+pontos entram na frente do cenário (:func:`cec_runs_of`).
 
 A identidade de um cenário é o par ``(vento, ângulo)``, não o índice da run:
 em ns41 as runs 3 e 5 rodaram as duas em 7 m/s a 150°, e são o mesmo problema.
@@ -27,6 +32,7 @@ from typing import NamedTuple
 
 import pandas as pd
 
+from .io_raw import repo_root
 from .reference_front import (
     ALGO_DIRS,
     WFLOPCEC26_ROOT,
@@ -39,10 +45,11 @@ from .reference_front import (
 WIND_RE = re.compile(r"^Wind:\s*([\d.]+)\s*$", re.MULTILINE)
 ANGLE_RE = re.compile(r"^Angle:\s*([\d.]+)\s*$", re.MULTILINE)
 
-# a nossa run r foi executada com o mesmo cenário da run r + RUN_OFFSET do cec
-RUN_OFFSET = 1
+WIND_MAP_DIR = repo_root() / "raw_results" / "wind_corrected"
+WIND_MAP_COLUMNS = {"instance", "algo", "run_id", "angle", "wind"}
 
 Scenario = tuple[float, float]
+RunKey = tuple[str, int]  # (algoritmo em minúsculo, run)
 
 
 def _read_log(path: Path) -> Scenario:
@@ -91,25 +98,66 @@ def cec_scenarios(instance: str) -> tuple[tuple[int, float, float], ...]:
     return tuple((run, *found[run]) for run in sorted(found))
 
 
-def scenarios(instance: str) -> dict[int, Scenario]:
-    """Cenário de cada run *da nossa* campanha, traduzido das runs do cec.
+@lru_cache(maxsize=None)
+def wind_map() -> dict[str, dict[RunKey, Scenario]]:
+    """Todos os mapas de ``raw_results/wind_corrected/*.csv``, por instância.
 
-    Pela convenção ``r -> r - 1``, em que ``r`` é o índice de uma run do
-    wflopcec26: a run ``r`` do cec corresponde à nossa run ``r - 1``.
-
-    Args:
-        instance: nome da instância (``"ns178"``, ...).
+    Instância só com dígitos (``41``, do ``cec_wind_map.csv``) vira ``ns41``,
+    o nome das pastas da campanha; as demais ficam como estão.  Colunas extras
+    (``source``) são ignoradas.
 
     Returns:
-        Mapa ``run da nossa campanha -> (vento, ângulo)``.  Runs do cec sem
-        contraparte nossa ficam de fora.
+        Mapa ``instância -> {(algoritmo, run): (vento, ângulo)}``.  Não mutar
+        o resultado -- é memoizado.
+
+    Raises:
+        ValueError: se faltar coluna num CSV, ou se a mesma ``(instância,
+            algoritmo, run)`` aparecer com cenários diferentes.
     """
-    by_run = {run: (wind, angle) for run, wind, angle in cec_scenarios(instance)}
-    return {
-        run - RUN_OFFSET: scenario
-        for run, scenario in by_run.items()
-        if run - RUN_OFFSET >= 0
-    }
+    out: dict[str, dict[RunKey, Scenario]] = {}
+    for path in sorted(WIND_MAP_DIR.glob("*.csv")):
+        table = pd.read_csv(path, dtype={"instance": "string", "algo": "string"})
+        missing = WIND_MAP_COLUMNS - set(table.columns)
+        if missing:
+            raise ValueError(f"unexpected wind map format in {path}, missing {sorted(missing)}")
+        for row in table.itertuples(index=False):
+            instance = f"ns{row.instance}" if row.instance.isdigit() else row.instance
+            key = (row.algo, int(row.run_id))
+            scenario = (float(row.wind), float(row.angle))
+            if out.setdefault(instance, {}).setdefault(key, scenario) != scenario:
+                raise ValueError(f"conflicting wind for {instance} {key} in {path}")
+    return out
+
+
+def scenarios(instance: str) -> dict[RunKey, Scenario]:
+    """Cenário de cada ``(algoritmo, run)`` *da nossa* campanha, lido de :func:`wind_map`.
+
+    Args:
+        instance: nome da instância (``"ns178"``, ``"506_e-02"``, ...).
+
+    Returns:
+        Mapa ``(algoritmo, run) -> (vento, ângulo)``; vazio se a instância não
+        estiver em nenhum mapa.
+    """
+    return dict(wind_map().get(instance, {}))
+
+
+def wind_mismatches(instance: str) -> list[int]:
+    """Runs em que MOEA/D e NSGA-II rodaram cenários de vento diferentes.
+
+    Uma run assim não tem *uma* régua nem *uma* frente: os dois algoritmos
+    resolveram problemas diferentes sob o mesmo índice.
+
+    Args:
+        instance: nome da instância.
+
+    Returns:
+        Índices dessas runs, em ordem crescente.
+    """
+    by_run: dict[int, set[Scenario]] = {}
+    for (_, run), scenario in scenarios(instance).items():
+        by_run.setdefault(run, set()).add(scenario)
+    return sorted(run for run, found in by_run.items() if len(found) > 1)
 
 
 def cec_runs_of(instance: str, scenario: Scenario) -> list[int]:
@@ -245,8 +293,8 @@ def _scenario_data(instance: str, external: bool = True) -> dict[Scenario, Scena
     campanha que o amostrou.  O conjunto de pontos de um cenário une, sem
     distinguir config nem run:
 
-    - todo ponto do arquivo aproximativo da nossa campanha cuja run mapeia para
-      aquele ``(vento, ângulo)``, varrendo as três configs e os dois algoritmos
+    - todo ponto do arquivo aproximativo da nossa campanha cuja
+      ``(algoritmo, run)`` mapeia para aquele ``(vento, ângulo)``, varrendo as configs
       (:func:`mowflop.reference_front.own_archive_points` com ``config=None``);
     - todo ponto do wflopcec26 cuja run rodou aquele mesmo ``(vento, ângulo)``,
       inclusive as runs 11-20 sem contraparte nossa (:func:`cec_runs_of`).
@@ -272,13 +320,14 @@ def _scenario_data(instance: str, external: bool = True) -> dict[Scenario, Scena
         else pd.DataFrame(columns=["f_cost", "f_power", "run"])
     )
     our_scenario = scenarios(instance)
+    our_keys = pd.MultiIndex.from_arrays([ours["algorithm"], ours["run"]])
 
     out: dict[Scenario, ScenarioData] = {}
     for scenario in sorted(set(our_scenario.values())):
-        our_runs = [run for run, s in our_scenario.items() if s == scenario]
+        keys = [key for key, s in our_scenario.items() if s == scenario]
         points = pd.concat(
             [
-                ours[ours["run"].isin(our_runs)],
+                ours[our_keys.isin(keys)],
                 theirs[theirs["run"].isin(cec_runs_of(instance, scenario))],
             ],
             ignore_index=True,
@@ -296,11 +345,11 @@ def _scenario_data(instance: str, external: bool = True) -> dict[Scenario, Scena
     return out
 
 
-def scenario_fronts(instance: str, external: bool = True) -> dict[int, ScenarioData]:
-    """Régua e frente por cenário de vento, indexadas pela run da nossa campanha.
+def scenario_fronts(instance: str, external: bool = True) -> dict[RunKey, ScenarioData]:
+    """Régua e frente por cenário de vento, indexadas por ``(algoritmo, run)`` da nossa campanha.
 
-    Fina camada sobre :func:`_scenario_data`: cada run nossa aponta para a
-    ``ScenarioData`` do seu cenário, então runs que compartilham
+    Fina camada sobre :func:`_scenario_data`: cada ``(algoritmo, run)`` aponta
+    para a ``ScenarioData`` do seu cenário, então chaves que compartilham
     ``(vento, ângulo)`` apontam para o *mesmo* objeto (mesma régua, mesma
     frente).
 
@@ -310,14 +359,14 @@ def scenario_fronts(instance: str, external: bool = True) -> dict[int, ScenarioD
             ``MOWFLOP_EXTERNAL_FRONT`` em :mod:`mowflop.partition`).
 
     Returns:
-        Mapa ``run da nossa campanha -> ScenarioData``, uma entrada por run
-        para a qual há cenário conhecido.
+        Mapa ``(algoritmo, run) -> ScenarioData``, uma entrada por chave de
+        :func:`scenarios`.
     """
     by_scenario = _scenario_data(instance, external)
-    out: dict[int, ScenarioData] = {}
-    for run, scenario in scenarios(instance).items():
+    out: dict[RunKey, ScenarioData] = {}
+    for key, scenario in scenarios(instance).items():
         data = by_scenario.get(scenario)
         if data is None:
-            raise ValueError(f"no wind scenario data for {instance} run {run}")
-        out[run] = data
+            raise ValueError(f"no wind scenario data for {instance} {key}")
+        out[key] = data
     return out

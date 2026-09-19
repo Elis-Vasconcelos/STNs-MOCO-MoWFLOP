@@ -43,7 +43,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from ..io_raw import repo_root
+from ..io_raw import out_root, repo_root
 
 CONSTANTS = {
     "infolder": re.compile(r'^infolder\s*<-\s*".*?"'),
@@ -170,6 +170,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--pf-size", type=float, help="override pSize in plot.R")
     parser.add_argument("--pf-alpha", type=float, help="override pAlpha in plot.R")
     parser.add_argument("--repo", default=str(repo_root()))
+    parser.add_argument(
+        "--out",
+        default=str(out_root()),
+        help="raiz de data/, pf/, stns/, plots/, metrics/ (default: $MOWFLOP_OUT, senão o repo)",
+    )
     parser.add_argument("--rscript", default="Rscript")
     parser.add_argument("--lib", default=str(Path.home() / "R" / "library"),
                         help="extra R library path (ggraph lives there)")
@@ -177,6 +182,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     repo = Path(args.repo)
+    out = Path(args.out)  # o .R sai de repo/scripts/, mas roda com cwd em out
     script = repo / "scripts" / "plot.R"
     if not script.is_file():
         print(f"not found: {script}", file=sys.stderr)
@@ -186,10 +192,10 @@ def main(argv: list[str] | None = None) -> int:
         "infolder": f"stns/mowflop_{args.tag}/",
         "outfolder": f"plots/mowflop_{args.tag}/",
     }
-    if not (repo / folders["infolder"]).is_dir():
-        print(f"missing STNs: {repo / folders['infolder']}", file=sys.stderr)
+    if not (out / folders["infolder"]).is_dir():
+        print(f"missing STNs: {out / folders['infolder']}", file=sys.stderr)
         return 1
-    (repo / folders["outfolder"]).mkdir(parents=True, exist_ok=True)
+    (out / folders["outfolder"]).mkdir(parents=True, exist_ok=True)
 
     source = script.read_text(encoding="utf-8")
     prefix, cut = cut_prefix(source)
@@ -238,7 +244,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     try:
-        completed = subprocess.run([args.rscript, str(temporary)], cwd=str(repo), check=False)
+        completed = subprocess.run([args.rscript, str(temporary)], cwd=str(out), check=False)
     except FileNotFoundError:
         print(f"{args.rscript} não encontrado", file=sys.stderr)
         return 127

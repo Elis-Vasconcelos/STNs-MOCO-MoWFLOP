@@ -1,7 +1,7 @@
 #########################################################################
 # Search Trajectory Networks (STNs) for the MoWFLOP
-# Computing shared_alg (references/STN_MoWFLOP.pdf S8): the fraction of
-# locations visited by more than one algorithm.
+# Computing shared_alg: the fraction of locations visited by more than one
+# algorithm.
 #
 # This does NOT merge MOEAD's and NSGA2's STNs into one graph.
 # Instead this compares the two algorithms' node-id *sets* directly:
@@ -49,9 +49,9 @@ if (length(missing) > 0) {
    print(missing)
 }
 
-col_types = c("character", "character", "integer",
+col_types = c("character", "character", "integer", "character",
               "numeric", "integer", "integer", "integer")
-col_names = c("instance", "tag", "p",
+col_names = c("instance", "tag", "p", "run",
               "shared_alg", "n_moead", "n_nsga2", "n_union")
 metrics <- read.table(text = "", colClasses = col_types, col.names = col_names)
 
@@ -71,6 +71,7 @@ for (suffix in common_suffixes) {
    metrics[i, "tag"] <- t[4]
    p_match <- regmatches(t[5], regexpr("(?<=p)[0-9]+", t[5], perl = TRUE))
    metrics[i, "p"] <- as.integer(p_match)
+   metrics[i, "run"] <- t[6]  # "0" aggregated, "r<NN>" one wind scenario
 
    n_moead <- length(unique(moead_solutions))
    n_nsga2 <- length(unique(nsga2_solutions))
