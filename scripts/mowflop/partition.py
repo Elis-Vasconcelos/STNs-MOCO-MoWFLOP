@@ -43,6 +43,7 @@ SEED = int(os.environ.get("MOWFLOP_SEED", "0"))  # semente do desempate aleatór
 EXTERNAL_FRONT = os.environ.get("MOWFLOP_EXTERNAL_FRONT", "1") == "1"  # inclui o histórico do wflopcec26 na frente de referência
 PER_RUN = os.environ.get("MOWFLOP_PER_RUN", "0") == "1"  # um dataset por run (por cenário de vento) em vez de um agregado
 NORMALIZE = os.environ.get("MOWFLOP_NORMALIZE", "1") == "1"  # escala f_cost e f_power pela régua do cenário de cada run; ligado por padrão, porque sem isso a frente une ventos diferentes (ver mowflop/wind.py)
+INSTANCE_PATTERN = os.environ.get("MOWFLOP_INSTANCE_PATTERN", "")  # com ALL=True, só as instâncias cujo nome casa com esta regex (re.search); vazio = todas
 
 
 def default_tag(
@@ -101,6 +102,30 @@ def current_tag() -> str:
         A tag, já com todos os sufixos que as constantes do módulo pedirem.
     """
     return default_tag(SCHEME, PERCENT, KAPPA, EXTERNAL_FRONT, PER_RUN, NORMALIZE)
+
+
+def select_pairs(inv: "pd.DataFrame") -> list[tuple[str, str]]:
+    """Pares (instância, config) do inventário que esta execução processa.
+
+    Fonte única do filtro, usada também por :mod:`mowflop.partition_metrics`,
+    para as duas etapas enxergarem o mesmo conjunto de instâncias.
+
+    Args:
+        inv: inventário (ver :func:`mowflop.io_raw.inventory`), já restrito
+            ou não a uma instância.
+
+    Returns:
+        Lista de ``(instância, config)``, respeitando ``BOTH_ALGORITHMS`` e
+        ``INSTANCE_PATTERN``.
+    """
+    if INSTANCE_PATTERN:
+        inv = inv[inv["instance"].astype(str).str.contains(INSTANCE_PATTERN, regex=True)]
+    if BOTH_ALGORITHMS:
+        counts = inv.groupby(["instance", "config"])["algorithm"].nunique()
+        pairs = counts[counts >= 2].index
+    else:
+        pairs = inv.set_index(["instance", "config"]).index.unique()
+    return [(str(i), str(c)) for i, c in pairs]
 
 
 def warn(message: str) -> None:
@@ -224,6 +249,54 @@ def datasets_to_emit(df, instance: str, config: str) -> list[tuple[str, "pd.Data
     ]
 
 
+def scheme_available(instance: str, config: str) -> bool:
+    """Se o esquema desta execução se aplica à instância; avisa no stderr quando não.
+
+    Args:
+        instance: nome da instância.
+        config: config no formato ``p<P>_i<k>``, só para o aviso.
+
+    Returns:
+        ``False`` se ``SCHEME == "grid"`` e a instância não tem geometria.
+    """
+    if SCHEME == "grid":
+        site = instances_root() / instance
+        if not (site / "geometry.txt").is_file():
+            warn(f"{instance}/{config}: sem geometria em {site}; esquema grid pulado")
+            return False
+    return True
+
+
+def scheme_for(instance: str, df) -> tuple[object, list[entropy_mod.Solution]]:
+    """O esquema desta execução para uma (instância, config), usando as constantes do módulo.
+
+    Fonte única da construção do esquema: :mod:`mowflop.partition_metrics`
+    precisa reproduzir exatamente os mesmos ids de localização emitidos aqui.
+
+    Args:
+        instance: nome da instância.
+        df: log bruto da (instância, config) inteira.
+
+    Returns:
+        Tupla ``(esquema, S(T))``.
+    """
+    solutions = unique_solutions(df)
+    # o particionamento sai de S(T) da (instância, config) INTEIRA em toda
+    # variante, inclusive nas por run: é o que faz as tags falarem do mesmo
+    # conjunto de localizações, isolando o efeito da normalização na comparação
+    scheme = build_scheme(
+        SCHEME,
+        solutions,
+        io_raw.n_positions(instance),
+        percent=None if SCHEME != "entropy" else PERCENT,
+        tie_break=TIE_BREAK,
+        seed=SEED,
+        instance=instance,
+        kappa=KAPPA,
+    )
+    return scheme, solutions
+
+
 def run_one(instance: str, config: str) -> list[dict]:
     """Particiona e emite os arquivos de uma (instância, config), usando as constantes do módulo.
 
@@ -237,27 +310,10 @@ def run_one(instance: str, config: str) -> list[dict]:
         um elemento, exceto quando ``PER_RUN`` (aí, uma por cenário).  Vazia
         se nada foi gerado (ver os avisos em :func:`warn`).
     """
-    if SCHEME == "grid":
-        site = instances_root() / instance
-        if not (site / "geometry.txt").is_file():
-            warn(f"{instance}/{config}: sem geometria em {site}; esquema grid pulado")
-            return []
+    if not scheme_available(instance, config):
+        return []
     df = io_raw.load_trajectories(instance, config)
-    n = io_raw.n_positions(instance)
-    solutions = unique_solutions(df)
-    # o particionamento sai de S(T) da (instância, config) INTEIRA em toda
-    # variante, inclusive nas por run: é o que faz as tags falarem do mesmo
-    # conjunto de localizações, isolando o efeito da normalização na comparação
-    scheme = build_scheme(
-        SCHEME,
-        solutions,
-        n,
-        percent=None if SCHEME != "entropy" else PERCENT,
-        tie_break=TIE_BREAK,
-        seed=SEED,
-        instance=instance,
-        kappa=KAPPA,
-    )
+    scheme, solutions = scheme_for(instance, df)
     tag = current_tag()
 
     summaries = []
@@ -268,7 +324,7 @@ def run_one(instance: str, config: str) -> list[dict]:
             instance=instance,
             config=config,
             tag=tag,
-            out_root=io_raw.repo_root(),
+            out_root=io_raw.out_root(),
             front=front,
             run_label=run_label,
         )
@@ -285,20 +341,14 @@ def main() -> int:
         Código de saída do processo (``0`` em sucesso, ``1`` se nada casar
         com os parâmetros dados).
     """
-    out_root = io_raw.repo_root()
+    out_root = io_raw.out_root()
     print(f"lendo logs de: {io_raw.raw_root()}")
     print(f"salvando em:   {out_root}")
 
     targets: list[tuple[str, str]]
     if ALL:
         # varre o inventário e monta a lista de (instância, config) a processar
-        inv = io_raw.inventory()
-        if BOTH_ALGORITHMS:
-            counts = inv.groupby(["instance", "config"])["algorithm"].nunique()
-            pairs = counts[counts >= 2].index
-        else:
-            pairs = inv.set_index(["instance", "config"]).index.unique()
-        targets = [(str(i), str(c)) for i, c in pairs]
+        targets = select_pairs(io_raw.inventory())
     else:
         if not INSTANCE or not CONFIG:
             print("give INSTANCE and CONFIG, or set ALL = True", file=sys.stderr)

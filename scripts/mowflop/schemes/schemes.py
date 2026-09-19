@@ -8,7 +8,7 @@ qualquer diferença de métrica vem só do particionamento.
 
 Implementados aqui: ``entropy`` (Ochoa, Malan & Blum 2021), ``raw`` (sem
 particionamento, Ochoa et al. 2023) e ``grid`` (assinatura de ocupação
-espacial, STN_MoWFLOP.pdf S6-7 -- a proposta central desta tese).  Variantes
+espacial -- a proposta central desta tese).  Variantes
 de Hamming se encaixariam implementando os mesmos dois métodos.
 """
 
@@ -142,9 +142,10 @@ class GridScheme:
 
         Args:
             instance: nome da instância (precisa de ``instances/site/<instance>``
-                no STN_MoWFLOP e de ``candidates/<instance>_candidates.csv``
+                neste repo e de ``candidates/<instance>_candidates.csv``
                 na campanha).
-            kappa: parâmetro único do modelo (eq. 6 do artigo).
+            kappa: parâmetro único do modelo em
+                ``ell = max(kappa*sqrt(A/tau), sigma)``.
 
         Returns:
             O :class:`GridScheme` resultante.
@@ -189,7 +190,8 @@ def build_scheme(
             ``"entropy"``).
         seed: semente do desempate aleatório (só para ``"entropy"``).
         instance: nome da instância (obrigatório para ``"grid"``).
-        kappa: parâmetro único do modelo, eq. 6 (obrigatório para ``"grid"``).
+        kappa: parâmetro único do modelo em ``ell = max(kappa*sqrt(A/tau),
+            sigma)`` (obrigatório para ``"grid"``).
 
     Returns:
         Instância de :class:`RawScheme`, :class:`EntropyScheme` ou

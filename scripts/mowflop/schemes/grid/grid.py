@@ -1,12 +1,12 @@
-"""Particionamento do espaço de busca por grade de ocupação (STN_MoWFLOP.pdf, S6-7).
+"""Particionamento do espaço de busca por grade de ocupação.
 
 Definição 1 (assinatura de ocupação): sobrepõe uma grade regular de lado
 ``ell`` à área do parque e conta quantas turbinas do layout caem em cada
 célula.  Definição 2 (localização induzida): duas soluções compartilham
 localização sse têm a mesma assinatura ``o_ell``.
 
-``kappa`` é o único parâmetro do modelo (S7): ``ell = max(kappa*sqrt(A/tau),
-sigma)`` (eq. 6) -- ver :mod:`mowflop.geometry`.
+``kappa`` é o único parâmetro do modelo: ``ell = max(kappa*sqrt(A/tau),
+sigma)`` -- ver :mod:`mowflop.geometry`.
 
 Diferente de ``entropy.EntropyScheme`` (que projeta a solução num subconjunto
 de posições retidas), aqui a "projeção" é a assinatura esparsa
@@ -167,7 +167,7 @@ def build_partition(
 
     Args:
         instance: nome da instância.
-        kappa: parâmetro único do modelo (eq. 6).
+        kappa: parâmetro único do modelo em ``ell = max(kappa*sqrt(A/tau), sigma)``.
         instances_root: raiz de ``instances/site``; ver
             :func:`mowflop.geometry.instances_root`.
         candidates_root: raiz da campanha (candidatos); ver

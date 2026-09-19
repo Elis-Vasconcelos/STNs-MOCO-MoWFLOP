@@ -24,8 +24,7 @@ maior geração por run é lido.
 (``raw_results/meta_heuristics_stn_windcorrected/<algo>/<instância>/<config>/<run>/``). É o
 conjunto aproximativo (``pareto``, um ``BoundedParetoSet`` acumulado desde a
 primeira avaliação -- ``pareto->addSol`` em todo filho gerado por
-crossover/mutação, ver ``STN_MoWFLOP/source_code/meta_heuristics/src/
-global_modules/genetic_operators/``), não a população corrente amostrada em
+crossover/mutação no C++ da campanha), não a população corrente amostrada em
 ``<instância>_<algo>_stn.csv`` (essa é uma foto parcial da busca a cada
 ``STN_LOGGER_INTERVAL`` gerações, via ``select_representatives`` em
 ``stn_logger.cpp`` -- usada por ``emit.py`` pra montar a trajetória/STN, mas

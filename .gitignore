@@ -29,9 +29,10 @@ metrics/
 # (curated copies are committed under sharing/pareto_front_vs_cec/)
 plots/pareto_check/
 
-# saída de scripts/run_entropy_campaign.sh
+# saída de scripts/run_entropy_campaign.sh (e artefatos dos outros scripts de campanha)
 logs/
 status/
+campanhas/
 
 __pycache__/
 *.pyc

@@ -149,6 +149,17 @@ for scheme in $schemes; do
         echo "[skip] metrics já feito para $tag"
       fi
 
+      # step_len, R e D: refaz a partição em Python (o R não tem a assinatura
+      # nem os objetivos crus de cada nó); --instance cobre todas as configs
+      # da instância num CSV só
+      if [[ ! -f "$status_dir/.done_partition_metrics" ]]; then
+        echo "[partition_metrics] tag=$tag $(date -Is)"
+        ../.venv/bin/python -m mowflop.partition_metrics ${instance:+--instance "$instance"}
+        touch "$status_dir/.done_partition_metrics"
+      else
+        echo "[skip] partition_metrics já feito para $tag"
+      fi
+
       echo "[done] tag=$tag $(date -Is)"
     ' _ "$scheme" "$tag" "$status_dir" "$layout" \
         "$per_run" "$normalize" "$percent" "$kappa" "$instance" &> "$log" &

@@ -22,7 +22,7 @@ recebe, portanto, um único objetivo representativo, escolhido entre as
 soluções que de fato a visitaram -- a leitura multiobjetivo do
 ``f(s_z) := min{f(s')}`` do artigo: pertencer à frente de referência primeiro,
 depois ordem lexicográfica ``(f_cost, -f_power)``.  Isso também faz a marcação
-``Position="Pareto"`` do R coincidir com a métrica da S8.
+``Position="Pareto"`` do R coincidir com a métrica ``pareto``.
 
 *Self-loop no último registro.*  ``Solution2`` é a próxima localização da mesma
 trajetória ``(Run, Vector)``; o último registro aponta para si mesmo.  Essa é a

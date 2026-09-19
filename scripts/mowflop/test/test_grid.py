@@ -6,8 +6,8 @@ Rode a partir de ``scripts/``::
 
 Os testes puros (sem dependência de dados da campanha) cobrem: a fórmula da
 área do polígono (shoelace) contra formas de área conhecida; a regra
-adaptativa (eq. 6, incluindo o piso sigma); a atribuição de célula e a
-assinatura de ocupação (Definição 1) com casos construídos à mão, onde é
+adaptativa ``ell = max(kappa*sqrt(A/tau), sigma)``, incluindo o piso sigma; a
+atribuição de célula e a assinatura de ocupação com casos construídos à mão, onde é
 possível confirmar a resposta certa sem rodar nada. Os testes de integração
 (:class:`TestGridAgainstCampaign`) precisam dos dados reais de instância e da
 campanha e são pulados se não estiverem presentes.

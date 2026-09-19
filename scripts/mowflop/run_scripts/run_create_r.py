@@ -24,7 +24,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from ..io_raw import repo_root
+from ..io_raw import out_root, repo_root
 
 FOLDER_LINES = {
     "infolder": re.compile(r'^infolder\s*<-\s*".*?"'),
@@ -77,12 +77,18 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--tag", required=True, help="dataset tag, e.g. x60 or raw")
     parser.add_argument("--repo", default=str(repo_root()))
+    parser.add_argument(
+        "--out",
+        default=str(out_root()),
+        help="raiz de data/, pf/, stns/, plots/, metrics/ (default: $MOWFLOP_OUT, senão o repo)",
+    )
     parser.add_argument("--rscript", default="Rscript")
     parser.add_argument("--keep-script", help="also save the rewritten script here")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
     repo = Path(args.repo)
+    out = Path(args.out)  # o .R sai de repo/scripts/, mas roda com cwd em out
     script = repo / "scripts" / "create .R"
     if not script.is_file():
         print(f"not found: {script}", file=sys.stderr)
@@ -94,11 +100,11 @@ def main(argv: list[str] | None = None) -> int:
         "outfolder": f"stns/mowflop_{args.tag}/",
     }
     for name in ("infolder", "parfolder"):
-        if not (repo / folders[name]).is_dir():
-            print(f"missing input folder: {repo / folders[name]}", file=sys.stderr)
+        if not (out / folders[name]).is_dir():
+            print(f"missing input folder: {out / folders[name]}", file=sys.stderr)
             return 1
     for algorithm in ("MOEAD", "NSGA2"):
-        (repo / folders["outfolder"] / algorithm).mkdir(parents=True, exist_ok=True)
+        (out / folders["outfolder"] / algorithm).mkdir(parents=True, exist_ok=True)
 
     source = script.read_text(encoding="utf-8")
     rewritten, changed = rewrite(source, folders)
@@ -134,7 +140,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         completed = subprocess.run(
-            [args.rscript, str(temporary)], cwd=str(repo), check=False
+            [args.rscript, str(temporary)], cwd=str(out), check=False
         )
     except FileNotFoundError:
         print(

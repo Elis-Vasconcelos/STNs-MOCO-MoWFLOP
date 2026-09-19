@@ -53,6 +53,20 @@ def repo_root() -> Path:
     return Path(__file__).resolve().parents[2]
 
 
+def out_root() -> Path:
+    """Raiz onde o pipeline escreve ``data/``, ``pf/``, ``locations/``, ``stns/``, ``plots/``, ``metrics/`` e ``reports/``.
+
+    ``$MOWFLOP_OUT`` desvia toda a saída para outra pasta -- é o que isola uma
+    campanha do supercomputador das saídas já presentes no repositório.  As
+    entradas (``raw_results/``, ``instances/``) continuam em :func:`repo_root`.
+
+    Returns:
+        ``$MOWFLOP_OUT`` resolvido, se setado; senão :func:`repo_root`.
+    """
+    env = os.environ.get("MOWFLOP_OUT")
+    return Path(env).resolve() if env else repo_root()
+
+
 def raw_root(root: str | os.PathLike | None = None) -> Path:
     """Localiza os logs da campanha: ``raw_results/meta_heuristics_stn_windcorrected`` no repo.
 
