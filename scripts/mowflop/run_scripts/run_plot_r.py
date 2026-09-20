@@ -81,23 +81,48 @@ if ("of" %in% LAYOUTS) {
    }
 }
 
+draw <- function(job) {
+   f <- job$f; mode <- job$mode
+   stem <- substr(f, 1, nchar(f) - 6)   # drop ".RData"
+   out <- paste0(outfolder, stem, "_", mode, ".png")
+   # Already drawn by an earlier, interrupted run: keep it and cost nothing.
+   # A worker killed mid-ggsave leaves the file at 0 bytes, so size decides.
+   if (file.exists(out) && file.size(out) > 0) {
+      cat("=", out, "\n")
+      return(TRUE)
+   }
+   p <- plot_stn(f, job$iset, bObjLay = (mode == "of"))
+   if (mode == "of") {
+      lim <- of_limits[[strsplit(f, "_")[[1]][3]]]
+      if (!is.null(lim))
+         p <- p + coord_cartesian(xlim = lim$x, ylim = lim$y)
+   }
+   ggsave(p, filename = out, device = "png",
+          width = 9, height = 7, dpi = 150, limitsize = FALSE)
+   cat("->", out, "\n")
+   TRUE
+}
+
+# One job per (file, layout), drawn MOWFLOP_JOBS at a time (default 1 = serial).
+# Largest STNs first, handed out one by one, so the slow "fd" of a huge STN
+# does not start last and leave the other workers idle.
+jobs <- list()
 for (iset in isets) {
-   files <- list.files(paste0(infolder, iset))
-   if (length(files) == 0) next
-   for (f in files) {
-      for (mode in LAYOUTS) {
-         p <- plot_stn(f, iset, bObjLay = (mode == "of"))
-         if (mode == "of") {
-            lim <- of_limits[[strsplit(f, "_")[[1]][3]]]
-            if (!is.null(lim))
-               p <- p + coord_cartesian(xlim = lim$x, ylim = lim$y)
-         }
-         stem <- substr(f, 1, nchar(f) - 6)   # drop ".RData"
-         out <- paste0(outfolder, stem, "_", mode, ".png")
-         ggsave(p, filename = out, device = "png",
-                width = 9, height = 7, dpi = 150, limitsize = FALSE)
-         cat("->", out, "\n")
-      }
+   for (f in list.files(paste0(infolder, iset))) {
+      size <- file.size(paste0(infolder, iset, f))
+      for (mode in LAYOUTS)
+         jobs[[length(jobs) + 1]] <- list(f = f, iset = iset, mode = mode, size = size)
+   }
+}
+if (length(jobs) > 0) {
+   jobs <- jobs[order(-vapply(jobs, function(j) j$size, numeric(1)))]
+   ncores <- max(1L, as.integer(Sys.getenv("MOWFLOP_JOBS", "1")))
+   res <- parallel::mclapply(jobs, draw, mc.cores = ncores, mc.preschedule = FALSE)
+   # a worker killed mid-plot (e.g. out of memory) comes back as NULL, not as an error
+   failed <- vapply(res, function(r) !isTRUE(r), logical(1))
+   if (any(failed)) {
+      for (i in which(failed)) cat("FAILED", jobs[[i]]$f, jobs[[i]]$mode, ":", format(res[[i]]), "\n")
+      stop(sum(failed), " plot(s) failed")
    }
 }
 """
