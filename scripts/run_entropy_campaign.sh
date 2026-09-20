@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # Roda o pipeline partition.py -> run_scripts/run_create_r.py ->
-# run_scripts/run_plot_r.py -> run_scripts/run_stn_metrics_r.py (MOEAD e
-# NSGA2) -> run_scripts/run_shared_alg_r.py -> partition_metrics.py para o
-# esquema entropy, no supercomputador: STNs (.RData), plots (of/fd) e todas as
-# métricas de STN, para cada PERCENT (nível de particionamento) e cada tipo de
-# STN (agregada ou por run). Só as instâncias ns* e só normalizado.
+# run_scripts/run_stn_metrics_r.py (MOEAD e NSGA2) ->
+# run_scripts/run_shared_alg_r.py -> partition_metrics.py ->
+# run_scripts/run_plot_r.py para o esquema entropy, no supercomputador: STNs
+# (.RData), todas as métricas de STN e os plots (of/fd), para cada PERCENT
+# (nível de particionamento) e cada tipo de STN (agregada ou por run). Só as
+# instâncias ns* e só normalizado.
 #
 # Adapta o idioma do batch.sh da campanha C++: um `nohup ... &> log &` por
 # unidade de trabalho, sem scheduler, sem limite de concorrência. Aqui a
@@ -14,7 +15,7 @@
 #
 # Toda a saída cai em campanhas/<CAMPAIGN>/ (via $MOWFLOP_OUT), nunca nas
 # pastas data/, stns/, plots/, metrics/... da raiz do repo -- a campanha volta
-# para o laptop com um rsync só dessa pasta, sem misturar com o que já existe.
+# para o laptop com um tar só dessa pasta, sem misturar com o que já existe.
 #
 # Idempotente por etapa: um marcador em campanhas/<CAMPAIGN>/status/<tag>/.done_<stage>
 # é criado só depois que a etapa termina com sucesso. Relançar com o mesmo
@@ -34,6 +35,13 @@
 # external_front (default 1): repassado como MOWFLOP_EXTERNAL_FRONT pro
 #   partition.py (ver reference_front.external_points); 0 sufixa a tag com
 #   "noext" (x80norm -> x80noextnorm).
+# JOBS (default 4): figuras desenhadas em paralelo por cadeia (MOWFLOP_JOBS do
+#   run_plot_r.py). Com 6 cadeias, ~6 x JOBS núcleos ocupados (24 de 62 no
+#   bambu3, ~1 GB de RAM por worker).
+# WAIT=1: espera as cadeias terminarem antes de sair -- necessário quando o
+#   script é o processo principal de um contêiner (podman run -d), senão o
+#   contêiner termina e leva as cadeias junto.
+# PYTHON (default ../.venv/bin/python): o Containerfile põe PYTHON=python3.
 # variants (default "agg run"): agg = uma STN agregando as runs (x<p>norm);
 #   run = uma STN por cenário de vento (x<p>runnorm). As duas normalizadas --
 #   as variantes em escala bruta não entram nesta campanha.
@@ -69,6 +77,8 @@ export MOWFLOP_OUT="$out"
 export MOWFLOP_INSTANCE_PATTERN='^ns'
 export MOWFLOP_SCHEME=entropy MOWFLOP_ALL=1 MOWFLOP_NORMALIZE=1
 export MOWFLOP_EXTERNAL_FRONT="$external_front"
+export MOWFLOP_JOBS="${JOBS:-4}"
+export PYTHON="${PYTHON:-../.venv/bin/python}"
 
 # proveniência: um bloco por lançamento (relançar acrescenta, não apaga)
 {
@@ -80,6 +90,7 @@ export MOWFLOP_EXTERNAL_FRONT="$external_front"
   echo "layout:   $layout"
   echo "external_front: $external_front"
   echo "variants: $variants"
+  echo "jobs:     $MOWFLOP_JOBS por cadeia"
   echo
 } >> "$out/CAMPANHA.txt"
 
@@ -91,7 +102,7 @@ for percent in $percents; do
     # remontada aqui: é a única forma de as etapas do R olharem exatamente a
     # pasta em que o partition.py escreveu
     tag=$(MOWFLOP_PERCENT="$percent" MOWFLOP_PER_RUN="$per_run" \
-          ../.venv/bin/python -c \
+          "$PYTHON" -c \
           "from mowflop.partition import current_tag; print(current_tag())")
     log="$out/logs/entropy_${tag}.log"
     status_dir="$out/status/${tag}"
@@ -104,7 +115,7 @@ for percent in $percents; do
 
       if [[ ! -f "$status_dir/.done_partition" ]]; then
         echo "[partition] tag=$tag percent=$percent per_run=$per_run external_front=$MOWFLOP_EXTERNAL_FRONT $(date -Is)"
-        ../.venv/bin/python -m mowflop.partition
+        "$PYTHON" -m mowflop.partition
         touch "$status_dir/.done_partition"
       else
         echo "[skip] partition já feito para $tag"
@@ -120,25 +131,20 @@ for percent in $percents; do
 
       if [[ ! -f "$status_dir/.done_create" ]]; then
         echo "[create] tag=$tag $(date -Is)"
-        ../.venv/bin/python -m mowflop.run_scripts.run_create_r --tag "$tag"
+        "$PYTHON" -m mowflop.run_scripts.run_create_r --tag "$tag"
         touch "$status_dir/.done_create"
       else
         echo "[skip] create já feito para $tag"
       fi
 
-      if [[ ! -f "$status_dir/.done_plot" ]]; then
-        echo "[plot] tag=$tag layout=$layout $(date -Is)"
-        ../.venv/bin/python -m mowflop.run_scripts.run_plot_r --tag "$tag" --layout "$layout"
-        touch "$status_dir/.done_plot"
-      else
-        echo "[skip] plot já feito para $tag"
-      fi
-
+      # métricas antes do plot: as três etapas leem só stns/, nenhuma lê plots/,
+      # e o plot é o que leva horas. Assim os CSVs -- o produto da campanha --
+      # saem nos primeiros minutos, a salvo de uma queda no meio das figuras.
       if [[ ! -f "$status_dir/.done_metrics" ]]; then
         echo "[metrics] tag=$tag $(date -Is)"
-        ../.venv/bin/python -m mowflop.run_scripts.run_stn_metrics_r --tag "$tag" --algo MOEAD
-        ../.venv/bin/python -m mowflop.run_scripts.run_stn_metrics_r --tag "$tag" --algo NSGA2
-        ../.venv/bin/python -m mowflop.run_scripts.run_shared_alg_r --tag "$tag"
+        "$PYTHON" -m mowflop.run_scripts.run_stn_metrics_r --tag "$tag" --algo MOEAD
+        "$PYTHON" -m mowflop.run_scripts.run_stn_metrics_r --tag "$tag" --algo NSGA2
+        "$PYTHON" -m mowflop.run_scripts.run_shared_alg_r --tag "$tag"
         touch "$status_dir/.done_metrics"
       else
         echo "[skip] metrics já feito para $tag"
@@ -148,10 +154,20 @@ for percent in $percents; do
       # nem os objetivos crus de cada nó)
       if [[ ! -f "$status_dir/.done_partition_metrics" ]]; then
         echo "[partition_metrics] tag=$tag $(date -Is)"
-        ../.venv/bin/python -m mowflop.partition_metrics
+        "$PYTHON" -m mowflop.partition_metrics
         touch "$status_dir/.done_partition_metrics"
       else
         echo "[skip] partition_metrics já feito para $tag"
+      fi
+
+      # por último, a etapa cara: o run_plot_r.py pula as figuras que já
+      # existem, então um relançamento retoma de onde a anterior parou
+      if [[ ! -f "$status_dir/.done_plot" ]]; then
+        echo "[plot] tag=$tag layout=$layout $(date -Is)"
+        "$PYTHON" -m mowflop.run_scripts.run_plot_r --tag "$tag" --layout "$layout"
+        touch "$status_dir/.done_plot"
+      else
+        echo "[skip] plot já feito para $tag"
       fi
 
       echo "[done] tag=$tag $(date -Is)"
@@ -161,6 +177,12 @@ for percent in $percents; do
 done
 
 echo
-echo "[batch] saída em $out"
+echo "[batch] saída em campanhas/$campaign/"
 echo "[batch] para trazer de volta (no laptop, a partir da raiz do repo):"
-echo "  rsync -avz $(whoami)@$(hostname):$out/ campanhas/$campaign/"
+echo "  ssh -p 4522 <usuario>@<host> 'tar czf - -C ~/STNs-MOCO-MoWFLOP campanhas/$campaign' | tar xzf -"
+
+if [[ "${WAIT:-0}" == 1 ]]; then
+  echo "[batch] WAIT=1: esperando as cadeias terminarem"
+  wait
+  echo "[batch] todas as cadeias terminaram $(date -Is)"
+fi
