@@ -12,7 +12,8 @@ importam, e o ranking é reprodutível.  ``≈ 0``: a ordem é decidida pelo aca
 amostral.  Especificação original em ``references/rank_stab.md``.
 
 Escreve ``reports/rq1_rank_stab/summary.csv`` e, com ``--figs``, a figura
-densidade × ``rank_stab``.
+densidade × ``rank_stab``.  Saída e filtro de instâncias seguem
+``$MOWFLOP_OUT`` e ``$MOWFLOP_INSTANCE_PATTERN``, como em :mod:`.diagnose_entropy`.
 
 Uso::
 
@@ -28,7 +29,7 @@ import pandas as pd
 from scipy.stats import spearmanr
 
 from . import entropy as entropy_mod
-from .diagnose_entropy import _save
+from .diagnose_entropy import _save, all_targets
 from ... import io_raw
 
 
@@ -140,8 +141,7 @@ def main(argv: list[str] | None = None) -> int:
     out = Path(args.out_root) / "reports" / "rq1_rank_stab"
     out.mkdir(parents=True, exist_ok=True)
     if args.all:
-        inv = io_raw.inventory(args.raw_root)
-        targets = list(inv.set_index(["instance", "config"]).index.unique())
+        targets = all_targets(args.raw_root)
     else:
         targets = [(args.instance, args.config)]
 

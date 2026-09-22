@@ -6,7 +6,8 @@ cada critério de área marcado.  Passa pelo mesmo caminho de código usado para
 produzir as STNs, então o relatório descreve o particionamento que é de fato
 emitido.
 
-Escreve em ``reports/rq1_entropy/``:
+Escreve em ``reports/rq1_entropy/`` (sob ``$MOWFLOP_OUT``, se setado; com
+``--all``, ``$MOWFLOP_INSTANCE_PATTERN`` filtra as instâncias):
 
 ``summary.csv``
     uma linha por (instância, config): densidade, ``|S(T)|``, estatísticas de
@@ -26,6 +27,7 @@ from __future__ import annotations
 import argparse
 import glob
 import math
+import os
 from collections import Counter
 from pathlib import Path
 
@@ -35,6 +37,7 @@ from . import entropy as entropy_mod
 from ... import io_raw
 
 AREA_PERCENTS = (50, 60, 70, 80, 90)
+INSTANCE_PATTERN = os.environ.get("MOWFLOP_INSTANCE_PATTERN", "")  # com --all, só as instâncias cujo nome casa com esta regex (re.search); vazio = todas, como no mowflop.partition
 
 
 def load_pmed7(folder: str | Path) -> tuple[list[entropy_mod.Solution], int]:
@@ -133,6 +136,25 @@ def analyse(
     return entropy, order, stats
 
 
+def all_targets(raw_root: str | None = None) -> list[tuple[str, str]]:
+    """Pares (instância, config) do inventário que um ``--all`` processa.
+
+    Aplica o mesmo filtro ``MOWFLOP_INSTANCE_PATTERN`` do
+    :mod:`mowflop.partition`, para o diagnóstico cobrir as mesmas instâncias
+    de uma campanha.
+
+    Args:
+        raw_root: raiz da campanha; ver :func:`mowflop.io_raw.raw_root`.
+
+    Returns:
+        Lista de ``(instância, config)``, sem repetição.
+    """
+    inv = io_raw.inventory(raw_root)
+    if INSTANCE_PATTERN:
+        inv = inv[inv["instance"].astype(str).str.contains(INSTANCE_PATTERN, regex=True)]
+    return [(str(i), str(c)) for i, c in inv.set_index(["instance", "config"]).index.unique()]
+
+
 def _save(fig, folder: Path, name: str) -> None:
     """Salva uma figura em PNG e PDF na pasta dada.
 
@@ -205,9 +227,8 @@ def diagnose(args) -> pd.DataFrame:
     figures = out / "figures"
     out.mkdir(parents=True, exist_ok=True)
 
-    inv = io_raw.inventory(args.raw_root)
     if args.all:
-        targets = [(str(i), str(c)) for i, c in inv.set_index(["instance", "config"]).index.unique()]
+        targets = all_targets(args.raw_root)
     else:
         targets = [(args.instance, args.config)]
 
@@ -266,7 +287,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--tie-break", choices=["index", "random"], default="random")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--raw-root")
-    parser.add_argument("--out-root", default=str(io_raw.repo_root()))
+    parser.add_argument("--out-root", default=str(io_raw.out_root()))
     parser.add_argument("--figs", action="store_true", help="also render the figure")
     args = parser.parse_args(argv)
 
