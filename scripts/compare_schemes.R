@@ -14,7 +14,10 @@ suppressMessages({ library(igraph); library(ggplot2); library(ggraph); library(p
 repo <- normalizePath(file.path(dirname(sub("--file=", "",
         grep("--file=", commandArgs(FALSE), value = TRUE))), ".."))
 setwd(repo)
-outdir <- "/home/elis/Projects/TCC/meeting_2026-08-27/04_sparse_stn_178r1e04/03_entropy_vs_grid"
+# Pasta de saida: variavel de ambiente OUTDIR, ou plots/compare_schemes dentro do repo.
+# As figuras da reuniao de 2026-08-27 foram geradas em
+# meeting_2026-08-27/04_sparse_stn_178r1e04/03_entropy_vs_grid (fora do repo).
+outdir <- Sys.getenv("OUTDIR", file.path(repo, "plots", "compare_schemes"))
 dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
 
 spec <- list(

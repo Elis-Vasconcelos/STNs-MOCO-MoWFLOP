@@ -69,14 +69,13 @@ parent).
 
 | Role | Path | Layout |
 |---|---|---|
-| This work | `../../supercomputer_backup/raw_results/meta_heuristics_stn_windcorrected/<algo>/ns<ID>/<pool>/<run 0..9>/ns<ID>_<algo>_1000000.txt` | 10 runs/instance |
-| CEC 2025 | `../../STNs-MOCO-MoWFLOP/raw_results/wflopcec26/<algo>/ns<ID>/<run 1..20>/<ID>_<algo>_1000000.txt` | 20 runs/instance |
-| Wind map | `../../STN_MoWFLOP/source_code/meta_heuristics/wind_corrected/cec_wind_map.csv` | `instance,algo,run_id,angle,wind` |
+| This work | `raw_results/meta_heuristics_stn_windcorrected/<algo>/ns<ID>/<pool>/<run 0..9>/ns<ID>_<algo>_1000000.txt` | 10 runs/instance |
+| CEC 2025 | `raw_results/wflopcec26/<algo>/ns<ID>/<run 1..20>/<ID>_<algo>_1000000.txt` | 20 runs/instance |
+| Wind map | `raw_results/wind_corrected/cec_wind_map.csv` | `instance,algo,run_id,angle,wind` |
 
-- `pareto_check.py` reads **this work's** side from `supercomputer_backup/`,
-  not the live `STN_MoWFLOP/raw_results/` tree, so results do not depend on
-  the sibling repo's current sync state. Point it elsewhere by editing
-  `OUR_ROOT` if a fresher tree is available.
+- All paths are relative to this repo's root (`STNs-MOCO-MoWFLOP/`), which is
+  where the wind-corrected runs, the CEC runs and the wind maps now live.
+  Nothing outside the repo is read. Point it elsewhere by editing `OUR_ROOT`.
 - The `*_1000000.txt` files are the final population after `10^6`
   evaluations: two whitespace-separated columns, **col 1 = construction
   cost** (minimised), **col 2 = power output** (maximised), both positive.

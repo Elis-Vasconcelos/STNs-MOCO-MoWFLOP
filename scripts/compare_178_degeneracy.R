@@ -9,7 +9,8 @@
 #   * shared, fixed Count -> node-size legend (same breaks in both panels)
 #   * identical Position colour/shape mapping (Pareto always red)
 #
-# Outputs into ../meeting_2026-08-27/04_sparse_stn_178r1e04/ :
+# Outputs into $OUTDIR (default plots/compare_178_degeneracy in the repo; the
+# 2026-08-27 meeting figures went to meeting_2026-08-27/04_sparse_stn_178r1e04/):
 #   CMP_stn_ns178_vs_178r1e04_of.png   side-by-side STN (objective-space layout)
 #   CMP_metrics_ns178_vs_178r1e04.png  grouped bar chart, the S8 metrics
 #   CMP_metrics_ns178_vs_178r1e04.csv  the same numbers
@@ -33,7 +34,7 @@ schemelab <- if (grepl("^g", tag)) {
 }
 sfx <- if (tag == "x60noext") "" else paste0("_", sub("\\.", "", tag))  # file suffix
 
-outdir <- "/home/elis/Projects/TCC/meeting_2026-08-27/04_sparse_stn_178r1e04"
+outdir <- Sys.getenv("OUTDIR", file.path(repo, "plots", "compare_178_degeneracy"))
 dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
 
 objs <- list(
