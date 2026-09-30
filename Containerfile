@@ -9,7 +9,7 @@ FROM docker.io/library/debian:trixie
 RUN apt-get update && apt-get install -y --no-install-recommends \
       r-base-core r-cran-igraph r-cran-dplyr r-cran-tidyr r-cran-ggplot2 \
       r-cran-ggraph r-cran-tidygraph r-cran-rcolorbrewer r-cran-reshape2 \
-      python3 python3-pandas python3-numpy python3-matplotlib \
+      python3 python3-pandas python3-numpy python3-matplotlib python3-scipy \
       git ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 

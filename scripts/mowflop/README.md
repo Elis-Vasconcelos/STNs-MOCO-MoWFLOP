@@ -34,6 +34,7 @@ métricas vem só do particionamento.
 | `schemes/schemes.py` | registro dos esquemas intercambiáveis (`raw`, `entropy`, `grid`) + `build_scheme()`. Cada esquema implementa `assign()` / `project()` / `describe()`. | **é aqui que entra um esquema novo** (ver *Adicionar um esquema*) |
 | `schemes/shannon_entropy/entropy.py` | esquema `entropy` — entropia de Shannon (Ochoa, Malan & Blum 2021, §5.4). | mexer no esquema de entropia |
 | `schemes/shannon_entropy/diagnose_entropy.py` | diagnóstico da RQ1: curva de entropia e o `z` de cada critério de área. Standalone. | investigar se a entropia se aplica a uma instância |
+| `schemes/shannon_entropy/rank_stability.py` | diagnóstico da RQ1: `rank_stab`, a correlação de Spearman entre os rankings de entropia de duas metades disjuntas das execuções. Standalone. | investigar se o ranking de entropia é reprodutível |
 | `schemes/grid/grid.py` | esquema `grid` — assinatura de ocupação numa grade de lado `ℓ = max(κ·√(A/τ), σ)`. É a contribuição central da tese. | mexer no esquema de grade |
 
 ### Wrappers dos scripts R (`run_scripts/`)

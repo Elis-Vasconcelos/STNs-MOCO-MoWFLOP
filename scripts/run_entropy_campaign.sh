@@ -2,14 +2,15 @@
 # Roda o pipeline partition.py -> run_scripts/run_create_r.py ->
 # run_scripts/run_stn_metrics_r.py (MOEAD e NSGA2) ->
 # run_scripts/run_shared_alg_r.py -> partition_metrics.py ->
-# run_scripts/run_plot_r.py para o esquema entropy, no supercomputador: STNs
-# (.RData), todas as métricas de STN e os plots (of/fd), para cada PERCENT
-# (nível de particionamento) e cada tipo de STN (agregada ou por run). Só as
-# instâncias ns* e só normalizado.
+# run_scripts/run_plot_r.py para o esquema entropy (ou grid, com SCHEME=grid),
+# no supercomputador: STNs (.RData), todas as métricas de STN e os plots
+# (of/fd), para cada nível de particionamento (PERCENT no entropy, KAPPA no
+# grid) e cada tipo de STN (agregada ou por run). Só as instâncias ns* e só
+# normalizado.
 #
 # Adapta o idioma do batch.sh da campanha C++: um `nohup ... &> log &` por
 # unidade de trabalho, sem scheduler, sem limite de concorrência. Aqui a
-# unidade é o par (PERCENT, variante): as etapas de um par formam uma cadeia
+# unidade é o par (nível, variante): as etapas de um par formam uma cadeia
 # (cada uma precisa da saída da anterior) e rodam em sequência dentro do seu
 # próprio processo -- só os pares entre si é que rodam em paralelo.
 #
@@ -23,14 +24,18 @@
 # use um CAMPAIGN novo (ou apague o status/<tag>/ inteiro).
 #
 # Uso (a partir de scripts/):
-#   [CAMPAIGN=<nome>] ./run_entropy_campaign.sh [percents] [layout] [external_front] [variants]
+#   [SCHEME=entropy|grid] [CAMPAIGN=<nome>] ./run_entropy_campaign.sh [levels] [layout] [external_front] [variants]
 # Ex.: ./run_entropy_campaign.sh                       # 60 70 80, of+fd, com wflopcec26, agg e run
 #      ./run_entropy_campaign.sh 60 of                 # só x60, só o layout rápido
 #      ./run_entropy_campaign.sh "60 70 80" fd         # só o layout força-dirigido
 #      ./run_entropy_campaign.sh 80 of 0 agg           # x80noextnorm, sem o histórico do wflopcec26
+#      SCHEME=grid ./run_entropy_campaign.sh           # kappa 0.5 1.0 2.0 (g0.5norm, g0.5runnorm, ...)
 #      CAMPAIGN=entropy_2026-09-18 ./run_entropy_campaign.sh   # retoma essa campanha
 #
-# CAMPAIGN (default entropy_<hoje>): nome da pasta em campanhas/.
+# SCHEME (default entropy): entropy | grid.
+# levels: os níveis de particionamento -- PERCENT no entropy (default
+#   "60 70 80"), KAPPA no grid (default "0.5 1.0 2.0").
+# CAMPAIGN (default <SCHEME>_<hoje>): nome da pasta em campanhas/.
 # layout: of | fd | both.
 # external_front (default 1): repassado como MOWFLOP_EXTERNAL_FRONT pro
 #   partition.py (ver reference_front.external_points); 0 sufixa a tag com
@@ -52,7 +57,12 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$script_dir"   # scripts/
 repo="$(cd .. && pwd)"
 
-percents="${1:-60 70 80}"
+scheme="${SCHEME:-entropy}"
+case "$scheme" in
+  entropy) levels="${1:-60 70 80}" ;;
+  grid)    levels="${1:-0.5 1.0 2.0}" ;;
+  *) echo "esquema desconhecido: $scheme (entropy | grid)" >&2; exit 1 ;;
+esac
 layout="${2:-both}"          # of | fd | both
 external_front="${3:-1}"     # 1 (default, com wflopcec26) | 0 (sem)
 variants="${4:-agg run}"     # agg | run
@@ -68,14 +78,14 @@ for variant in $variants; do
   esac
 done
 
-campaign="${CAMPAIGN:-entropy_$(date +%F)}"
+campaign="${CAMPAIGN:-${scheme}_$(date +%F)}"
 out="$repo/campanhas/$campaign"
 mkdir -p "$out/logs" "$out/status"
 
 # comuns a todas as cadeias: saída isolada, só ns*, só normalizado
 export MOWFLOP_OUT="$out"
 export MOWFLOP_INSTANCE_PATTERN='^ns'
-export MOWFLOP_SCHEME=entropy MOWFLOP_ALL=1 MOWFLOP_NORMALIZE=1
+export MOWFLOP_SCHEME="$scheme" MOWFLOP_ALL=1 MOWFLOP_NORMALIZE=1
 export MOWFLOP_EXTERNAL_FRONT="$external_front"
 export MOWFLOP_JOBS="${JOBS:-4}"
 export PYTHON="${PYTHON:-../.venv/bin/python}"
@@ -86,7 +96,8 @@ export PYTHON="${PYTHON:-../.venv/bin/python}"
   echo "host:     $(hostname)"
   echo "commit:   $(git -C "$repo" rev-parse --short HEAD 2>/dev/null || echo '?') ($(git -C "$repo" rev-parse --abbrev-ref HEAD 2>/dev/null || echo '?'))"
   git -C "$repo" diff --quiet HEAD 2>/dev/null || echo "AVISO:    árvore com alterações não commitadas"
-  echo "percents: $percents"
+  echo "scheme:   $scheme"
+  echo "levels:   $levels"
   echo "layout:   $layout"
   echo "external_front: $external_front"
   echo "variants: $variants"
@@ -94,27 +105,28 @@ export PYTHON="${PYTHON:-../.venv/bin/python}"
   echo
 } >> "$out/CAMPANHA.txt"
 
-for percent in $percents; do
+for level in $levels; do
   for variant in $variants; do
     if [[ "$variant" == run ]]; then per_run=1; else per_run=0; fi
 
     # a tag vem do próprio partition.py (mowflop.partition.current_tag), nunca
     # remontada aqui: é a única forma de as etapas do R olharem exatamente a
     # pasta em que o partition.py escreveu
-    tag=$(MOWFLOP_PERCENT="$percent" MOWFLOP_PER_RUN="$per_run" \
+    # o nível vai nas duas variáveis: o partition.py só lê a do esquema ativo
+    tag=$(MOWFLOP_PERCENT="$level" MOWFLOP_KAPPA="$level" MOWFLOP_PER_RUN="$per_run" \
           "$PYTHON" -c \
           "from mowflop.partition import current_tag; print(current_tag())")
-    log="$out/logs/entropy_${tag}.log"
+    log="$out/logs/${scheme}_${tag}.log"
     status_dir="$out/status/${tag}"
     mkdir -p "$status_dir"
 
     nohup bash -c '
       set -euo pipefail
-      percent="$1"; per_run="$2"; tag="$3"; layout="$4"; status_dir="$5"; out="$6"
-      export MOWFLOP_PERCENT="$percent" MOWFLOP_PER_RUN="$per_run"
+      level="$1"; per_run="$2"; tag="$3"; layout="$4"; status_dir="$5"; out="$6"
+      export MOWFLOP_PERCENT="$level" MOWFLOP_KAPPA="$level" MOWFLOP_PER_RUN="$per_run"
 
       if [[ ! -f "$status_dir/.done_partition" ]]; then
-        echo "[partition] tag=$tag percent=$percent per_run=$per_run external_front=$MOWFLOP_EXTERNAL_FRONT $(date -Is)"
+        echo "[partition] tag=$tag scheme=$MOWFLOP_SCHEME level=$level per_run=$per_run external_front=$MOWFLOP_EXTERNAL_FRONT $(date -Is)"
         "$PYTHON" -m mowflop.partition
         touch "$status_dir/.done_partition"
       else
@@ -171,8 +183,8 @@ for percent in $percents; do
       fi
 
       echo "[done] tag=$tag $(date -Is)"
-    ' _ "$percent" "$per_run" "$tag" "$layout" "$status_dir" "$out" &> "$log" &
-    echo "[batch] percent=$percent variant=$variant tag=$tag pid=$! log=$log"
+    ' _ "$level" "$per_run" "$tag" "$layout" "$status_dir" "$out" &> "$log" &
+    echo "[batch] scheme=$scheme level=$level variant=$variant tag=$tag pid=$! log=$log"
   done
 done
 
