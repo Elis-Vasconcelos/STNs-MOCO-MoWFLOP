@@ -1,0 +1,5 @@
+Mapas de vento usados para gerar sparse10_entropy / sparse10_grid (2026-09-24, bambu1).
+Os mapas das esparsas foram filtrados para run_id <= 9 (o wind.py percorre todas as
+runs do mapa, e sem o filtro faltavam pontos para cenarios que so existem nas runs 10-29).
+cec_wind_map.csv e sparse_wind_map.csv foram copiados sem mudanca.
+No container, esta pasta foi montada por cima de repo/raw_results/wind_corrected (so leitura).

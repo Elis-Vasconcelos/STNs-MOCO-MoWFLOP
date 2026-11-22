@@ -1,0 +1,7 @@
+2026-10-05T20:01:08-03:00 start stn_ext_entropy_sparse
+0247b278d8e7d4eac90e44a090329ae9ecb64136bb7a83ac8fbad69a4d1bfc0d
+2026-10-05T20:12:00-03:00 end stn_ext_entropy_sparse rc=0 oom=false png=3168 zero_png=0 done_plot=6/6
+2026-10-05T20:12:00-03:00 start stn_ext_grid_sparse
+0d28543fda907da3fe2766660abce2224539c097665967fee364d82cfaaff1f6
+2026-10-05T23:26:25-03:00 end stn_ext_grid_sparse rc=0 oom=false png=3168 zero_png=0 done_plot=6/6
+2026-10-05T23:26:25-03:00 queue done
