@@ -1,0 +1,98 @@
+2026-09-26T09:30:19-03:00 watcher started
+2026-09-26T09:30:30-03:00 resumed p50 run 22 (pid 999613, evals 175416) running=29 p10=29 cap=30
+2026-09-26T09:46:02-03:00 resumed p50 run 23 (pid 1004400, evals 188722) running=29 p10=28 cap=30
+2026-09-26T10:32:37-03:00 resumed p50 run 25 (pid 1008004, evals 195798) running=29 p10=27 cap=30
+2026-09-26T10:37:47-03:00 resumed p50 run 24 (pid 1007960, evals 205062) running=29 p10=26 cap=30
+2026-09-26T10:48:07-03:00 resumed p50 run 20 (pid 810552, evals 214200) running=29 p10=25 cap=30
+2026-09-26T11:24:45-03:00 watcher v2 started (allow: 0 2 4 5 6 12 13 14 15 16 18 19 )
+2026-09-26T11:24:51-03:00 resumed p50 run 6 (pid 786210, evals 527008) running=25 p10=25 cap=30
+2026-09-26T11:24:51-03:00 resumed p50 run 13 (pid 786571, evals 533344) running=26 p10=25 cap=30
+2026-09-26T11:24:51-03:00 resumed p50 run 0 (pid 785690, evals 536744) running=27 p10=25 cap=30
+2026-09-26T11:24:51-03:00 resumed p50 run 18 (pid 786726, evals 539568) running=28 p10=25 cap=30
+2026-09-26T11:24:51-03:00 resumed p50 run 16 (pid 786650, evals 541584) running=29 p10=25 cap=30
+2026-09-26T11:50:24-03:00 resumed p50 run 15 (pid 786609, evals 547454) running=29 p10=24 cap=30
+2026-09-26T12:05:42-03:00 resumed p50 run 19 (pid 786740, evals 554728) running=29 p10=23 cap=30
+2026-09-26T12:20:58-03:00 resumed p50 run 12 (pid 786550, evals 558240) running=29 p10=22 cap=30
+2026-09-26T13:32:11-03:00 resumed p50 run 14 (pid 786590, evals 558976) running=29 p10=21 cap=30
+2026-09-26T14:38:17-03:00 resumed p50 run 2 (pid 785831, evals 562286) running=29 p10=20 cap=30
+2026-09-26T17:25:55-03:00 resumed p50 run 4 (pid 786104, evals 568280) running=29 p10=19 cap=30
+2026-09-26T17:36:04-03:00 resumed p50 run 5 (pid 786169, evals 589090) running=29 p10=18 cap=30
+2026-09-26T17:41:09-03:00 nothing left to resume (running=30 p10=18), exiting
+##### p50_watcher.sh
+#!/usr/bin/env bash
+# Resumes the SIGSTOPped NSGA-II 513 p50 runs of the psweep container as the
+# p10 runs finish, so freed cores don't sit idle. Least-advanced run first
+# (longest remaining work). Cap: 30 running nsga2 while any p10 is alive
+# (leaves headroom so p10 stays fast), 32 after that (physical cores).
+# v2 (2026-09-26 11:40): each run_id has ONE designated server. bambu1 only
+# resumes ALLOW_RUNS (the 12 most advanced); runs 1,3,7-11,17,20-29 belong to
+# bambu3 (feeder ~/p50_b3_feeder.sh there) and stay paused here as a fallback.
+# Started 2026-09-26. Log: ~/p50_watcher.log. Stop: kill $(cat ~/p50_watcher.pid)
+PIDFILE=~/psweep_p50_paused_pids.txt
+LOG=~/p50_watcher.log
+ALLOW_RUNS=" 0 2 4 5 6 12 13 14 15 16 18 19 "
+HOST_SRC=~/STN_MoWFLOP/source_code   # container cwd /work/source_code == this
+echo $$ > ~/p50_watcher.pid
+log() { echo "$(date -Iseconds) $*" >> "$LOG"; }
+run_id_of() { tr '\0' ' ' < /proc/$1/cmdline | grep -oE 'p50_i50/[0-9]+' | cut -d/ -f2; }
+evals_of() {
+  local out
+  out=$(tr '\0' '\n' < /proc/$1/cmdline | sed -n 3p)   # ../raw_results/.../<run>/
+  tail -1 "$HOST_SRC/$out/infoRun.txt" 2>/dev/null | sed -E 's/.*Revalues: ([0-9]+).*/\1/'
+}
+log "watcher v2 started (allow:$ALLOW_RUNS)"
+while true; do
+  running=0; p10=0; candidates=()
+  for p in $(pgrep -u "$USER" -x nsga2); do
+    st=$(ps -o stat= -p "$p" | cut -c1)
+    if grep -q p10_i50 /proc/$p/cmdline 2>/dev/null; then p10=$((p10+1)); fi
+    if [[ "$st" != "T" ]]; then running=$((running+1)); continue; fi
+    grep -qx "$p" "$PIDFILE" || continue          # only touch the ones we paused
+    r=$(run_id_of "$p")
+    [[ "$ALLOW_RUNS" == *" $r "* ]] || continue
+    candidates+=("$(evals_of "$p") $p $r")
+  done
+  if [[ ${#candidates[@]} -eq 0 ]]; then
+    log "nothing left to resume (running=$running p10=$p10), exiting"
+    rm -f ~/p50_watcher.pid
+    exit 0
+  fi
+  cap=32; (( p10 > 0 )) && cap=30
+  free=$((cap - running))
+  if (( free > 0 )); then
+    while read -r ev p r; do
+      kill -CONT "$p" && log "resumed p50 run $r (pid $p, evals $ev) running=$running p10=$p10 cap=$cap"
+      running=$((running+1))
+    done < <(printf '%s\n' "${candidates[@]}" | sort -n | head -n "$free")
+  fi
+  sleep 300
+done
+##### psweep_p50_paused_pids.txt
+785690
+785778
+785831
+785956
+786104
+786169
+786210
+786346
+786391
+786456
+786465
+786521
+786550
+786571
+786590
+786609
+786650
+786704
+786726
+786740
+810552
+810913
+999613
+1004400
+1007960
+1008004
+1031114
+1031295

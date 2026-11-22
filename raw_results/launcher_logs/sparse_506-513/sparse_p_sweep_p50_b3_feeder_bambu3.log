@@ -1,0 +1,80 @@
+2026-09-26T11:19:43-03:00 feeder started
+2026-09-26T17:09:59-03:00 started run 22 (angle=150.000000000000 wind=21.000000000000) running=4
+2026-09-26T17:40:06-03:00 started run 25 (angle=60.000000000000 wind=7.000000000000) running=4
+2026-09-26T17:45:12-03:00 started run 23 (angle=30.000000000000 wind=3.000000000000) running=3
+2026-09-26T17:45:19-03:00 started run 24 (angle=270.000000000000 wind=17.000000000000) running=4
+2026-09-27T02:00:30-03:00 started run 20 (angle=0.000000000000 wind=9.000000000000) running=4
+2026-09-27T02:10:37-03:00 started run 21 (angle=240.000000000000 wind=11.000000000000) running=3
+2026-09-27T02:10:49-03:00 started run 11 (angle=0.000000000000 wind=13.000000000000) running=4
+2026-09-27T02:15:56-03:00 started run 1 (angle=330.000000000000 wind=5.000000000000) running=4
+2026-09-27T09:51:07-03:00 started run 17 (angle=60.000000000000 wind=9.000000000000) running=4
+2026-09-27T11:46:14-03:00 started run 9 (angle=0.000000000000 wind=9.000000000000) running=3
+2026-09-27T11:46:21-03:00 started run 7 (angle=30.000000000000 wind=11.000000000000) running=4
+2026-09-27T12:16:28-03:00 started run 8 (angle=120.000000000000 wind=19.000000000000) running=4
+2026-09-27T18:21:38-03:00 started run 3 (angle=30.000000000000 wind=3.000000000000) running=4
+2026-09-27T20:31:46-03:00 started run 10 (angle=180.000000000000 wind=5.000000000000) running=4
+2026-09-28T05:36:59-03:00 queue empty and nothing running, exiting
+##### p50_b3_feeder.sh
+#!/usr/bin/env bash
+# Keeps bambu3's 4 cores busy with NSGA-II 513_e-05 p50 runs, taken from a
+# priority queue (least advanced on bambu1 first). bambu3 runs NSGA-II ~10x
+# faster per run than bambu1, so a fresh run here beats finishing it there.
+# For each run_id, whichever server finishes first is the copy we keep.
+# Started 2026-09-26. Log: ~/p50_b3_feeder.log. Stop: kill $(cat ~/p50_b3_feeder.pid)
+#   ~/p50_b3_queue.txt  run_ids in priority order (edit freely; first line = next)
+#   ~/p50_b3_skip.txt   run_ids to never start here (e.g. already finished on bambu1)
+
+MAX=4                                   # per-user CPU quota on bambu3 = 4 cores
+QUEUE=~/p50_b3_queue.txt
+SKIP=~/p50_b3_skip.txt
+LOG=~/p50_b3_feeder.log
+COMBOS=~/STN_MoWFLOP/source_code/sparse_combos_all.txt
+RUNDIR=~/STN_MoWFLOP/raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p50_i50
+echo $$ > ~/p50_b3_feeder.pid
+touch "$SKIP"
+
+log() { echo "$(date -Iseconds) $*" >> "$LOG"; }
+
+log "feeder started"
+while true; do
+  running=$(pgrep -u "$USER" -x nsga2 | wc -l)
+  while (( running < MAX )); do
+    next=""
+    for r in $(cat "$QUEUE"); do
+      grep -qx "$r" "$SKIP" && continue
+      [[ -d "$RUNDIR/$r" ]] && continue          # already started or done here
+      next=$r; break
+    done
+    if [[ -z "$next" ]]; then
+      if (( running == 0 )); then log "queue empty and nothing running, exiting"; rm -f ~/p50_b3_feeder.pid; exit 0; fi
+      break
+    fi
+    line=$(grep -E "^513_e-05 nsga2 $next [^ ]+ [^ ]+ 50$" "$COMBOS")
+    if [[ -z "$line" ]]; then log "no combo line for run $next, skipping"; echo "$next" >> "$SKIP"; continue; fi
+    read -r inst algo run angle wind p <<< "$line"
+    podman run -d --name "p50_b3_r$run" -v ~/STN_MoWFLOP:/work -w /work/source_code \
+      localhost/sparse-campaign ./meta_heuristics/scripts/run_one_windcorrected.sh \
+      "$inst" "$algo" "$run" "$angle" "$wind" 1000000 "$p" 50 > /dev/null \
+      && log "started run $run (angle=$angle wind=$wind) running=$((running+1))" \
+      || log "FAILED to start run $run"
+    sleep 5
+    running=$(pgrep -u "$USER" -x nsga2 | wc -l)
+  done
+  sleep 300
+done
+##### p50_b3_queue.txt
+22
+25
+23
+24
+20
+21
+11
+1
+17
+9
+7
+8
+3
+10
+##### p50_b3_skip.txt
