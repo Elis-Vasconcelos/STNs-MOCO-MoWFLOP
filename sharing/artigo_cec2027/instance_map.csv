@@ -1,0 +1,15 @@
+paper_no,internal_name,source,source_id,tau,n_positions,zones,instance_location
+1,ns506,synthetic (this work; single-site sweep),506_e-02,5,60,1,repos/STN_MoWFLOP/wflop_instances/sparse_instances/single_site_sweep/506_e-02
+2,ns507,synthetic (this work; single-site sweep),507_e-03,5,600,1,repos/STN_MoWFLOP/wflop_instances/sparse_instances/single_site_sweep/507_e-03
+3,ns508,synthetic (this work; single-site sweep),508_e-04,5,6000,1,repos/STN_MoWFLOP/wflop_instances/sparse_instances/single_site_sweep/508_e-04
+4,ns509,synthetic (this work; single-site sweep),509_e-05,5,60000,1,repos/STN_MoWFLOP/wflop_instances/sparse_instances/single_site_sweep/509_e-05
+5,ns48,Silva et al. 2026 benchmark,48,21,4229,1,repos/wflopcec26/instances/sites/48
+6,ns178,Silva et al. 2026 benchmark,178,23,3963,1,repos/wflopcec26/instances/sites/178
+7,ns192,Silva et al. 2026 benchmark,192,31,4113,1,repos/wflopcec26/instances/sites/192
+8,ns488,Silva et al. 2026 benchmark,488,40,6610,1,repos/wflopcec26/instances/sites/488
+9,ns203,Silva et al. 2026 benchmark,203,41,6734,2,repos/wflopcec26/instances/sites/203
+10,ns202,Silva et al. 2026 benchmark,202,47,8797,1,repos/wflopcec26/instances/sites/202
+11,ns101,Silva et al. 2026 benchmark,101,63,4727,1,repos/wflopcec26/instances/sites/101
+12,ns465,Silva et al. 2026 benchmark,465,79,14709,1,repos/wflopcec26/instances/sites/465
+13,ns41,Silva et al. 2026 benchmark,41,123,13248,3,repos/wflopcec26/instances/sites/41
+14,ns440,Silva et al. 2026 benchmark,440,140,28050,2,repos/wflopcec26/instances/sites/440
