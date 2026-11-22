@@ -1,0 +1,11 @@
+== lançamento 2026-10-05T23:12:04+00:00
+host:     0d28543fda90
+commit:   d5b7af9d (sparse_ns506-513)
+AVISO:    árvore com alterações não commitadas
+scheme:   grid
+levels:   0.5 1.0 2.0
+layout:   both
+external_front: 1
+variants: agg run
+jobs:     2 por cadeia
+
