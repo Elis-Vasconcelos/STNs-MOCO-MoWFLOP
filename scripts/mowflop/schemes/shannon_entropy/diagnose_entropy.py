@@ -235,6 +235,8 @@ def diagnose(args) -> pd.DataFrame:
     summaries = []
     for instance, config in targets:
         df = io_raw.load_trajectories(instance, config, root=args.raw_root)
+        if args.max_run is not None:
+            df = df[df["run_id"] <= args.max_run]
         n = io_raw.n_positions(instance, root=args.raw_root)
         # S(T): as soluções únicas da trajetória, como o artigo pede
         solutions = [entropy_mod.from_index_list(text) for text in df["occupied"].unique()]
@@ -286,6 +288,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--all", action="store_true")
     parser.add_argument("--tie-break", choices=["index", "random"], default="random")
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--max-run", type=int, help="usa só as runs com run_id <= este valor (ex.: 9)")
     parser.add_argument("--raw-root")
     parser.add_argument("--out-root", default=str(io_raw.out_root()))
     parser.add_argument("--figs", action="store_true", help="also render the figure")
