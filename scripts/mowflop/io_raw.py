@@ -198,6 +198,39 @@ def load_trajectories(
     return df[STN_COLUMNS]
 
 
+def trajectory_objectives(
+    instance: str, root: str | os.PathLike | None = None
+) -> pd.DataFrame:
+    """``(f_cost, f_power)`` de todo registro logado da instância, em todas as configs.
+
+    É o que a régua de normalização de um cenário precisa além do arquivo
+    ``pareto`` (ver :class:`mowflop.wind.ScenarioData`): só os objetivos e a
+    chave ``(algoritmo, run)`` que leva ao cenário de vento, sem ``occupied``.
+
+    Args:
+        instance: nome da instância.
+        root: raiz da campanha; ver :func:`raw_root`.
+
+    Returns:
+        DataFrame com colunas ``algorithm`` (em minúsculo, como no log),
+        ``run_id``, ``f_cost`` e ``f_power``; vazio se não houver log da instância.
+    """
+    columns = ["algorithm", "run_id", "f_cost", "f_power"]
+    found = discover(root)
+    paths = found.loc[found["instance"] == instance, "path"] if not found.empty else []
+    frames = [
+        pd.read_csv(
+            path,
+            usecols=columns,
+            dtype={"algorithm": "string", "run_id": "int32", "f_cost": "float64", "f_power": "float64"},
+        )
+        for path in paths
+    ]
+    if not frames:
+        return pd.DataFrame(columns=columns)
+    return pd.concat(frames, ignore_index=True)[columns]
+
+
 def load_candidates(
     instance: str, root: str | os.PathLike | None = None
 ) -> pd.DataFrame:

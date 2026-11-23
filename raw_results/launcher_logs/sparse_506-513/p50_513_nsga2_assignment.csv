@@ -1,0 +1,31 @@
+run_id,designated_server,reason
+0,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+1,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+2,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+3,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+4,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+5,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+6,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+7,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+8,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+9,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+10,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+11,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+12,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+13,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+14,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+15,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+16,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+17,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+18,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+19,bambu1,most advanced on bambu1 (>=527k evals on 2026-09-26); resumed from SIGSTOP
+20,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+21,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+22,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+23,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+24,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+25,bambu3,fresh run via ~/p50_b3_feeder.sh (least advanced on bambu1)
+26,bambu3,fresh run in container p50_b3 (started 2026-09-26 11:52 UTC)
+27,bambu3,fresh run in container p50_b3 (started 2026-09-26 11:52 UTC)
+28,bambu3,fresh run in container p50_b3 (started 2026-09-26 11:52 UTC)
+29,bambu3,fresh run in container p50_b3 (started 2026-09-26 11:52 UTC)

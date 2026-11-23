@@ -1,0 +1,1202 @@
+[
+  {
+    "instance": "ns101",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns101_2_x70norm_p100i50_0_post.txt",
+        "rows": 100100
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns101_2_x70norm_p100i50_0_post.txt",
+        "rows": 91000
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns101_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 550,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns101_p100i50_0_locations.csv",
+    "locations": 15428,
+    "solutions": 30491,
+    "recordings": 191100,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4727,
+    "z": 77,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 231.24332320669004,
+    "entropy_max": 0.9999230107585975,
+    "positions_nonzero": 3994,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 30491
+  },
+  {
+    "instance": "ns101",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns101_2_x70norm_p10i50_0_post.txt",
+        "rows": 10050
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns101_2_x70norm_p10i50_0_post.txt",
+        "rows": 9110
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns101_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 550,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns101_p10i50_0_locations.csv",
+    "locations": 4359,
+    "solutions": 6321,
+    "recordings": 19160,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4727,
+    "z": 87,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 261.2263263077546,
+    "entropy_max": 0.999997815467289,
+    "positions_nonzero": 3540,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 6321
+  },
+  {
+    "instance": "ns101",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns101_2_x70norm_p50i50_0_post.txt",
+        "rows": 50300
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns101_2_x70norm_p50i50_0_post.txt",
+        "rows": 45550
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns101_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 550,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns101_p50i50_0_locations.csv",
+    "locations": 11936,
+    "solutions": 20195,
+    "recordings": 95850,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4727,
+    "z": 76,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 231.65480438774682,
+    "entropy_max": 0.9999285411350429,
+    "positions_nonzero": 3887,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 20195
+  },
+  {
+    "instance": "ns178",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns178_2_x70norm_p100i50_0_post.txt",
+        "rows": 100300
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns178_2_x70norm_p100i50_0_post.txt",
+        "rows": 91100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns178_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 248,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns178_p100i50_0_locations.csv",
+    "locations": 5168,
+    "solutions": 15466,
+    "recordings": 191400,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 3963,
+    "z": 26,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 77.48497698730051,
+    "entropy_max": 0.9997428538426874,
+    "positions_nonzero": 2548,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 15466
+  },
+  {
+    "instance": "ns178",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns178_2_x70norm_p10i50_0_post.txt",
+        "rows": 10040
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns178_2_x70norm_p10i50_0_post.txt",
+        "rows": 9100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns178_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 248,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns178_p10i50_0_locations.csv",
+    "locations": 2494,
+    "solutions": 4200,
+    "recordings": 19140,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 3963,
+    "z": 35,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 95.44584588603526,
+    "entropy_max": 0.999862432528815,
+    "positions_nonzero": 2389,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 4200
+  },
+  {
+    "instance": "ns178",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns178_2_x70norm_p50i50_0_post.txt",
+        "rows": 50150
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns178_2_x70norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns178_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 248,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns178_p50i50_0_locations.csv",
+    "locations": 4171,
+    "solutions": 10622,
+    "recordings": 95650,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 3963,
+    "z": 27,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 78.4598962611806,
+    "entropy_max": 0.9967746822770533,
+    "positions_nonzero": 2462,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 10622
+  },
+  {
+    "instance": "ns192",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns192_2_x70norm_p100i50_0_post.txt",
+        "rows": 100700
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns192_2_x70norm_p100i50_0_post.txt",
+        "rows": 91100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns192_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 188,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns192_p100i50_0_locations.csv",
+    "locations": 10722,
+    "solutions": 28416,
+    "recordings": 191800,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4113,
+    "z": 38,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 116.88240961251648,
+    "entropy_max": 0.9998301722423673,
+    "positions_nonzero": 3464,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 28416
+  },
+  {
+    "instance": "ns192",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns192_2_x70norm_p10i50_0_post.txt",
+        "rows": 10050
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns192_2_x70norm_p10i50_0_post.txt",
+        "rows": 9100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns192_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 188,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns192_p10i50_0_locations.csv",
+    "locations": 3866,
+    "solutions": 6140,
+    "recordings": 19150,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4113,
+    "z": 44,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 134.16554232616676,
+    "entropy_max": 0.999883585068182,
+    "positions_nonzero": 3307,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 6140
+  },
+  {
+    "instance": "ns192",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns192_2_x70norm_p50i50_0_post.txt",
+        "rows": 50200
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns192_2_x70norm_p50i50_0_post.txt",
+        "rows": 45600
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns192_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 188,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns192_p50i50_0_locations.csv",
+    "locations": 8211,
+    "solutions": 19543,
+    "recordings": 95800,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4113,
+    "z": 39,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 117.68210053218982,
+    "entropy_max": 0.9994714008377039,
+    "positions_nonzero": 3460,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 19543
+  },
+  {
+    "instance": "ns202",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns202_2_x70norm_p100i50_0_post.txt",
+        "rows": 100400
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns202_2_x70norm_p100i50_0_post.txt",
+        "rows": 91300
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns202_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 500,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns202_p100i50_0_locations.csv",
+    "locations": 15734,
+    "solutions": 33367,
+    "recordings": 191700,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 8797,
+    "z": 57,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 178.23610407861864,
+    "entropy_max": 0.9998241253218452,
+    "positions_nonzero": 5202,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 33367
+  },
+  {
+    "instance": "ns202",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns202_2_x70norm_p10i50_0_post.txt",
+        "rows": 10070
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns202_2_x70norm_p10i50_0_post.txt",
+        "rows": 9120
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns202_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 500,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns202_p10i50_0_locations.csv",
+    "locations": 4600,
+    "solutions": 7657,
+    "recordings": 19190,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 8797,
+    "z": 65,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 196.27333010714275,
+    "entropy_max": 0.9999979207143213,
+    "positions_nonzero": 4317,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 7657
+  },
+  {
+    "instance": "ns202",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns202_2_x70norm_p50i50_0_post.txt",
+        "rows": 50100
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns202_2_x70norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns202_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 500,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns202_p50i50_0_locations.csv",
+    "locations": 11499,
+    "solutions": 23502,
+    "recordings": 95600,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 8797,
+    "z": 57,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 177.828894633716,
+    "entropy_max": 0.9998212046214239,
+    "positions_nonzero": 4961,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 23502
+  },
+  {
+    "instance": "ns203",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns203_2_x70norm_p100i50_0_post.txt",
+        "rows": 100600
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns203_2_x70norm_p100i50_0_post.txt",
+        "rows": 91000
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns203_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 537,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns203_p100i50_0_locations.csv",
+    "locations": 10383,
+    "solutions": 23087,
+    "recordings": 191600,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 6734,
+    "z": 48,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 144.737890961191,
+    "entropy_max": 0.9999374405769617,
+    "positions_nonzero": 4302,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 23087
+  },
+  {
+    "instance": "ns203",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns203_2_x70norm_p10i50_0_post.txt",
+        "rows": 10040
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns203_2_x70norm_p10i50_0_post.txt",
+        "rows": 9100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns203_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 537,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns203_p10i50_0_locations.csv",
+    "locations": 3428,
+    "solutions": 5769,
+    "recordings": 19140,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 6734,
+    "z": 60,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 175.42537661244882,
+    "entropy_max": 0.9991925063354791,
+    "positions_nonzero": 3895,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 5769
+  },
+  {
+    "instance": "ns203",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns203_2_x70norm_p50i50_0_post.txt",
+        "rows": 50250
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns203_2_x70norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns203_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 537,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns203_p50i50_0_locations.csv",
+    "locations": 7783,
+    "solutions": 15921,
+    "recordings": 95750,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 6734,
+    "z": 49,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 148.15565372461808,
+    "entropy_max": 0.9998178357371931,
+    "positions_nonzero": 4210,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 15921
+  },
+  {
+    "instance": "ns41",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns41_2_x70norm_p100i50_0_post.txt",
+        "rows": 100200
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns41_2_x70norm_p100i50_0_post.txt",
+        "rows": 91200
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns41_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 570,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns41_p100i50_0_locations.csv",
+    "locations": 23782,
+    "solutions": 42370,
+    "recordings": 191400,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 13248,
+    "z": 135,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 416.78066349478576,
+    "entropy_max": 0.999986098716555,
+    "positions_nonzero": 9180,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 42370
+  },
+  {
+    "instance": "ns41",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns41_2_x70norm_p10i50_0_post.txt",
+        "rows": 10030
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns41_2_x70norm_p10i50_0_post.txt",
+        "rows": 9110
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns41_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 570,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns41_p10i50_0_locations.csv",
+    "locations": 5792,
+    "solutions": 8301,
+    "recordings": 19140,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 13248,
+    "z": 162,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 490.51714240195105,
+    "entropy_max": 0.9999997382879312,
+    "positions_nonzero": 5400,
+    "tie_size_at_z": 2,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 8301
+  },
+  {
+    "instance": "ns41",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns41_2_x70norm_p50i50_0_post.txt",
+        "rows": 50200
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns41_2_x70norm_p50i50_0_post.txt",
+        "rows": 45550
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns41_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 570,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns41_p50i50_0_locations.csv",
+    "locations": 16476,
+    "solutions": 26798,
+    "recordings": 95750,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 13248,
+    "z": 140,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 435.00397544358356,
+    "entropy_max": 0.9999993209737843,
+    "positions_nonzero": 8801,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 26798
+  },
+  {
+    "instance": "ns440",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns440_2_x70norm_p100i50_0_post.txt",
+        "rows": 100300
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns440_2_x70norm_p100i50_0_post.txt",
+        "rows": 91200
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns440_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 562,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns440_p100i50_0_locations.csv",
+    "locations": 21140,
+    "solutions": 49101,
+    "recordings": 191500,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 28050,
+    "z": 201,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 595.643649844836,
+    "entropy_max": 0.999997522310375,
+    "positions_nonzero": 15368,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 49101
+  },
+  {
+    "instance": "ns440",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns440_2_x70norm_p10i50_0_post.txt",
+        "rows": 10060
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns440_2_x70norm_p10i50_0_post.txt",
+        "rows": 9110
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns440_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 562,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns440_p10i50_0_locations.csv",
+    "locations": 6292,
+    "solutions": 10666,
+    "recordings": 19170,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 28050,
+    "z": 242,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 663.1312515681574,
+    "entropy_max": 0.9999974636941091,
+    "positions_nonzero": 11941,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 10666
+  },
+  {
+    "instance": "ns440",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns440_2_x70norm_p50i50_0_post.txt",
+        "rows": 50250
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns440_2_x70norm_p50i50_0_post.txt",
+        "rows": 45550
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns440_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 562,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns440_p50i50_0_locations.csv",
+    "locations": 15979,
+    "solutions": 33119,
+    "recordings": 95800,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 28050,
+    "z": 203,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 599.3987047136084,
+    "entropy_max": 0.999997552909514,
+    "positions_nonzero": 14712,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 33119
+  },
+  {
+    "instance": "ns465",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns465_2_x70norm_p100i50_0_post.txt",
+        "rows": 100800
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns465_2_x70norm_p100i50_0_post.txt",
+        "rows": 91200
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns465_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 485,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns465_p100i50_0_locations.csv",
+    "locations": 20965,
+    "solutions": 45633,
+    "recordings": 192000,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 14709,
+    "z": 104,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 318.6409177797724,
+    "entropy_max": 0.9999955767261082,
+    "positions_nonzero": 7889,
+    "tie_size_at_z": 2,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 45633
+  },
+  {
+    "instance": "ns465",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns465_2_x70norm_p10i50_0_post.txt",
+        "rows": 10040
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns465_2_x70norm_p10i50_0_post.txt",
+        "rows": 9110
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns465_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 485,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns465_p10i50_0_locations.csv",
+    "locations": 5638,
+    "solutions": 9261,
+    "recordings": 19150,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 14709,
+    "z": 121,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 349.95894288236957,
+    "entropy_max": 0.9999872073866845,
+    "positions_nonzero": 6369,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 9261
+  },
+  {
+    "instance": "ns465",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns465_2_x70norm_p50i50_0_post.txt",
+        "rows": 50150
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns465_2_x70norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns465_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 485,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns465_p50i50_0_locations.csv",
+    "locations": 15807,
+    "solutions": 30925,
+    "recordings": 95650,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 14709,
+    "z": 105,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 316.8735063993004,
+    "entropy_max": 0.9998452120804255,
+    "positions_nonzero": 7442,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 30925
+  },
+  {
+    "instance": "ns48",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns48_2_x70norm_p100i50_0_post.txt",
+        "rows": 100200
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns48_2_x70norm_p100i50_0_post.txt",
+        "rows": 91000
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns48_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 217,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns48_p100i50_0_locations.csv",
+    "locations": 5982,
+    "solutions": 13660,
+    "recordings": 191200,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4229,
+    "z": 33,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 94.00340295388683,
+    "entropy_max": 0.9987347912380741,
+    "positions_nonzero": 3768,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 13660
+  },
+  {
+    "instance": "ns48",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns48_2_x70norm_p10i50_0_post.txt",
+        "rows": 10050
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns48_2_x70norm_p10i50_0_post.txt",
+        "rows": 9100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns48_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 217,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns48_p10i50_0_locations.csv",
+    "locations": 2673,
+    "solutions": 4216,
+    "recordings": 19150,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4229,
+    "z": 43,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 110.38138390316111,
+    "entropy_max": 0.999740253695101,
+    "positions_nonzero": 3652,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 4216
+  },
+  {
+    "instance": "ns48",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns48_2_x70norm_p50i50_0_post.txt",
+        "rows": 50350
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns48_2_x70norm_p50i50_0_post.txt",
+        "rows": 45600
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns48_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 217,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns48_p50i50_0_locations.csv",
+    "locations": 5011,
+    "solutions": 10255,
+    "recordings": 95950,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 4229,
+    "z": 32,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 94.29075406815359,
+    "entropy_max": 0.9995326942507915,
+    "positions_nonzero": 3752,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 10255
+  },
+  {
+    "instance": "ns488",
+    "config": "p100_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns488_2_x70norm_p100i50_0_post.txt",
+        "rows": 100600
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns488_2_x70norm_p100i50_0_post.txt",
+        "rows": 91100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns488_2_x70norm_p100i50_0_ref.txt",
+    "front_size": 251,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns488_p100i50_0_locations.csv",
+    "locations": 10908,
+    "solutions": 24359,
+    "recordings": 191700,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 6610,
+    "z": 47,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 145.05357970304811,
+    "entropy_max": 0.9999965851021722,
+    "positions_nonzero": 3983,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 24359
+  },
+  {
+    "instance": "ns488",
+    "config": "p10_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns488_2_x70norm_p10i50_0_post.txt",
+        "rows": 10040
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns488_2_x70norm_p10i50_0_post.txt",
+        "rows": 9120
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns488_2_x70norm_p10i50_0_ref.txt",
+    "front_size": 251,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns488_p10i50_0_locations.csv",
+    "locations": 3257,
+    "solutions": 5703,
+    "recordings": 19160,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 6610,
+    "z": 57,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 170.9840887778167,
+    "entropy_max": 0.9998881938438605,
+    "positions_nonzero": 3531,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 5703
+  },
+  {
+    "instance": "ns488",
+    "config": "p50_i50",
+    "tag": "x70norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/MOEAD/MOEAD_mowflop_ns488_2_x70norm_p50i50_0_post.txt",
+        "rows": 50300
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/data/mowflop_x70norm/NSGA2/NSGA2_mowflop_ns488_2_x70norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/pf/mowflop/mowflop_ns488_2_x70norm_p50i50_0_ref.txt",
+    "front_size": 251,
+    "locations_table": "/repo/campanhas/full_ext_entropy_orig_2026-10-05/locations/mowflop_x70norm/ns488_p50i50_0_locations.csv",
+    "locations": 7262,
+    "solutions": 16037,
+    "recordings": 95800,
+    "decimals": 6,
+    "scheme": "entropy",
+    "n": 6610,
+    "z": 48,
+    "percent": 70.0,
+    "tie_break": "random",
+    "seed": 0,
+    "entropy_total": 147.70344529924571,
+    "entropy_max": 0.9998751249353187,
+    "positions_nonzero": 3887,
+    "tie_size_at_z": 1,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 16037
+  }
+]

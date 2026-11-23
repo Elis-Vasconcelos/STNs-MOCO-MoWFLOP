@@ -1,0 +1,303 @@
+##### container p50_b3
+[start] instance=513_e-05 algo=nsga2 run_id=27 angle=30.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-26T11:52:33+00:00
+[start] instance=513_e-05 algo=nsga2 run_id=26 angle=60.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-26T11:52:33+00:00
+[start] instance=513_e-05 algo=nsga2 run_id=29 angle=60.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-26T11:52:33+00:00
+9
+[start] instance=513_e-05 algo=nsga2 run_id=28 angle=90.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-26T11:52:33+00:00
+9
+9
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 5.000000000000
+
+Angle: 30.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of subproblems: 100
+Number of fixed turbines: 58
+Number of neighbors: 10
+Number of mobile turbines: 15
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 11.000000000000
+Wind: 7.000000000000
+Angle: 60.000000000000
+Run id: 29
+Stop criteria: 1000000
+Angle: 60.000000000000
+STN P (num vectors): 50
+Run id: 26
+STN logger interval: 50
+Stop criteria: 1000000
+
+STN P (num vectors): 50
+Run time:
+STN logger interval: 50
+
+Run time:
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 9.000000000000
+Angle: 90.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=26 2026-09-26T20:05:46+00:00
+[done]  instance=513_e-05 algo=nsga2 run_id=29 2026-09-26T20:35:31+00:00
+[done]  instance=513_e-05 algo=nsga2 run_id=27 2026-09-26T20:40:14+00:00
+[done]  instance=513_e-05 algo=nsga2 run_id=28 2026-09-26T20:41:49+00:00
+##### container p50_b3_r1
+[start] instance=513_e-05 algo=nsga2 run_id=1 angle=330.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T05:15:55+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 5.000000000000
+Angle: 330.000000000000
+Run id: 1
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=1 2026-09-27T15:16:08+00:00
+##### container p50_b3_r3
+[start] instance=513_e-05 algo=nsga2 run_id=3 angle=30.000000000000 wind=3.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T21:21:38+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 3.000000000000
+Angle: 30.000000000000
+Run id: 3
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=3 2026-09-28T06:12:13+00:00
+##### container p50_b3_r7
+[start] instance=513_e-05 algo=nsga2 run_id=7 angle=30.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T14:46:21+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 11.000000000000
+Angle: 30.000000000000
+Run id: 7
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=7 2026-09-27T23:37:18+00:00
+##### container p50_b3_r8
+[start] instance=513_e-05 algo=nsga2 run_id=8 angle=120.000000000000 wind=19.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T15:16:28+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 19.000000000000
+Angle: 120.000000000000
+Run id: 8
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=8 2026-09-27T23:27:56+00:00
+##### container p50_b3_r9
+[start] instance=513_e-05 algo=nsga2 run_id=9 angle=0.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T14:46:14+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 9.000000000000
+Angle: 0.000000000000
+Run id: 9
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=9 2026-09-27T23:51:17+00:00
+##### container p50_b3_r10
+[start] instance=513_e-05 algo=nsga2 run_id=10 angle=180.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T23:31:46+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 5.000000000000
+Angle: 180.000000000000
+Run id: 10
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=10 2026-09-28T08:36:56+00:00
+##### container p50_b3_r11
+[start] instance=513_e-05 algo=nsga2 run_id=11 angle=0.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T05:10:48+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 13.000000000000
+Angle: 0.000000000000
+Run id: 11
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=11 2026-09-27T14:43:20+00:00
+##### container p50_b3_r17
+[start] instance=513_e-05 algo=nsga2 run_id=17 angle=60.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T12:51:07+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 9.000000000000
+Angle: 60.000000000000
+Run id: 17
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=17 2026-09-27T21:20:03+00:00
+##### container p50_b3_r20
+[start] instance=513_e-05 algo=nsga2 run_id=20 angle=0.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T05:00:30+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 9.000000000000
+Angle: 0.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=20 2026-09-27T14:45:17+00:00
+##### container p50_b3_r21
+[start] instance=513_e-05 algo=nsga2 run_id=21 angle=240.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-27T05:10:37+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 11.000000000000
+Angle: 240.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=21 2026-09-27T12:48:31+00:00
+##### container p50_b3_r22
+[start] instance=513_e-05 algo=nsga2 run_id=22 angle=150.000000000000 wind=21.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-26T20:09:58+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 21.000000000000
+Angle: 150.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=22 2026-09-27T05:06:05+00:00
+##### container p50_b3_r23
+[start] instance=513_e-05 algo=nsga2 run_id=23 angle=30.000000000000 wind=3.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-26T20:45:12+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 3.000000000000
+Angle: 30.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=23 2026-09-27T05:12:10+00:00
+##### container p50_b3_r24
+[start] instance=513_e-05 algo=nsga2 run_id=24 angle=270.000000000000 wind=17.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-26T20:45:19+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 17.000000000000
+Angle: 270.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=24 2026-09-27T05:07:45+00:00
+##### container p50_b3_r25
+[start] instance=513_e-05 algo=nsga2 run_id=25 angle=60.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=50 stn_interval=50 2026-09-26T20:40:06+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 15
+Wind: 7.000000000000
+Angle: 60.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 50
+STN logger interval: 50
+
+Run time:
+[done]  instance=513_e-05 algo=nsga2 run_id=25 2026-09-27T04:59:23+00:00

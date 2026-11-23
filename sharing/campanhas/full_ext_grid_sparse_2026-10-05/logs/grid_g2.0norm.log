@@ -1,0 +1,1062 @@
+[partition] tag=g2.0norm scheme=grid level=2.0 per_run=0 external_front=1 2026-10-05T23:12:06+00:00
+lendo logs de: /work/raw10_sparse
+salvando em:   /repo/campanhas/full_ext_grid_sparse_2026-10-05
+ns506/p100_i50/0 [grid] 192000 recordings, 397 solutions -> 15 locations, front=3
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p100i50_0_post.txt (101000 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p100i50_0_post.txt (91000 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns506_2_g2.0norm_p100i50_0_ref.txt (frente de referência, 3 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns506_p100i50_0_locations.csv (tabela de localizações)
+ns506/p10_i50/0 [grid] 19100 recordings, 416 solutions -> 16 locations, front=3
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p10i50_0_post.txt (10000 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p10i50_0_post.txt (9100 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns506_2_g2.0norm_p10i50_0_ref.txt (frente de referência, 3 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns506_p10i50_0_locations.csv (tabela de localizações)
+ns506/p50_i50/0 [grid] 95850 recordings, 442 solutions -> 15 locations, front=3
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p50i50_0_post.txt (50300 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p50i50_0_post.txt (45550 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns506_2_g2.0norm_p50i50_0_ref.txt (frente de referência, 3 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns506_p50i50_0_locations.csv (tabela de localizações)
+ns507/p100_i50/0 [grid] 191900 recordings, 888 solutions -> 25 locations, front=8
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p100i50_0_post.txt (100800 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p100i50_0_post.txt (91100 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns507_2_g2.0norm_p100i50_0_ref.txt (frente de referência, 8 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns507_p100i50_0_locations.csv (tabela de localizações)
+ns507/p10_i50/0 [grid] 19130 recordings, 780 solutions -> 25 locations, front=8
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p10i50_0_post.txt (10020 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p10i50_0_post.txt (9110 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns507_2_g2.0norm_p10i50_0_ref.txt (frente de referência, 8 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns507_p10i50_0_locations.csv (tabela de localizações)
+ns507/p50_i50/0 [grid] 95900 recordings, 906 solutions -> 28 locations, front=8
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p50i50_0_post.txt (50400 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p50i50_0_post.txt (45500 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns507_2_g2.0norm_p50i50_0_ref.txt (frente de referência, 8 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns507_p50i50_0_locations.csv (tabela de localizações)
+ns508/p100_i50/0 [grid] 191500 recordings, 1892 solutions -> 36 locations, front=30
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p100i50_0_post.txt (100500 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p100i50_0_post.txt (91000 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns508_2_g2.0norm_p100i50_0_ref.txt (frente de referência, 30 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns508_p100i50_0_locations.csv (tabela de localizações)
+ns508/p10_i50/0 [grid] 19120 recordings, 1341 solutions -> 38 locations, front=30
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p10i50_0_post.txt (10020 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p10i50_0_post.txt (9100 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns508_2_g2.0norm_p10i50_0_ref.txt (frente de referência, 30 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns508_p10i50_0_locations.csv (tabela de localizações)
+ns508/p50_i50/0 [grid] 95800 recordings, 1751 solutions -> 35 locations, front=30
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p50i50_0_post.txt (50250 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p50i50_0_post.txt (45550 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns508_2_g2.0norm_p50i50_0_ref.txt (frente de referência, 30 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns508_p50i50_0_locations.csv (tabela de localizações)
+ns509/p100_i50/0 [grid] 191500 recordings, 3467 solutions -> 31 locations, front=19
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p100i50_0_post.txt (100400 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p100i50_0_post.txt (91100 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns509_2_g2.0norm_p100i50_0_ref.txt (frente de referência, 19 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns509_p100i50_0_locations.csv (tabela de localizações)
+ns509/p10_i50/0 [grid] 19160 recordings, 2213 solutions -> 29 locations, front=19
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p10i50_0_post.txt (10030 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p10i50_0_post.txt (9130 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns509_2_g2.0norm_p10i50_0_ref.txt (frente de referência, 19 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns509_p10i50_0_locations.csv (tabela de localizações)
+ns509/p50_i50/0 [grid] 95800 recordings, 3375 solutions -> 29 locations, front=19
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p50i50_0_post.txt (50250 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p50i50_0_post.txt (45550 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns509_2_g2.0norm_p50i50_0_ref.txt (frente de referência, 19 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns509_p50i50_0_locations.csv (tabela de localizações)
+ns510/p100_i50/0 [grid] 191700 recordings, 3271 solutions -> 952 locations, front=56
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p100i50_0_post.txt (100600 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p100i50_0_post.txt (91100 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns510_2_g2.0norm_p100i50_0_ref.txt (frente de referência, 56 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns510_p100i50_0_locations.csv (tabela de localizações)
+ns510/p10_i50/0 [grid] 19150 recordings, 1599 solutions -> 899 locations, front=56
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p10i50_0_post.txt (10040 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p10i50_0_post.txt (9110 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns510_2_g2.0norm_p10i50_0_ref.txt (frente de referência, 56 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns510_p10i50_0_locations.csv (tabela de localizações)
+ns510/p50_i50/0 [grid] 95850 recordings, 2640 solutions -> 917 locations, front=56
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p50i50_0_post.txt (50300 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p50i50_0_post.txt (45550 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns510_2_g2.0norm_p50i50_0_ref.txt (frente de referência, 56 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns510_p50i50_0_locations.csv (tabela de localizações)
+ns511/p100_i50/0 [grid] 191600 recordings, 8338 solutions -> 1018 locations, front=176
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p100i50_0_post.txt (100600 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p100i50_0_post.txt (91000 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns511_2_g2.0norm_p100i50_0_ref.txt (frente de referência, 176 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns511_p100i50_0_locations.csv (tabela de localizações)
+ns511/p10_i50/0 [grid] 19210 recordings, 2813 solutions -> 957 locations, front=176
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p10i50_0_post.txt (10070 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p10i50_0_post.txt (9140 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns511_2_g2.0norm_p10i50_0_ref.txt (frente de referência, 176 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns511_p10i50_0_locations.csv (tabela de localizações)
+ns511/p50_i50/0 [grid] 95900 recordings, 6237 solutions -> 964 locations, front=176
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p50i50_0_post.txt (50350 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p50i50_0_post.txt (45550 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns511_2_g2.0norm_p50i50_0_ref.txt (frente de referência, 176 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns511_p50i50_0_locations.csv (tabela de localizações)
+ns512/p100_i50/0 [grid] 191400 recordings, 14792 solutions -> 928 locations, front=100
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p100i50_0_post.txt (100200 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p100i50_0_post.txt (91200 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns512_2_g2.0norm_p100i50_0_ref.txt (frente de referência, 100 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns512_p100i50_0_locations.csv (tabela de localizações)
+ns512/p10_i50/0 [grid] 19180 recordings, 4572 solutions -> 854 locations, front=100
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p10i50_0_post.txt (10050 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p10i50_0_post.txt (9130 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns512_2_g2.0norm_p10i50_0_ref.txt (frente de referência, 100 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns512_p10i50_0_locations.csv (tabela de localizações)
+ns512/p50_i50/0 [grid] 95800 recordings, 11567 solutions -> 931 locations, front=100
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p50i50_0_post.txt (50300 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p50i50_0_post.txt (45500 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns512_2_g2.0norm_p50i50_0_ref.txt (frente de referência, 100 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns512_p50i50_0_locations.csv (tabela de localizações)
+ns513/p100_i50/0 [grid] 191800 recordings, 14075 solutions -> 1031 locations, front=63
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p100i50_0_post.txt (100700 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p100i50_0_post.txt (91100 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns513_2_g2.0norm_p100i50_0_ref.txt (frente de referência, 63 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns513_p100i50_0_locations.csv (tabela de localizações)
+ns513/p10_i50/0 [grid] 19160 recordings, 4681 solutions -> 952 locations, front=63
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p10i50_0_post.txt (10050 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p10i50_0_post.txt (9110 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns513_2_g2.0norm_p10i50_0_ref.txt (frente de referência, 63 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns513_p10i50_0_locations.csv (tabela de localizações)
+ns513/p50_i50/0 [grid] 95700 recordings, 11184 solutions -> 998 locations, front=63
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p50i50_0_post.txt (50150 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p50i50_0_post.txt (45550 linhas)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/pf/mowflop/mowflop_ns513_2_g2.0norm_p50i50_0_ref.txt (frente de referência, 63 pontos)
+  -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/locations/mowflop_g2.0norm/ns513_p50i50_0_locations.csv (tabela de localizações)
+resumo -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/reports/partition_summary_g2.0norm.json
+[create] tag=g2.0norm 2026-10-06T01:01:05+00:00
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+
+Attaching package: ‘tidyr’
+
+The following object is masked from ‘package:igraph’:
+
+    crossing
+
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:igraph’:
+
+    as_data_frame, groups, union
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns506_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns506_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns506_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns506_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns507_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1 2
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns507_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1 2
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns507_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1 2
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns507_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns508_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns508_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns508_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns508_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns509_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns509_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+integer(0)
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns509_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+integer(0)
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns509_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns510_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  3  4 11 19 28 35 42
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns510_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  3  4 13
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns510_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  2  4 10 21 37 42
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns510_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns511_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  2  8 16 26 30 43
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns511_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1 2 3
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns511_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  2  6 18
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns511_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns512_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+integer(0)
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns512_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns512_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns512_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns513_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1 40
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns513_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+integer(0)
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns513_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns513_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns506_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns506_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns506_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns506_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns507_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1 2
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns507_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1 2
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns507_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1 2
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns507_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns508_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns508_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns508_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns508_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns509_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns509_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+integer(0)
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns509_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+integer(0)
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns509_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns510_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  3  4 10 17 26 32 38 86
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns510_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  3  4 23
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns510_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  2  4  9 18 32 38
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns510_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns511_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  2  9 18 30 34 49
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns511_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1 2 3
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns511_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1  2  6 16
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns511_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns512_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+integer(0)
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns512_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1 26
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns512_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns512_2_g2.0norm_p50i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns513_2_g2.0norm_p100i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p100i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1]  1 37 52
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p100i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns513_2_g2.0norm_p10i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p10i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+integer(0)
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p10i50_0_post.RData"
+[1] "Pareto: "
+[1] "pf/mowflop/mowflop_ns513_2_g2.0norm_p50i50_0_ref.txt"
+[1] "Trajectory: "
+[1] "data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p50i50_0_post.txt"
+`summarise()` has grouped output by 'f1', 'f2', 'Solution1'. You can override
+using the `.groups` argument.
+[1] "Pareto Nodes:"
+[1] 1
+`summarise()` has grouped output by 'Solution1', 'Solution2'. You can override
+using the `.groups` argument.
+[1] "stns/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns513_2_g2.0norm_p50i50_0_post.RData"
+lines rewritten: [20, 21, 22]
+  -infolder <- "data/mowflop_x80/"      # Base folder with data 
+  -parfolder <- "pf/mowflop/"          # Folder with Pareto front objective values
+  -outfolder <- "stns/mowflop_x80/"  # Base folder to save STNs
+  +infolder <- "data/mowflop_g2.0norm/"
+  +parfolder <- "pf/mowflop/"
+  +outfolder <- "stns/mowflop_g2.0norm/"
+[metrics] tag=g2.0norm 2026-10-06T01:01:25+00:00
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+[1] "MOEAD_mowflop_ns506_2_g2.0norm_p100i50_0_post.RData"
+[1] "MOEAD_mowflop_ns506_2_g2.0norm_p10i50_0_post.RData"
+[1] "MOEAD_mowflop_ns506_2_g2.0norm_p50i50_0_post.RData"
+[1] "MOEAD_mowflop_ns507_2_g2.0norm_p100i50_0_post.RData"
+[1] "MOEAD_mowflop_ns507_2_g2.0norm_p10i50_0_post.RData"
+[1] "MOEAD_mowflop_ns507_2_g2.0norm_p50i50_0_post.RData"
+[1] "MOEAD_mowflop_ns508_2_g2.0norm_p100i50_0_post.RData"
+[1] "MOEAD_mowflop_ns508_2_g2.0norm_p10i50_0_post.RData"
+[1] "MOEAD_mowflop_ns508_2_g2.0norm_p50i50_0_post.RData"
+[1] "MOEAD_mowflop_ns509_2_g2.0norm_p100i50_0_post.RData"
+[1] "MOEAD_mowflop_ns509_2_g2.0norm_p10i50_0_post.RData"
+[1] "MOEAD_mowflop_ns509_2_g2.0norm_p50i50_0_post.RData"
+[1] "MOEAD_mowflop_ns510_2_g2.0norm_p100i50_0_post.RData"
+[1] "MOEAD_mowflop_ns510_2_g2.0norm_p10i50_0_post.RData"
+[1] "MOEAD_mowflop_ns510_2_g2.0norm_p50i50_0_post.RData"
+[1] "MOEAD_mowflop_ns511_2_g2.0norm_p100i50_0_post.RData"
+[1] "MOEAD_mowflop_ns511_2_g2.0norm_p10i50_0_post.RData"
+[1] "MOEAD_mowflop_ns511_2_g2.0norm_p50i50_0_post.RData"
+[1] "MOEAD_mowflop_ns512_2_g2.0norm_p100i50_0_post.RData"
+[1] "MOEAD_mowflop_ns512_2_g2.0norm_p10i50_0_post.RData"
+[1] "MOEAD_mowflop_ns512_2_g2.0norm_p50i50_0_post.RData"
+[1] "MOEAD_mowflop_ns513_2_g2.0norm_p100i50_0_post.RData"
+[1] "MOEAD_mowflop_ns513_2_g2.0norm_p10i50_0_post.RData"
+[1] "MOEAD_mowflop_ns513_2_g2.0norm_p50i50_0_post.RData"
+lines rewritten: [15, 16]
+  -iset <- "mowflop_x80"  # Indicate instance set to use (folder under stns/)
+  -algo <- "MOEAD"         # Indicate algorithm
+  +iset <- "mowflop_g2.0norm"
+  +algo <- "MOEAD"
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+[1] "NSGA2_mowflop_ns506_2_g2.0norm_p100i50_0_post.RData"
+[1] "NSGA2_mowflop_ns506_2_g2.0norm_p10i50_0_post.RData"
+[1] "NSGA2_mowflop_ns506_2_g2.0norm_p50i50_0_post.RData"
+[1] "NSGA2_mowflop_ns507_2_g2.0norm_p100i50_0_post.RData"
+[1] "NSGA2_mowflop_ns507_2_g2.0norm_p10i50_0_post.RData"
+[1] "NSGA2_mowflop_ns507_2_g2.0norm_p50i50_0_post.RData"
+[1] "NSGA2_mowflop_ns508_2_g2.0norm_p100i50_0_post.RData"
+[1] "NSGA2_mowflop_ns508_2_g2.0norm_p10i50_0_post.RData"
+[1] "NSGA2_mowflop_ns508_2_g2.0norm_p50i50_0_post.RData"
+[1] "NSGA2_mowflop_ns509_2_g2.0norm_p100i50_0_post.RData"
+[1] "NSGA2_mowflop_ns509_2_g2.0norm_p10i50_0_post.RData"
+[1] "NSGA2_mowflop_ns509_2_g2.0norm_p50i50_0_post.RData"
+[1] "NSGA2_mowflop_ns510_2_g2.0norm_p100i50_0_post.RData"
+[1] "NSGA2_mowflop_ns510_2_g2.0norm_p10i50_0_post.RData"
+[1] "NSGA2_mowflop_ns510_2_g2.0norm_p50i50_0_post.RData"
+[1] "NSGA2_mowflop_ns511_2_g2.0norm_p100i50_0_post.RData"
+[1] "NSGA2_mowflop_ns511_2_g2.0norm_p10i50_0_post.RData"
+[1] "NSGA2_mowflop_ns511_2_g2.0norm_p50i50_0_post.RData"
+[1] "NSGA2_mowflop_ns512_2_g2.0norm_p100i50_0_post.RData"
+[1] "NSGA2_mowflop_ns512_2_g2.0norm_p10i50_0_post.RData"
+[1] "NSGA2_mowflop_ns512_2_g2.0norm_p50i50_0_post.RData"
+[1] "NSGA2_mowflop_ns513_2_g2.0norm_p100i50_0_post.RData"
+[1] "NSGA2_mowflop_ns513_2_g2.0norm_p10i50_0_post.RData"
+[1] "NSGA2_mowflop_ns513_2_g2.0norm_p50i50_0_post.RData"
+lines rewritten: [15, 16]
+  -iset <- "mowflop_x80"  # Indicate instance set to use (folder under stns/)
+  -algo <- "MOEAD"         # Indicate algorithm
+  +iset <- "mowflop_g2.0norm"
+  +algo <- "NSGA2"
+[1] "mowflop_ns506_2_g2.0norm_p100i50_0_post.RData"
+[1] "mowflop_ns506_2_g2.0norm_p10i50_0_post.RData"
+[1] "mowflop_ns506_2_g2.0norm_p50i50_0_post.RData"
+[1] "mowflop_ns507_2_g2.0norm_p100i50_0_post.RData"
+[1] "mowflop_ns507_2_g2.0norm_p10i50_0_post.RData"
+[1] "mowflop_ns507_2_g2.0norm_p50i50_0_post.RData"
+[1] "mowflop_ns508_2_g2.0norm_p100i50_0_post.RData"
+[1] "mowflop_ns508_2_g2.0norm_p10i50_0_post.RData"
+[1] "mowflop_ns508_2_g2.0norm_p50i50_0_post.RData"
+[1] "mowflop_ns509_2_g2.0norm_p100i50_0_post.RData"
+[1] "mowflop_ns509_2_g2.0norm_p10i50_0_post.RData"
+[1] "mowflop_ns509_2_g2.0norm_p50i50_0_post.RData"
+[1] "mowflop_ns510_2_g2.0norm_p100i50_0_post.RData"
+[1] "mowflop_ns510_2_g2.0norm_p10i50_0_post.RData"
+[1] "mowflop_ns510_2_g2.0norm_p50i50_0_post.RData"
+[1] "mowflop_ns511_2_g2.0norm_p100i50_0_post.RData"
+[1] "mowflop_ns511_2_g2.0norm_p10i50_0_post.RData"
+[1] "mowflop_ns511_2_g2.0norm_p50i50_0_post.RData"
+[1] "mowflop_ns512_2_g2.0norm_p100i50_0_post.RData"
+[1] "mowflop_ns512_2_g2.0norm_p10i50_0_post.RData"
+[1] "mowflop_ns512_2_g2.0norm_p50i50_0_post.RData"
+[1] "mowflop_ns513_2_g2.0norm_p100i50_0_post.RData"
+[1] "mowflop_ns513_2_g2.0norm_p10i50_0_post.RData"
+[1] "mowflop_ns513_2_g2.0norm_p50i50_0_post.RData"
+lines rewritten: [20]
+  -iset <- "mowflop_x80"  # Indicate instance set to use (folder under stns/)
+  +iset <- "mowflop_g2.0norm"
+[partition_metrics] tag=g2.0norm 2026-10-06T01:01:39+00:00
+ns506/p100_i50/0 MOEAD: nodes=15 R=0.9619 D=1.1562 step_len=0.2831
+ns506/p100_i50/0 NSGA2: nodes=3 R=0.6667 D=1.1109 step_len=0.1500
+ns506/p10_i50/0 MOEAD: nodes=14 R=0.9646 D=1.1972 step_len=0.2754
+ns506/p10_i50/0 NSGA2: nodes=10 R=0.6000 D=0.9796 step_len=0.3273
+ns506/p50_i50/0 MOEAD: nodes=14 R=0.9667 D=1.4074 step_len=0.3046
+ns506/p50_i50/0 NSGA2: nodes=8 R=0.7037 D=1.0538 step_len=0.3556
+ns507/p100_i50/0 MOEAD: nodes=24 R=0.9699 D=1.2652 step_len=0.3243
+ns507/p100_i50/0 NSGA2: nodes=11 R=0.9179 D=1.0653 step_len=0.3071
+ns507/p10_i50/0 MOEAD: nodes=25 R=0.9655 D=1.1823 step_len=0.3274
+ns507/p10_i50/0 NSGA2: nodes=12 R=0.8333 D=0.7991 step_len=0.2800
+ns507/p50_i50/0 MOEAD: nodes=27 R=0.9674 D=1.2190 step_len=0.3633
+ns507/p50_i50/0 NSGA2: nodes=15 R=0.8598 D=1.0170 step_len=0.3040
+ns508/p100_i50/0 MOEAD: nodes=35 R=0.9732 D=1.2549 step_len=0.3491
+ns508/p100_i50/0 NSGA2: nodes=21 R=0.9692 D=0.9945 step_len=0.3161
+ns508/p10_i50/0 MOEAD: nodes=37 R=0.9631 D=1.1299 step_len=0.3431
+ns508/p10_i50/0 NSGA2: nodes=13 R=0.9669 D=1.0381 step_len=0.3500
+ns508/p50_i50/0 MOEAD: nodes=34 R=0.9712 D=1.2245 step_len=0.3635
+ns508/p50_i50/0 NSGA2: nodes=14 R=0.9785 D=0.9953 step_len=0.3357
+ns509/p100_i50/0 MOEAD: nodes=30 R=0.9841 D=1.2249 step_len=0.3650
+ns509/p100_i50/0 NSGA2: nodes=13 R=0.9918 D=0.9992 step_len=0.3103
+ns509/p10_i50/0 MOEAD: nodes=28 R=0.9793 D=1.2004 step_len=0.3788
+ns509/p10_i50/0 NSGA2: nodes=14 R=0.9837 D=1.2153 step_len=0.2636
+ns509/p50_i50/0 MOEAD: nodes=28 R=0.9852 D=1.1845 step_len=0.3444
+ns509/p50_i50/0 NSGA2: nodes=14 R=0.9906 D=0.9885 step_len=0.3379
+ns510/p100_i50/0 MOEAD: nodes=850 R=0.5437 D=0.4397 step_len=0.2193
+ns510/p100_i50/0 NSGA2: nodes=151 R=0.9014 D=0.4998 step_len=0.1317
+ns510/p10_i50/0 MOEAD: nodes=807 R=0.2717 D=0.3584 step_len=0.2324
+ns510/p10_i50/0 NSGA2: nodes=115 R=0.7858 D=0.3705 step_len=0.1280
+ns510/p50_i50/0 MOEAD: nodes=818 R=0.4521 D=0.4253 step_len=0.2163
+ns510/p50_i50/0 NSGA2: nodes=146 R=0.8805 D=0.4398 step_len=0.1364
+ns511/p100_i50/0 MOEAD: nodes=904 R=0.7799 D=0.4883 step_len=0.2004
+ns511/p100_i50/0 NSGA2: nodes=174 R=0.9595 D=0.5203 step_len=0.1309
+ns511/p10_i50/0 MOEAD: nodes=851 R=0.4520 D=0.3333 step_len=0.2241
+ns511/p10_i50/0 NSGA2: nodes=129 R=0.8990 D=0.4323 step_len=0.1323
+ns511/p50_i50/0 MOEAD: nodes=858 R=0.7234 D=0.4781 step_len=0.2136
+ns511/p50_i50/0 NSGA2: nodes=150 R=0.9527 D=0.4692 step_len=0.1315
+ns512/p100_i50/0 MOEAD: nodes=793 R=0.9014 D=0.8511 step_len=0.1818
+ns512/p100_i50/0 NSGA2: nodes=203 R=0.9699 D=0.7386 step_len=0.1275
+ns512/p10_i50/0 MOEAD: nodes=708 R=0.7315 D=0.7213 step_len=0.2078
+ns512/p10_i50/0 NSGA2: nodes=163 R=0.9158 D=0.7336 step_len=0.1276
+ns512/p50_i50/0 MOEAD: nodes=758 R=0.8789 D=0.8935 step_len=0.1953
+ns512/p50_i50/0 NSGA2: nodes=221 R=0.9583 D=0.6767 step_len=0.1223
+ns513/p100_i50/0 MOEAD: nodes=919 R=0.8850 D=0.8396 step_len=0.1991
+ns513/p100_i50/0 NSGA2: nodes=164 R=0.9730 D=0.7999 step_len=0.1490
+ns513/p10_i50/0 MOEAD: nodes=840 R=0.6973 D=0.5620 step_len=0.2250
+ns513/p10_i50/0 NSGA2: nodes=126 R=0.9339 D=0.5515 step_len=0.1533
+ns513/p50_i50/0 MOEAD: nodes=887 R=0.8645 D=0.8121 step_len=0.2140
+ns513/p50_i50/0 NSGA2: nodes=157 R=0.9662 D=0.7255 step_len=0.1368
+métricas -> /repo/campanhas/full_ext_grid_sparse_2026-10-05/metrics/mowflop_g2.0norm_partition_metrics.csv
+[plot] tag=g2.0norm layout=both 2026-10-06T02:25:24+00:00
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+[1] "MOEAD ns513 p100i50"
+[1] "MOEAD ns513 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns513_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns511 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns511_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns511 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns513_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns513 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns513_2_g2.0norm_p50i50_0_post_of.png 
+[1] "MOEAD ns513 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns511_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns512 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns512_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns512 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns513_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "MOEAD ns510 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns510_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns510 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns512_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns511 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns511_2_g2.0norm_p50i50_0_post_of.png 
+[1] "MOEAD ns511 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns510_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns510 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns510_2_g2.0norm_p50i50_0_post_of.png 
+[1] "MOEAD ns510 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns511_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "MOEAD ns511 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns511_2_g2.0norm_p10i50_0_post_of.png 
+[1] "MOEAD ns511 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns510_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "MOEAD ns512 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns512_2_g2.0norm_p50i50_0_post_of.png 
+[1] "MOEAD ns512 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns511_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "MOEAD ns513 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns513_2_g2.0norm_p10i50_0_post_of.png 
+[1] "MOEAD ns513 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns512_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "MOEAD ns510 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns510_2_g2.0norm_p10i50_0_post_of.png 
+[1] "MOEAD ns510 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns513_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "MOEAD ns512 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns512_2_g2.0norm_p10i50_0_post_of.png 
+[1] "MOEAD ns512 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns510_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns512 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns512_2_g2.0norm_p100i50_0_post_of.png 
+[1] "NSGA2 ns512 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns512_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns512 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns512_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "NSGA2 ns512 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns512_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns511 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns512_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns511 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns511_2_g2.0norm_p100i50_0_post_of.png 
+[1] "NSGA2 ns513 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns511_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "NSGA2 ns513 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns513_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "NSGA2 ns510 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns513_2_g2.0norm_p100i50_0_post_of.png 
+[1] "NSGA2 ns510 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns510_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "NSGA2 ns511 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns510_2_g2.0norm_p100i50_0_post_of.png 
+[1] "NSGA2 ns511 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns511_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns513 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns511_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns513 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns513_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns510 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns513_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns510 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns510_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns512 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns510_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns512 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns512_2_g2.0norm_p10i50_0_post_of.png 
+[1] "NSGA2 ns511 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns512_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns511 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns511_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns513 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns511_2_g2.0norm_p10i50_0_post_of.png 
+[1] "NSGA2 ns513 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns513_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns510 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns513_2_g2.0norm_p10i50_0_post_of.png 
+[1] "NSGA2 ns510 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns510_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "MOEAD ns508 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns510_2_g2.0norm_p10i50_0_post_of.png 
+[1] "MOEAD ns508 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns508_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns509 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns508_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns509 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns509_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns508 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns509_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns508 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns508_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "MOEAD ns508 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns508_2_g2.0norm_p50i50_0_post_of.png 
+[1] "MOEAD ns508 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns508_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "MOEAD ns509 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns508_2_g2.0norm_p10i50_0_post_of.png 
+[1] "MOEAD ns509 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns509_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "MOEAD ns509 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns509_2_g2.0norm_p50i50_0_post_of.png 
+[1] "MOEAD ns509 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns509_2_g2.0norm_p10i50_0_post_of.png 
+[1] "MOEAD ns507 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns509_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "MOEAD ns507 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns507_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns507 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns507_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns507 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns507_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns508 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns507_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns508 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns508_2_g2.0norm_p100i50_0_post_fd.png 
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns508_2_g2.0norm_p100i50_0_post_of.png 
+[1] "NSGA2 ns509 p100i50"
+[1] "NSGA2 ns509 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns509_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns506 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns509_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns506 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns506_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "MOEAD ns507 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns506_2_g2.0norm_p100i50_0_post_of.png 
+[1] "MOEAD ns507 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns507_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns507 p100i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns507_2_g2.0norm_p10i50_0_post_of.png 
+[1] "NSGA2 ns507 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns507_2_g2.0norm_p100i50_0_post_of.png 
+[1] "NSGA2 ns508 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns507_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "NSGA2 ns508 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns508_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns509 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns508_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns509 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns509_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "MOEAD ns506 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns509_2_g2.0norm_p50i50_0_post_of.png 
+[1] "MOEAD ns506 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns506_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns507 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns506_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns507 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns507_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns508 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns507_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns508 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns508_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns506 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns508_2_g2.0norm_p10i50_0_post_of.png 
+[1] "NSGA2 ns506 p100i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns506_2_g2.0norm_p100i50_0_post_fd.png 
+[1] "NSGA2 ns509 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns506_2_g2.0norm_p100i50_0_post_of.png 
+[1] "NSGA2 ns509 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns509_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "MOEAD ns506 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns509_2_g2.0norm_p10i50_0_post_of.png 
+[1] "MOEAD ns506 p10i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns506_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns506 p50i50"
+-> plots/mowflop_g2.0norm/MOEAD_mowflop_ns506_2_g2.0norm_p10i50_0_post_of.png 
+[1] "NSGA2 ns506 p50i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns506_2_g2.0norm_p50i50_0_post_fd.png 
+[1] "NSGA2 ns507 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns506_2_g2.0norm_p50i50_0_post_of.png 
+[1] "NSGA2 ns507 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns507_2_g2.0norm_p10i50_0_post_fd.png 
+[1] "NSGA2 ns506 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns507_2_g2.0norm_p10i50_0_post_of.png 
+[1] "NSGA2 ns506 p10i50"
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns506_2_g2.0norm_p10i50_0_post_fd.png 
+-> plots/mowflop_g2.0norm/NSGA2_mowflop_ns506_2_g2.0norm_p10i50_0_post_of.png 
+plot.R: reaproveitando as linhas 1-93 (até o fim de plot_stn) sem alteração,
+        exceto as constantes nas linhas [21, 22]:
+  -infolder <- "stns/mowflop_x80/"
+  -outfolder <- "plots/mowflop_x80/"
+  +infolder <- "stns/mowflop_g2.0norm/"
+  +outfolder <- "plots/mowflop_g2.0norm/"
+[done] tag=g2.0norm 2026-10-06T02:26:21+00:00

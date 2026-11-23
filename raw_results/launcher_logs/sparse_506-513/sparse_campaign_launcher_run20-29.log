@@ -1,0 +1,1360 @@
+[start] instance=506_e-02 algo=moead run_id=20 angle=210.000000000000 wind=17.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+[start] instance=506_e-02 algo=moead run_id=23 angle=300.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+[start] instance=506_e-02 algo=moead run_id=24 angle=60.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+[start] instance=506_e-02 algo=moead run_id=21 angle=270.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 17.000000000000
+Angle: 210.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[start] instance=506_e-02 algo=moead run_id=28 angle=210.000000000000 wind=15.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+[start] instance=506_e-02 algo=moead run_id=22 angle=90.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+9
+[start] instance=506_e-02 algo=moead run_id=26 angle=180.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 5.000000000000
+Angle: 300.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[start] instance=506_e-02 algo=moead run_id=25 angle=120.000000000000 wind=17.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+9
+[start] instance=506_e-02 algo=moead run_id=27 angle=300.000000000000 wind=17.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 5.000000000000
+Angle: 60.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+9
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+9
+Wind: 15.000000000000
+Angle: 210.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+
+Number of subproblems: 100
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 180.000000000000
+Run id: 26
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+9
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 90.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 17.000000000000
+Angle: 300.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+Wind: 9.000000000000
+Angle: 270.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 17.000000000000
+Angle: 120.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[start] instance=506_e-02 algo=moead run_id=29 angle=330.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:55:59+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 330.000000000000
+Run id: 29
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=22 2026-09-01T15:59:36+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=20 angle=60.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:59:36+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 60.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=24 2026-09-01T15:59:41+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=21 angle=60.000000000000 wind=3.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:59:42+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 3.000000000000
+Angle: 60.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=25 2026-09-01T15:59:44+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=22 angle=210.000000000000 wind=21.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:59:44+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 21.000000000000
+Angle: 210.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=21 2026-09-01T15:59:45+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=23 angle=90.000000000000 wind=3.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:59:45+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 3.000000000000
+Angle: 90.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=26 2026-09-01T15:59:53+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=24 angle=120.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T15:59:54+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 120.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=27 2026-09-01T16:00:03+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=25 angle=300.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:00:03+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 5.000000000000
+Angle: 300.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=23 2026-09-01T16:00:04+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=26 angle=300.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:00:04+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 13.000000000000
+Angle: 300.000000000000
+Run id: 26
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=20 2026-09-01T16:00:07+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=27 angle=270.000000000000 wind=23.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:00:07+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 23.000000000000
+Angle: 270.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=28 2026-09-01T16:00:07+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=28 angle=210.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:00:07+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 13.000000000000
+Angle: 210.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=moead run_id=29 2026-09-01T16:00:08+00:00
+[start] instance=506_e-02 algo=nsga2 run_id=29 angle=150.000000000000 wind=3.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:00:08+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 3.000000000000
+Angle: 150.000000000000
+Run id: 29
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=20 2026-09-01T16:04:24+00:00
+[start] instance=507_e-03 algo=moead run_id=20 angle=60.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:04:25+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 60.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=23 2026-09-01T16:04:30+00:00
+[start] instance=507_e-03 algo=moead run_id=21 angle=270.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:04:30+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 13.000000000000
+Angle: 270.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=21 2026-09-01T16:04:30+00:00
+[start] instance=507_e-03 algo=moead run_id=22 angle=120.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:04:30+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 120.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=24 2026-09-01T16:04:56+00:00
+[start] instance=507_e-03 algo=moead run_id=23 angle=30.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:04:56+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 13.000000000000
+Angle: 30.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=22 2026-09-01T16:05:07+00:00
+[start] instance=507_e-03 algo=moead run_id=24 angle=0.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:05:07+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 0.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=27 2026-09-01T16:05:07+00:00
+[start] instance=507_e-03 algo=moead run_id=25 angle=90.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:05:08+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 90.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=28 2026-09-01T16:05:23+00:00
+[start] instance=507_e-03 algo=moead run_id=26 angle=240.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:05:23+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 13.000000000000
+Angle: 240.000000000000
+Run id: 26
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=26 2026-09-01T16:05:28+00:00
+[start] instance=507_e-03 algo=moead run_id=27 angle=300.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:05:28+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 300.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=25 2026-09-01T16:05:29+00:00
+[start] instance=507_e-03 algo=moead run_id=28 angle=240.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:05:29+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 240.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=506_e-02 algo=nsga2 run_id=29 2026-09-01T16:06:27+00:00
+[start] instance=507_e-03 algo=moead run_id=29 angle=210.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:06:27+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 210.000000000000
+Run id: 29
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=24 2026-09-01T16:07:54+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=20 angle=270.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:07:54+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 270.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=20 2026-09-01T16:08:15+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=21 angle=330.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:08:15+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 330.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=22 2026-09-01T16:08:22+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=22 angle=270.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:08:22+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 270.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=21 2026-09-01T16:08:27+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=23 angle=300.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:08:27+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 300.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=23 2026-09-01T16:08:36+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=24 angle=180.000000000000 wind=3.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:08:36+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 3.000000000000
+Angle: 180.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=25 2026-09-01T16:08:52+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=25 angle=90.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:08:52+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 90.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=26 2026-09-01T16:09:36+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=26 angle=0.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:09:36+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 0.000000000000
+Run id: 26
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=27 2026-09-01T16:09:41+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=27 angle=330.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:09:41+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 13.000000000000
+Angle: 330.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=28 2026-09-01T16:09:42+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=28 angle=150.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:09:42+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 150.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=moead run_id=29 2026-09-01T16:10:43+00:00
+[start] instance=507_e-03 algo=nsga2 run_id=29 angle=210.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:10:44+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 210.000000000000
+Run id: 29
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=20 2026-09-01T16:14:34+00:00
+[start] instance=508_e-04 algo=moead run_id=20 angle=120.000000000000 wind=21.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:14:34+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 21.000000000000
+Angle: 120.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=25 2026-09-01T16:14:37+00:00
+[start] instance=508_e-04 algo=moead run_id=21 angle=300.000000000000 wind=1.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:14:37+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 1.000000000000
+Angle: 300.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=22 2026-09-01T16:14:52+00:00
+[start] instance=508_e-04 algo=moead run_id=22 angle=90.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:14:52+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 5.000000000000
+Angle: 90.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=23 2026-09-01T16:15:31+00:00
+[start] instance=508_e-04 algo=moead run_id=23 angle=210.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:15:31+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 210.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=21 2026-09-01T16:17:41+00:00
+[start] instance=508_e-04 algo=moead run_id=24 angle=300.000000000000 wind=21.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:17:41+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 21.000000000000
+Angle: 300.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=24 2026-09-01T16:18:31+00:00
+[start] instance=508_e-04 algo=moead run_id=25 angle=210.000000000000 wind=17.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:18:31+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 17.000000000000
+Angle: 210.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=26 2026-09-01T16:18:43+00:00
+[start] instance=508_e-04 algo=moead run_id=26 angle=330.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:18:43+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 330.000000000000
+Run id: 26
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=29 2026-09-01T16:18:43+00:00
+[start] instance=508_e-04 algo=moead run_id=27 angle=270.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:18:43+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 270.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=28 2026-09-01T16:19:24+00:00
+[start] instance=508_e-04 algo=moead run_id=28 angle=150.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:19:24+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 150.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=20 2026-09-01T16:19:36+00:00
+[start] instance=508_e-04 algo=moead run_id=29 angle=300.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:19:37+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 300.000000000000
+Run id: 29
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=507_e-03 algo=nsga2 run_id=27 2026-09-01T16:19:43+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=20 angle=210.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:19:43+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 210.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=22 2026-09-01T16:20:07+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=21 angle=180.000000000000 wind=17.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:20:07+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 17.000000000000
+Angle: 180.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=21 2026-09-01T16:20:35+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=22 angle=330.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:20:35+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 330.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=23 2026-09-01T16:21:09+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=23 angle=240.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:21:09+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 240.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=24 2026-09-01T16:23:26+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=24 angle=240.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:23:26+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 240.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=27 2026-09-01T16:24:19+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=25 angle=60.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:24:19+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 60.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=25 2026-09-01T16:24:20+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=26 angle=120.000000000000 wind=1.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:24:20+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 1.000000000000
+Angle: 120.000000000000
+Run id: 26
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=26 2026-09-01T16:24:40+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=27 angle=240.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:24:40+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 13.000000000000
+Angle: 240.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=28 2026-09-01T16:25:25+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=28 angle=180.000000000000 wind=15.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:25:25+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 15.000000000000
+Angle: 180.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=moead run_id=29 2026-09-01T16:25:32+00:00
+[start] instance=508_e-04 algo=nsga2 run_id=29 angle=0.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T16:25:32+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 5.000000000000
+Angle: 0.000000000000
+Run id: 29
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=23 2026-09-01T17:36:20+00:00
+[start] instance=509_e-05 algo=moead run_id=20 angle=270.000000000000 wind=21.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T17:36:20+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 21.000000000000
+Angle: 270.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=26 2026-09-01T17:37:12+00:00
+[start] instance=509_e-05 algo=moead run_id=21 angle=240.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T17:37:12+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 240.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=24 2026-09-01T17:39:10+00:00
+[start] instance=509_e-05 algo=moead run_id=22 angle=300.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T17:39:10+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 300.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=27 2026-09-01T17:42:44+00:00
+[start] instance=509_e-05 algo=moead run_id=23 angle=60.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T17:42:44+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 60.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=25 2026-09-01T17:46:25+00:00
+[start] instance=509_e-05 algo=moead run_id=24 angle=330.000000000000 wind=15.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T17:46:26+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 15.000000000000
+Angle: 330.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=20 2026-09-01T18:01:30+00:00
+[start] instance=509_e-05 algo=moead run_id=25 angle=300.000000000000 wind=21.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:01:31+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 21.000000000000
+Angle: 300.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=20 2026-09-01T18:20:14+00:00
+[start] instance=509_e-05 algo=moead run_id=26 angle=270.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:20:14+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 270.000000000000
+Run id: 26
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=21 2026-09-01T18:22:27+00:00
+[start] instance=509_e-05 algo=moead run_id=27 angle=330.000000000000 wind=11.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:22:27+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 11.000000000000
+Angle: 330.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=22 2026-09-01T18:24:42+00:00
+[start] instance=509_e-05 algo=moead run_id=28 angle=150.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:24:42+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 5.000000000000
+Angle: 150.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=22 2026-09-01T18:25:20+00:00
+[start] instance=509_e-05 algo=moead run_id=29 angle=180.000000000000 wind=9.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:25:21+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 9.000000000000
+Angle: 180.000000000000
+Run id: 29
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=23 2026-09-01T18:26:07+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=20 angle=210.000000000000 wind=13.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:26:07+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 13.000000000000
+Angle: 210.000000000000
+Run id: 20
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=21 2026-09-01T18:26:42+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=21 angle=90.000000000000 wind=15.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:26:42+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 15.000000000000
+Angle: 90.000000000000
+Run id: 21
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=28 2026-09-01T18:30:05+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=22 angle=240.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:30:05+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 240.000000000000
+Run id: 22
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=24 2026-09-01T18:30:37+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=23 angle=90.000000000000 wind=5.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:30:37+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 5.000000000000
+Angle: 90.000000000000
+Run id: 23
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=508_e-04 algo=nsga2 run_id=29 2026-09-01T18:35:03+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=24 angle=150.000000000000 wind=17.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:35:03+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 17.000000000000
+Angle: 150.000000000000
+Run id: 24
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=25 2026-09-01T18:46:39+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=25 angle=120.000000000000 wind=7.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T18:46:39+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 7.000000000000
+Angle: 120.000000000000
+Run id: 25
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=26 2026-09-01T19:10:29+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=26 angle=270.000000000000 wind=21.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T19:10:29+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 21.000000000000
+Angle: 270.000000000000
+Run id: 26
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=27 2026-09-01T19:12:59+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=27 angle=30.000000000000 wind=3.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T19:12:59+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 3.000000000000
+Angle: 30.000000000000
+Run id: 27
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=29 2026-09-01T19:14:25+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=28 angle=270.000000000000 wind=3.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T19:14:25+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 3.000000000000
+Angle: 270.000000000000
+Run id: 28
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=moead run_id=28 2026-09-01T19:20:09+00:00
+[start] instance=509_e-05 algo=nsga2 run_id=29 angle=120.000000000000 wind=15.000000000000 stop_criteria=1000000 stn_p=100 stn_interval=50 2026-09-01T19:20:09+00:00
+9
+
+Number of subproblems: 100
+Number of neighbors: 10
+Number of fixed turbines: 58
+Number of mobile turbines: 5
+Wind: 15.000000000000
+Angle: 120.000000000000
+Run id: 29
+Stop criteria: 1000000
+STN P (num vectors): 100
+STN logger interval: 50
+
+Run time:
+[done]  instance=509_e-05 algo=nsga2 run_id=22 2026-09-03T03:44:17+00:00
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/20/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/21/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/22/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/23/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/24/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/25/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/26/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/27/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/28/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/510_e-02/p100_i50/29/510_e-02_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/20/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/21/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/22/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/23/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/24/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/25/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/26/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/27/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/28/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/510_e-02/p100_i50/29/510_e-02_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/20/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/21/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/22/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/23/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/24/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/25/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/26/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/27/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/28/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/511_e-03/p100_i50/29/511_e-03_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/20/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/21/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/22/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/23/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/24/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/25/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/26/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/27/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/28/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/511_e-03/p100_i50/29/511_e-03_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/20/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/21/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/22/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/23/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/24/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/25/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/26/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/27/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/28/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/512_e-04/p100_i50/29/512_e-04_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/20/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/21/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/22/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/23/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/24/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/25/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/26/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/27/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/28/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/512_e-04/p100_i50/29/512_e-04_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/20/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/21/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/22/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/23/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/24/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/25/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/26/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/27/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/28/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/moead/513_e-05/p100_i50/29/513_e-05_moead_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/20/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/21/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/22/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/23/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/24/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/25/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/26/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/27/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/28/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[skip] ../raw_results/meta_heuristics_stn_windcorrected/nsga2/513_e-05/p100_i50/29/513_e-05_nsga2_stn.csv já existe, run considerada completa
+[done]  instance=509_e-05 algo=nsga2 run_id=29 2026-09-03T04:11:08+00:00
+[done]  instance=509_e-05 algo=nsga2 run_id=23 2026-09-03T04:18:44+00:00
+[done]  instance=509_e-05 algo=nsga2 run_id=28 2026-09-03T04:34:09+00:00
+[done]  instance=509_e-05 algo=nsga2 run_id=25 2026-09-03T04:43:22+00:00
+[done]  instance=509_e-05 algo=nsga2 run_id=21 2026-09-03T04:44:43+00:00
+[done]  instance=509_e-05 algo=nsga2 run_id=26 2026-09-03T05:07:32+00:00
+[done]  instance=509_e-05 algo=nsga2 run_id=27 2026-09-03T06:28:40+00:00
+[done]  instance=509_e-05 algo=nsga2 run_id=20 2026-09-03T07:16:04+00:00
+[done]  instance=509_e-05 algo=nsga2 run_id=24 2026-09-03T08:08:56+00:00

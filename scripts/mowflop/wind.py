@@ -21,6 +21,10 @@ pontos entram na frente do cenário (:func:`cec_runs_of`).
 
 A identidade de um cenário é o par ``(vento, ângulo)``, não o índice da run:
 em ns41 as runs 3 e 5 rodaram as duas em 7 m/s a 150°, e são o mesmo problema.
+
+Cada cenário tem uma frente (o não dominado dos arquivos ``pareto``) e uma
+régua de normalização, que cobre também as trajetórias logadas, para a STN
+inteira caber em ``[1, 2]`` (ver :class:`ScenarioData`).
 """
 
 from __future__ import annotations
@@ -32,7 +36,7 @@ from typing import NamedTuple
 
 import pandas as pd
 
-from .io_raw import repo_root
+from .io_raw import repo_root, trajectory_objectives
 from .reference_front import (
     ALGO_DIRS,
     WFLOPCEC26_ROOT,
@@ -201,18 +205,27 @@ class ScenarioData(NamedTuple):
     """Frente de referência e régua de normalização de um cenário de vento.
 
     ``lower_power``/``upper_power`` são os extremos de ``f_power``, e
-    ``lower_cost``/``upper_cost`` os de ``f_cost``, no *conjunto todo* do
-    cenário, não só na frente -- é o que o ``bound.exe`` do professor calcula e
-    grava no ``boundddd.out``, e o que o ``normalize.cc`` consome (lá só para
-    ``f_power``; ``f_cost`` não depende do vento, mas normalizá-lo pela mesma
-    régua por cenário é inofensivo e deixa os dois eixos na mesma escala).
-    Como a trajetória logada na STN é uma amostra da população (e não do
-    arquivo ``pareto``), ela pode conter pontos piores que qualquer um do
-    arquivo -- e aí sai de ``[1, 2]`` depois de normalizada: uma potência
-    abaixo do ``lower_power`` cai *abaixo* de 1,0, um custo acima do
-    ``upper_cost`` sobe *acima* de 2,0 (é o caso das gerações iniciais, cujo
-    custo é pior que o de qualquer ponto do arquivo).  Isso é esperado e
-    inofensivo -- a transformação é afim, então nada muda de ordem.
+    ``lower_cost``/``upper_cost`` os de ``f_cost``, sobre *tudo o que foi
+    visitado* no cenário: os arquivos ``pareto`` (nosso e do cec) **e** os
+    registros logados das trajetórias (``*_stn.csv``, todas as configs, os dois
+    algoritmos).  ``f_cost`` não depende do vento, mas normalizá-lo pela mesma
+    régua por cenário deixa os dois eixos na mesma escala.
+
+    Só o arquivo ``pareto`` (a régua do ``bound.exe``/``normalize.cc`` do
+    professor) não basta: a trajetória é uma amostra da população, e as
+    gerações iniciais são piores que qualquer ponto do arquivo.  Nas
+    instâncias de poucas turbinas a frente é quase um ponto (a solução mais
+    barata já tem quase a potência máxima), a régua do arquivo encolhe e a
+    trajetória normalizada estoura -- ``f_cost`` até ~100, ``f_power`` até
+    ~-20 em ns506-ns509 --, ou a régua degenera (arquivo de um ponto só) e a
+    run inteira colapsa em ``(1, 1)``, marcada toda como Pareto.  Incluindo as
+    trajetórias, frente e trajetória ficam em ``[1, 2]`` nos dois eixos.
+
+    O preço: ``[1, 2]`` passa a ser "a faixa do que foi visitado", não "a faixa
+    das soluções boas" -- a régua não serve para indicadores sobre valores
+    normalizados (hipervolume), e o limite pior vem quase sempre de um
+    indivíduo aleatório da geração inicial.  A transformação continua afim e
+    crescente dentro do cenário, então nada muda de ordem.
 
     A régua e a frente são propriedade do *cenário*, não da config nem da run:
     toda ``(config, run)`` que mapeia para o mesmo ``(vento, ângulo)`` recebe o
@@ -299,8 +312,10 @@ def _scenario_data(instance: str, external: bool = True) -> dict[Scenario, Scena
     - todo ponto do wflopcec26 cuja run rodou aquele mesmo ``(vento, ângulo)``,
       inclusive as runs 11-20 sem contraparte nossa (:func:`cec_runs_of`).
 
-    ``min``/``max`` de cada objetivo saem desse conjunto uma vez; a frente é o
-    não dominado dele.  Unir runs de ventos diferentes é o que hoje produz uma
+    A frente é o não dominado desse conjunto.  A régua (``min``/``max`` de cada
+    objetivo) sai desse conjunto unido aos registros logados das trajetórias
+    das mesmas ``(algoritmo, run)`` (:func:`mowflop.io_raw.trajectory_objectives`)
+    -- ver :class:`ScenarioData`.  A trajetória entra só na régua, nunca na frente.  Unir runs de ventos diferentes é o que hoje produz uma
     frente inatingível por construção (ver
     ``reports/frente_referencia_vento.md``).
 
@@ -319,8 +334,10 @@ def _scenario_data(instance: str, external: bool = True) -> dict[Scenario, Scena
         if external
         else pd.DataFrame(columns=["f_cost", "f_power", "run"])
     )
+    traj = trajectory_objectives(instance)
     our_scenario = scenarios(instance)
     our_keys = pd.MultiIndex.from_arrays([ours["algorithm"], ours["run"]])
+    traj_keys = pd.MultiIndex.from_arrays([traj["algorithm"], traj["run_id"]])
 
     out: dict[Scenario, ScenarioData] = {}
     for scenario in sorted(set(our_scenario.values())):
@@ -334,13 +351,18 @@ def _scenario_data(instance: str, external: bool = True) -> dict[Scenario, Scena
         )
         if points.empty:
             raise ValueError(f"no points for {instance} scenario {scenario}")
+        # a régua cobre também a trajetória, para a STN inteira caber em [1, 2]
+        visited = pd.concat(
+            [points[["f_cost", "f_power"]], traj.loc[traj_keys.isin(keys), ["f_cost", "f_power"]]],
+            ignore_index=True,
+        )
         out[scenario] = ScenarioData(
             scenario=scenario,
             front=pareto_front(points),
-            lower_power=float(points["f_power"].min()),
-            upper_power=float(points["f_power"].max()),
-            lower_cost=float(points["f_cost"].min()),
-            upper_cost=float(points["f_cost"].max()),
+            lower_power=float(visited["f_power"].min()),
+            upper_power=float(visited["f_power"].max()),
+            lower_cost=float(visited["f_cost"].min()),
+            upper_cost=float(visited["f_cost"].max()),
         )
     return out
 

@@ -21,10 +21,6 @@ isets<- c("MOEAD/","NSGA2/") # sets of instances to process
 infolder <- "stns/mowflop_x80/"
 outfolder <- "plots/mowflop_x80/"
 
-MyShapes <-  c(15)          # Shape for start nodes
-
-MyPal <- c("#4daf4a")      # Color for start nodes
-
 # Shape  and color for  Pareto front
 pShape <-   23              
 pColor <- "#377eb8"
@@ -54,20 +50,16 @@ plot_stn <- function(instance, iset, bObjLay) {
    # rho-mnk constant "0" -- show it, or per-run panels are indistinguishable.
    if (t[7] != "0") tit <- paste0(tit, " ", t[7])
    print(tit)
-   if (length(which(V(STN)$Position =="End")) > 0 ) {   # If there are End Positions
-      MyShapes <- c(MyShapes, 17)
-      MyPal <-  c(MyPal,"#ff7f00")
-   }
-   
-   if (length(which(V(STN)$Position == "Medium")) > 0 ) {   # If there are Medium Positions
-      MyShapes <- c(MyShapes, 1)
-      MyPal <-  c(MyPal,"gray50")
-   }
-   
-   if (length(which(V(STN)$Position == "Pareto")) > 0 ) {   # If there are Pareto Positions
-      MyShapes <- c(MyShapes, 16)
-      MyPal <-  c(MyPal,"#ca0020" )
-   }
+   # MoWFLOP fix: the original built these vectors positionally -- Begin
+   # always first, End/Medium/Pareto appended only when present -- and the
+   # manual scales matched them to the levels present in alphabetical order.
+   # An STN with no Begin node (every start location is also some
+   # trajectory's end, so create.R relabels it End) shifted every style by
+   # one: End drawn as Begin, ..., x_Pareto as Pareto. Named values are
+   # matched by level name, so a missing category just drops out.
+   MyShapes <- c(Begin = 15, End = 17, Medium = 1, Pareto = 16, x_Pareto = pShape)
+   MyPal <- c(Begin = "#4daf4a", End = "#ff7f00", Medium = "gray50",
+              Pareto = "#ca0020", x_Pareto = pColor)
    
    if (bObjLay == T) {
       mylay <- create_layout(STN, layout = 'grid')
@@ -78,11 +70,11 @@ plot_stn <- function(instance, iset, bObjLay) {
       p <- ggraph(STN, layout = mylay) +
          
          geom_edge_diagonal2(aes(alpha = Count)) + 
-         scale_shape_manual(name = "Node Type", values=c(MyShapes, pShape))+ 
+         scale_shape_manual(name = "Node Type", values=MyShapes)+ 
          geom_point(data = pf, aes(x=f1, y=f2, color="x_Pareto", shape = "x_Pareto"), 
                     size = pSize, alpha = pAlpha )+
          geom_node_point(aes(shape = Position, size = Count, color=Position)) +
-         scale_colour_manual(name = "Node Type", values= c(MyPal, pColor)) +
+         scale_colour_manual(name = "Node Type", values=MyPal) +
          scale_size(range = c(0.7, 4.2)) +
          labs(title=tit, x="f1", y="f2") +
          theme_grey() +

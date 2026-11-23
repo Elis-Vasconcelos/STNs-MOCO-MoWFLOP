@@ -1,0 +1,11 @@
+raw10_orig: 10 instances x 2 algos x 3 configs x runs 0-9 = 600 links: ns101 ns178 ns192 ns202 ns203 ns41 ns440 ns465 ns48 ns488
+raw10_sparse: 8 instances x 2 algos x 3 configs x runs 0-9 = 480 links: ns506 ns507 ns508 ns509 ns510 ns511 ns512 ns513
+wflopcec26_ext: real CEC copied + 320 sparse fake-CEC run folders (8 x 2 x runs 10-29, p10 execution each)
+  ns506: runs 10-29 matching a 0-9 scenario: [11, 16]
+  ns507: runs 10-29 matching a 0-9 scenario: [25]
+  ns508: runs 10-29 matching a 0-9 scenario: [15, 17, 19]
+  ns509: runs 10-29 matching a 0-9 scenario: [27]
+  ns510: runs 10-29 matching a 0-9 scenario: [13, 22]
+  ns511: runs 10-29 matching a 0-9 scenario: [13]
+  ns512: runs 10-29 matching a 0-9 scenario: [23]
+  ns513: runs 10-29 matching a 0-9 scenario: [17, 20, 23, 29]

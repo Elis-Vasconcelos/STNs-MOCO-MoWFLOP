@@ -1,0 +1,1292 @@
+[
+  {
+    "instance": "ns101",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns101_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100100
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns101_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91000
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns101_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 550,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns101_p100i50_0_locations.csv",
+    "locations": 13054,
+    "solutions": 30491,
+    "recordings": 191100,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 2818.9630782619956,
+    "sigma": 240.0,
+    "candidate_spacing": 159.59812899999088,
+    "ell_at_sigma_floor": false,
+    "A": 125158207.17651844,
+    "tau": 63,
+    "W": 25541.182182000004,
+    "H": 24578.111865,
+    "n_cells": 16,
+    "ncols": 10,
+    "nrows": 9,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 30491
+  },
+  {
+    "instance": "ns101",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns101_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10050
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns101_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9110
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns101_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 550,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns101_p10i50_0_locations.csv",
+    "locations": 3654,
+    "solutions": 6321,
+    "recordings": 19160,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 2818.9630782619956,
+    "sigma": 240.0,
+    "candidate_spacing": 159.59812899999088,
+    "ell_at_sigma_floor": false,
+    "A": 125158207.17651844,
+    "tau": 63,
+    "W": 25541.182182000004,
+    "H": 24578.111865,
+    "n_cells": 16,
+    "ncols": 10,
+    "nrows": 9,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 6321
+  },
+  {
+    "instance": "ns101",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns101_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50300
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns101_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45550
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns101_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 550,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns101_p50i50_0_locations.csv",
+    "locations": 9221,
+    "solutions": 20195,
+    "recordings": 95850,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 2818.9630782619956,
+    "sigma": 240.0,
+    "candidate_spacing": 159.59812899999088,
+    "ell_at_sigma_floor": false,
+    "A": 125158207.17651844,
+    "tau": 63,
+    "W": 25541.182182000004,
+    "H": 24578.111865,
+    "n_cells": 16,
+    "ncols": 10,
+    "nrows": 9,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 20195
+  },
+  {
+    "instance": "ns178",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns178_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100300
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns178_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns178_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 248,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns178_p100i50_0_locations.csv",
+    "locations": 4364,
+    "solutions": 15466,
+    "recordings": 191400,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4451.52814911828,
+    "sigma": 240.0,
+    "candidate_spacing": 159.83140499997535,
+    "ell_at_sigma_floor": false,
+    "A": 113942591.45875645,
+    "tau": 23,
+    "W": 59297.451471999986,
+    "H": 5315.1696530000045,
+    "n_cells": 6,
+    "ncols": 14,
+    "nrows": 2,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 15466
+  },
+  {
+    "instance": "ns178",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns178_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10040
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns178_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns178_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 248,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns178_p10i50_0_locations.csv",
+    "locations": 2015,
+    "solutions": 4200,
+    "recordings": 19140,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4451.52814911828,
+    "sigma": 240.0,
+    "candidate_spacing": 159.83140499997535,
+    "ell_at_sigma_floor": false,
+    "A": 113942591.45875645,
+    "tau": 23,
+    "W": 59297.451471999986,
+    "H": 5315.1696530000045,
+    "n_cells": 6,
+    "ncols": 14,
+    "nrows": 2,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 4200
+  },
+  {
+    "instance": "ns178",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns178_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50150
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns178_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns178_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 248,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns178_p50i50_0_locations.csv",
+    "locations": 3264,
+    "solutions": 10622,
+    "recordings": 95650,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4451.52814911828,
+    "sigma": 240.0,
+    "candidate_spacing": 159.83140499997535,
+    "ell_at_sigma_floor": false,
+    "A": 113942591.45875645,
+    "tau": 23,
+    "W": 59297.451471999986,
+    "H": 5315.1696530000045,
+    "n_cells": 6,
+    "ncols": 14,
+    "nrows": 2,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 10622
+  },
+  {
+    "instance": "ns192",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns192_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100700
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns192_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns192_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 188,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns192_p100i50_0_locations.csv",
+    "locations": 3378,
+    "solutions": 28416,
+    "recordings": 191800,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 3761.290068114763,
+    "sigma": 240.0,
+    "candidate_spacing": 158.49630699999398,
+    "ell_at_sigma_floor": false,
+    "A": 109641598.06786537,
+    "tau": 31,
+    "W": 45231.68651099999,
+    "H": 7766.319074999992,
+    "n_cells": 8,
+    "ncols": 13,
+    "nrows": 3,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 28416
+  },
+  {
+    "instance": "ns192",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns192_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10050
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns192_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns192_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 188,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns192_p10i50_0_locations.csv",
+    "locations": 1350,
+    "solutions": 6140,
+    "recordings": 19150,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 3761.290068114763,
+    "sigma": 240.0,
+    "candidate_spacing": 158.49630699999398,
+    "ell_at_sigma_floor": false,
+    "A": 109641598.06786537,
+    "tau": 31,
+    "W": 45231.68651099999,
+    "H": 7766.319074999992,
+    "n_cells": 8,
+    "ncols": 13,
+    "nrows": 3,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 6140
+  },
+  {
+    "instance": "ns192",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns192_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50200
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns192_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45600
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns192_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 188,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns192_p50i50_0_locations.csv",
+    "locations": 2413,
+    "solutions": 19543,
+    "recordings": 95800,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 3761.290068114763,
+    "sigma": 240.0,
+    "candidate_spacing": 158.49630699999398,
+    "ell_at_sigma_floor": false,
+    "A": 109641598.06786537,
+    "tau": 31,
+    "W": 45231.68651099999,
+    "H": 7766.319074999992,
+    "n_cells": 8,
+    "ncols": 13,
+    "nrows": 3,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 19543
+  },
+  {
+    "instance": "ns202",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns202_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100400
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns202_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91300
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns202_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 500,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns202_p100i50_0_locations.csv",
+    "locations": 9525,
+    "solutions": 33367,
+    "recordings": 191700,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4460.298131895004,
+    "sigma": 240.0,
+    "candidate_spacing": 159.9753629999759,
+    "ell_at_sigma_floor": false,
+    "A": 233757548.24828625,
+    "tau": 47,
+    "W": 30255.946895000016,
+    "H": 30235.343709000008,
+    "n_cells": 12,
+    "ncols": 7,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 33367
+  },
+  {
+    "instance": "ns202",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns202_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10070
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns202_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9120
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns202_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 500,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns202_p10i50_0_locations.csv",
+    "locations": 2939,
+    "solutions": 7657,
+    "recordings": 19190,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4460.298131895004,
+    "sigma": 240.0,
+    "candidate_spacing": 159.9753629999759,
+    "ell_at_sigma_floor": false,
+    "A": 233757548.24828625,
+    "tau": 47,
+    "W": 30255.946895000016,
+    "H": 30235.343709000008,
+    "n_cells": 12,
+    "ncols": 7,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 7657
+  },
+  {
+    "instance": "ns202",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns202_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50100
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns202_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns202_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 500,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns202_p50i50_0_locations.csv",
+    "locations": 7140,
+    "solutions": 23502,
+    "recordings": 95600,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4460.298131895004,
+    "sigma": 240.0,
+    "candidate_spacing": 159.9753629999759,
+    "ell_at_sigma_floor": false,
+    "A": 233757548.24828625,
+    "tau": 47,
+    "W": 30255.946895000016,
+    "H": 30235.343709000008,
+    "n_cells": 12,
+    "ncols": 7,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 23502
+  },
+  {
+    "instance": "ns203",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns203_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100600
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns203_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91000
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns203_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 537,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns203_p100i50_0_locations.csv",
+    "locations": 6695,
+    "solutions": 23087,
+    "recordings": 191600,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4198.06799617889,
+    "sigma": 240.0,
+    "candidate_spacing": 158.95789499999955,
+    "ell_at_sigma_floor": false,
+    "A": 180643692.7305498,
+    "tau": 41,
+    "W": 26470.791330999986,
+    "H": 26797.058505000008,
+    "n_cells": 11,
+    "ncols": 7,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 23087
+  },
+  {
+    "instance": "ns203",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns203_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10040
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns203_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns203_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 537,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns203_p10i50_0_locations.csv",
+    "locations": 2650,
+    "solutions": 5769,
+    "recordings": 19140,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4198.06799617889,
+    "sigma": 240.0,
+    "candidate_spacing": 158.95789499999955,
+    "ell_at_sigma_floor": false,
+    "A": 180643692.7305498,
+    "tau": 41,
+    "W": 26470.791330999986,
+    "H": 26797.058505000008,
+    "n_cells": 11,
+    "ncols": 7,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 5769
+  },
+  {
+    "instance": "ns203",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns203_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50250
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns203_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns203_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 537,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns203_p50i50_0_locations.csv",
+    "locations": 5106,
+    "solutions": 15921,
+    "recordings": 95750,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4198.06799617889,
+    "sigma": 240.0,
+    "candidate_spacing": 158.95789499999955,
+    "ell_at_sigma_floor": false,
+    "A": 180643692.7305498,
+    "tau": 41,
+    "W": 26470.791330999986,
+    "H": 26797.058505000008,
+    "n_cells": 11,
+    "ncols": 7,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 15921
+  },
+  {
+    "instance": "ns41",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns41_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100200
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns41_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91200
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns41_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 570,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns41_p100i50_0_locations.csv",
+    "locations": 23109,
+    "solutions": 42370,
+    "recordings": 191400,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4171.2891625909715,
+    "sigma": 240.0,
+    "candidate_spacing": 159.74447799999325,
+    "ell_at_sigma_floor": false,
+    "A": 535039338.2969284,
+    "tau": 123,
+    "W": 28067.772037999996,
+    "H": 39641.44428200001,
+    "n_cells": 31,
+    "ncols": 7,
+    "nrows": 10,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 42370
+  },
+  {
+    "instance": "ns41",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns41_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10030
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns41_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9110
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns41_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 570,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns41_p10i50_0_locations.csv",
+    "locations": 6339,
+    "solutions": 8301,
+    "recordings": 19140,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4171.2891625909715,
+    "sigma": 240.0,
+    "candidate_spacing": 159.74447799999325,
+    "ell_at_sigma_floor": false,
+    "A": 535039338.2969284,
+    "tau": 123,
+    "W": 28067.772037999996,
+    "H": 39641.44428200001,
+    "n_cells": 31,
+    "ncols": 7,
+    "nrows": 10,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 8301
+  },
+  {
+    "instance": "ns41",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns41_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50200
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns41_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45550
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns41_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 570,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns41_p50i50_0_locations.csv",
+    "locations": 16279,
+    "solutions": 26798,
+    "recordings": 95750,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4171.2891625909715,
+    "sigma": 240.0,
+    "candidate_spacing": 159.74447799999325,
+    "ell_at_sigma_floor": false,
+    "A": 535039338.2969284,
+    "tau": 123,
+    "W": 28067.772037999996,
+    "H": 39641.44428200001,
+    "n_cells": 31,
+    "ncols": 7,
+    "nrows": 10,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 26798
+  },
+  {
+    "instance": "ns440",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns440_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100300
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns440_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91200
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns440_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 562,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns440_p100i50_0_locations.csv",
+    "locations": 33789,
+    "solutions": 49101,
+    "recordings": 191500,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4660.096747953005,
+    "sigma": 240.0,
+    "candidate_spacing": 159.5913939999882,
+    "ell_at_sigma_floor": false,
+    "A": 760077559.5098763,
+    "tau": 140,
+    "W": 53189.81538599999,
+    "H": 33915.69576,
+    "n_cells": 35,
+    "ncols": 12,
+    "nrows": 8,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 49101
+  },
+  {
+    "instance": "ns440",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns440_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10060
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns440_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9110
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns440_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 562,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns440_p10i50_0_locations.csv",
+    "locations": 8631,
+    "solutions": 10666,
+    "recordings": 19170,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4660.096747953005,
+    "sigma": 240.0,
+    "candidate_spacing": 159.5913939999882,
+    "ell_at_sigma_floor": false,
+    "A": 760077559.5098763,
+    "tau": 140,
+    "W": 53189.81538599999,
+    "H": 33915.69576,
+    "n_cells": 35,
+    "ncols": 12,
+    "nrows": 8,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 10666
+  },
+  {
+    "instance": "ns440",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns440_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50250
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns440_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45550
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns440_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 562,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns440_p50i50_0_locations.csv",
+    "locations": 23315,
+    "solutions": 33119,
+    "recordings": 95800,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4660.096747953005,
+    "sigma": 240.0,
+    "candidate_spacing": 159.5913939999882,
+    "ell_at_sigma_floor": false,
+    "A": 760077559.5098763,
+    "tau": 140,
+    "W": 53189.81538599999,
+    "H": 33915.69576,
+    "n_cells": 35,
+    "ncols": 12,
+    "nrows": 8,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 33119
+  },
+  {
+    "instance": "ns465",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns465_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100800
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns465_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91200
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns465_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 485,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns465_p100i50_0_locations.csv",
+    "locations": 23494,
+    "solutions": 45633,
+    "recordings": 192000,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4594.863745090044,
+    "sigma": 240.0,
+    "candidate_spacing": 159.73042299998633,
+    "ell_at_sigma_floor": false,
+    "A": 416977263.50987244,
+    "tau": 79,
+    "W": 36671.791046,
+    "H": 30508.510872,
+    "n_cells": 20,
+    "ncols": 8,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 45633
+  },
+  {
+    "instance": "ns465",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns465_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10040
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns465_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9110
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns465_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 485,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns465_p10i50_0_locations.csv",
+    "locations": 6254,
+    "solutions": 9261,
+    "recordings": 19150,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4594.863745090044,
+    "sigma": 240.0,
+    "candidate_spacing": 159.73042299998633,
+    "ell_at_sigma_floor": false,
+    "A": 416977263.50987244,
+    "tau": 79,
+    "W": 36671.791046,
+    "H": 30508.510872,
+    "n_cells": 20,
+    "ncols": 8,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 9261
+  },
+  {
+    "instance": "ns465",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns465_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50150
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns465_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns465_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 485,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns465_p50i50_0_locations.csv",
+    "locations": 16503,
+    "solutions": 30925,
+    "recordings": 95650,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4594.863745090044,
+    "sigma": 240.0,
+    "candidate_spacing": 159.73042299998633,
+    "ell_at_sigma_floor": false,
+    "A": 416977263.50987244,
+    "tau": 79,
+    "W": 36671.791046,
+    "H": 30508.510872,
+    "n_cells": 20,
+    "ncols": 8,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 30925
+  },
+  {
+    "instance": "ns48",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns48_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100200
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns48_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91000
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns48_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 217,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns48_p100i50_0_locations.csv",
+    "locations": 1974,
+    "solutions": 13660,
+    "recordings": 191200,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4675.8488048015815,
+    "sigma": 240.0,
+    "candidate_spacing": 159.7413349999988,
+    "ell_at_sigma_floor": false,
+    "A": 114783700.738163,
+    "tau": 21,
+    "W": 41692.48857300001,
+    "H": 28866.204163999995,
+    "n_cells": 6,
+    "ncols": 9,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 13660
+  },
+  {
+    "instance": "ns48",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns48_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10050
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns48_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns48_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 217,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns48_p10i50_0_locations.csv",
+    "locations": 1195,
+    "solutions": 4216,
+    "recordings": 19150,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4675.8488048015815,
+    "sigma": 240.0,
+    "candidate_spacing": 159.7413349999988,
+    "ell_at_sigma_floor": false,
+    "A": 114783700.738163,
+    "tau": 21,
+    "W": 41692.48857300001,
+    "H": 28866.204163999995,
+    "n_cells": 6,
+    "ncols": 9,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 4216
+  },
+  {
+    "instance": "ns48",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns48_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50350
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns48_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45600
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns48_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 217,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns48_p50i50_0_locations.csv",
+    "locations": 1613,
+    "solutions": 10255,
+    "recordings": 95950,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4675.8488048015815,
+    "sigma": 240.0,
+    "candidate_spacing": 159.7413349999988,
+    "ell_at_sigma_floor": false,
+    "A": 114783700.738163,
+    "tau": 21,
+    "W": 41692.48857300001,
+    "H": 28866.204163999995,
+    "n_cells": 6,
+    "ncols": 9,
+    "nrows": 7,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 10255
+  },
+  {
+    "instance": "ns488",
+    "config": "p100_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns488_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 100600
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns488_2_g2.0norm_p100i50_0_post.txt",
+        "rows": 91100
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns488_2_g2.0norm_p100i50_0_ref.txt",
+    "front_size": 251,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns488_p100i50_0_locations.csv",
+    "locations": 10458,
+    "solutions": 24359,
+    "recordings": 191700,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4260.664480121799,
+    "sigma": 240.0,
+    "candidate_spacing": 160.0796529999934,
+    "ell_at_sigma_floor": false,
+    "A": 181532618.12171555,
+    "tau": 40,
+    "W": 23885.069908000005,
+    "H": 21450.673546000005,
+    "n_cells": 10,
+    "ncols": 6,
+    "nrows": 6,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 24359
+  },
+  {
+    "instance": "ns488",
+    "config": "p10_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns488_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 10040
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns488_2_g2.0norm_p10i50_0_post.txt",
+        "rows": 9120
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns488_2_g2.0norm_p10i50_0_ref.txt",
+    "front_size": 251,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns488_p10i50_0_locations.csv",
+    "locations": 3550,
+    "solutions": 5703,
+    "recordings": 19160,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4260.664480121799,
+    "sigma": 240.0,
+    "candidate_spacing": 160.0796529999934,
+    "ell_at_sigma_floor": false,
+    "A": 181532618.12171555,
+    "tau": 40,
+    "W": 23885.069908000005,
+    "H": 21450.673546000005,
+    "n_cells": 10,
+    "ncols": 6,
+    "nrows": 6,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 5703
+  },
+  {
+    "instance": "ns488",
+    "config": "p50_i50",
+    "tag": "g2.0norm",
+    "run_label": "0",
+    "files": [
+      {
+        "algorithm": "MOEAD",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/MOEAD/MOEAD_mowflop_ns488_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 50300
+      },
+      {
+        "algorithm": "NSGA2",
+        "path": "/repo/campanhas/full_ext_grid_orig_2026-10-05/data/mowflop_g2.0norm/NSGA2/NSGA2_mowflop_ns488_2_g2.0norm_p50i50_0_post.txt",
+        "rows": 45500
+      }
+    ],
+    "front": "/repo/campanhas/full_ext_grid_orig_2026-10-05/pf/mowflop/mowflop_ns488_2_g2.0norm_p50i50_0_ref.txt",
+    "front_size": 251,
+    "locations_table": "/repo/campanhas/full_ext_grid_orig_2026-10-05/locations/mowflop_g2.0norm/ns488_p50i50_0_locations.csv",
+    "locations": 7557,
+    "solutions": 16037,
+    "recordings": 95800,
+    "decimals": 6,
+    "scheme": "grid",
+    "kappa": 2.0,
+    "ell": 4260.664480121799,
+    "sigma": 240.0,
+    "candidate_spacing": 160.0796529999934,
+    "ell_at_sigma_floor": false,
+    "A": 181532618.12171555,
+    "tau": 40,
+    "W": 23885.069908000005,
+    "H": 21450.673546000005,
+    "n_cells": 10,
+    "ncols": 6,
+    "nrows": 6,
+    "algorithms": [
+      "moead",
+      "nsga2"
+    ],
+    "unique_solutions": 16037
+  }
+]
